@@ -12,7 +12,7 @@ export default {
     extend: {
       fontFamily: {
         bodoni: ['"Bodoni Moda"', "serif"],
-        lora: ["Lora", "serif"]
+        lora: ['"Lora"', "serif"]
       },
       colors: {
 
