@@ -11,3 +11,7 @@
 .paddingX {
     padding: 0px 90px;
 }
+
+:target #navbar-toggle ~ .navbar-collapse {
+    @apply hidden;
+}

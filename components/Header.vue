@@ -24,8 +24,8 @@ import { NuxtLink } from '../.nuxt/components';
         <img src="../assets/icon/hamburger.svg" alt="hamburger" class="m-2" />
         <p class="font-bodoni">menu</p>
         </span>
-        <div
-        class="fixed w-[100%] paddingX left-0 top-0 overflow-hidden bg-white rounded-b-2xl shadow-2xl duration-200"
+        <div id="navbar-toggle"
+        class="fixed navbar-toggle w-[100%] paddingX left-0 top-0 overflow-hidden bg-white rounded-b-2xl shadow-2xl duration-200"
         :class="{ 'h-0': isHidden }"
         ref="hamburger"
         >
@@ -57,21 +57,21 @@ import { NuxtLink } from '../.nuxt/components';
             </li>
             <li>
                 <NuxtLink
-                to="/"
+                to="/product/men"
                 class="hover:underline hover:decoration-wavy active:font-medium"
                 >Men
                 </NuxtLink>
             </li>
             <li>
                 <NuxtLink
-                to="/"
+                to="/product/women"
                 class="hover:underline hover:decoration-wavy active:font-medium"
                 >Women
                 </NuxtLink>
             </li>
             <li>
                 <NuxtLink
-                to="/"
+                to="/product/accessories"
                 class="hover:underline hover:decoration-wavy active:font-medium"
                 >
                 Accessories</NuxtLink

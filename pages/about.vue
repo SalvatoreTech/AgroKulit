@@ -1,6 +1,6 @@
 <template>
     <div class="Story bg-white text-black">
-        <img src="../assets/img/Story.jpg" alt="Story" />
+        <img src="../assets/img/Story.jpg" alt="Story" class=""/>
         <div class="Desc paddingX">
         <p class="font-bodoni text-[41px]">Our Story</p>
         <p class="font-lora">

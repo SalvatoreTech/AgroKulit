@@ -12,7 +12,7 @@ import { Style } from '../.nuxt/components';
                 turpis molestie, dictum est a, mattis tellus. Sed dignissim,.
             </p>
             <div class="collection_btn flex gap-5 mt-12 font-lora">
-                <NuxtLink class="bg-[#1C3D32] rounded-md text-white py-2 px-3 border-2 border-[#1C3D32] hover:bg-transparent hover:text-black hover:border-2 hover:border-[#1C3D32]">
+                <NuxtLink to="/product/men" class="bg-[#1C3D32] rounded-md text-white py-2 px-3 border-2 border-[#1C3D32] hover:bg-transparent hover:text-black hover:border-2 hover:border-[#1C3D32]">
                 <p>Men's Collection</p>
                 </NuxtLink>
                 <NuxtLink class="bg-[#1C3D32] rounded-md text-white py-2 px-3 border-2 border-[#1C3D32] hover:bg-transparent hover:text-black hover:border-2 hover:border-[#1C3D32]">
