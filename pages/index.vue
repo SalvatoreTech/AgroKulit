@@ -1,4 +1,3 @@
-import { Style } from '../.nuxt/components';
 <template>
     <div class="bg-white text-black pt-8">
         <div class="paddingX">
@@ -15,7 +14,7 @@ import { Style } from '../.nuxt/components';
                 <NuxtLink to="/product/men" class="bg-[#1C3D32] rounded-md text-white py-2 px-3 border-2 border-[#1C3D32] hover:bg-transparent hover:text-black hover:border-2 hover:border-[#1C3D32]">
                 <p>Men's Collection</p>
                 </NuxtLink>
-                <NuxtLink class="bg-[#1C3D32] rounded-md text-white py-2 px-3 border-2 border-[#1C3D32] hover:bg-transparent hover:text-black hover:border-2 hover:border-[#1C3D32]">
+                <NuxtLink to="/product/women" class="bg-[#1C3D32] rounded-md text-white py-2 px-3 border-2 border-[#1C3D32] hover:bg-transparent hover:text-black hover:border-2 hover:border-[#1C3D32]">
                 <p>Women's Collection</p>
                 </NuxtLink>
             </div>

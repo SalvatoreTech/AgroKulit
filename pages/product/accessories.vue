@@ -1,7 +1,7 @@
 <template>
     <div class="bg-white text-black">
         <figure class="relative pt-12 flex justify-center items-start">
-        <img src="../../assets/img/BGAccessories.jpg" alt="bgMenProduct" />
+        <img src="../../assets/img/BGAccessories.jpg" alt="bgMenProduct" class="w-full"/>
         <figcaption class="absolute text-center max-w-xs pt-5">
             <div class=" flex justify-between font-bodoni text-[16px]">
                 <p>Men</p>
@@ -42,7 +42,7 @@
                 <input
                 type="search"
                 class="block w-xl w-[230px] p-1 ps-8 text-xs text-gray-950 border border-gray-300 rounded-lg bg-transparent dark:border-gray-600 dark:placeholder-gray-700"
-                placeholder="Search for an item and colour"
+                placeholder="Search for an item"
                 required
                 />
             </div>
@@ -58,10 +58,10 @@
                 Categoty
                 </option>
                 <option class="hover:bg-slate-600 hover:text-white" value="US">
-                Bomber Jacket
+                Casual
                 </option>
                 <option class="hover:bg-slate-600 hover:text-white" value="CA">
-                Biker Jacket
+                S
                 </option>
                 <option class="hover:bg-slate-600 hover:text-white" value="FR">
                 Café Racer
@@ -139,9 +139,9 @@
         >
             <figure ref="photo" class="m-1">
             <img
-                src="../../assets/img/FrontProduct.jpg"
+                src="../../assets/img/Access.jpg"
                 alt="Product"
-                class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
+                class="hover:content-[url('../../assets/img/AccessHover.jpg')]"
             />
             </figure>
             <div class="card-body flex flex-row items-center">
@@ -161,9 +161,9 @@
         >
             <figure ref="photo" class="m-1">
             <img
-                src="../../assets/img/FrontProduct.jpg"
+                src="../../assets/img/Access.jpg"
                 alt="Product"
-                class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
+                class="hover:content-[url('../../assets/img/AccessHover.jpg')]"
             />
             </figure>
             <div class="card-body flex flex-row items-center">
@@ -183,9 +183,9 @@
         >
             <figure ref="photo" class="m-1">
             <img
-                src="../../assets/img/FrontProduct.jpg"
+                src="../../assets/img/Access.jpg"
                 alt="Product"
-                class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
+                class="hover:content-[url('../../assets/img/AccessHover.jpg')]"
             />
             </figure>
             <div class="card-body flex flex-row items-center">
@@ -205,9 +205,9 @@
         >
             <figure ref="photo" class="m-1">
             <img
-                src="../../assets/img/FrontProduct.jpg"
+                src="../../assets/img/Access.jpg"
                 alt="Product"
-                class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
+                class="hover:content-[url('../../assets/img/AccessHover.jpg')]"
             />
             </figure>
             <div class="card-body flex flex-row items-center">
@@ -227,75 +227,9 @@
         >
             <figure ref="photo" class="m-1">
             <img
-                src="../../assets/img/FrontProduct.jpg"
+                src="../../assets/img/Access.jpg"
                 alt="Product"
-                class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
-            />
-            </figure>
-            <div class="card-body flex flex-row items-center">
-            <div class="text">
-                <p class="card-title font-lora text-[16px]">
-                Café Racer Man Leather Jacket
-                </p>
-                <p class="font-lora text-[11px]">1.000.000 IDR</p>
-            </div>
-            <div class="card-actions justify-end">
-                <img src="../../assets/icon/heart-like.svg" class="" alt="heart" />
-            </div>
-            </div>
-        </div>
-        <div
-            class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md"
-        >
-            <figure ref="photo" class="m-1">
-            <img
-                src="../../assets/img/FrontProduct.jpg"
-                alt="Product"
-                class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
-            />
-            </figure>
-            <div class="card-body flex flex-row items-center">
-            <div class="text">
-                <p class="card-title font-lora text-[16px]">
-                Café Racer Man Leather Jacket
-                </p>
-                <p class="font-lora text-[11px]">1.000.000 IDR</p>
-            </div>
-            <div class="card-actions justify-end">
-                <img src="../../assets/icon/heart-like.svg" class="" alt="heart" />
-            </div>
-            </div>
-        </div>
-        <div
-            class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md"
-        >
-            <figure ref="photo" class="m-1">
-            <img
-                src="../../assets/img/FrontProduct.jpg"
-                alt="Product"
-                class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
-            />
-            </figure>
-            <div class="card-body flex flex-row items-center">
-            <div class="text">
-                <p class="card-title font-lora text-[16px]">
-                Café Racer Man Leather Jacket
-                </p>
-                <p class="font-lora text-[11px]">1.000.000 IDR</p>
-            </div>
-            <div class="card-actions justify-end">
-                <img src="../../assets/icon/heart-like.svg" class="" alt="heart" />
-            </div>
-            </div>
-        </div>
-        <div
-            class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md"
-        >
-            <figure ref="photo" class="m-1">
-            <img
-                src="../../assets/img/FrontProduct.jpg"
-                alt="Product"
-                class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
+                class="hover:content-[url('../../assets/img/AccessHover.jpg')]"
             />
             </figure>
             <div class="card-body flex flex-row items-center">

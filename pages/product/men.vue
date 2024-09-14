@@ -1,7 +1,7 @@
 <template>
     <div class="bg-white text-black">
         <figure class="relative pt-12 flex justify-center items-start">
-        <img src="../../assets/img/BGMen's.jpg" alt="bgMenProduct" />
+        <img src="../../assets/img/BGMen's.jpg" alt="bgMenProduct" class="w-full"/>
         <figcaption class="absolute text-center max-w-xs mt-28">
             <p class="font-bodoni text-[38px] font-bold">Men Leather Jackets</p>
             <div class="font-lora text-[11px]">Find your style.</div>
@@ -39,7 +39,7 @@
                 <input
                 type="search"
                 class="block w-xl w-[230px] p-1 ps-8 text-xs text-gray-950 border border-gray-300 rounded-lg bg-transparent dark:border-gray-600 dark:placeholder-gray-700"
-                placeholder="Search for an item and colour"
+                placeholder="Search for an category"
                 required
                 />
             </div>
@@ -131,182 +131,126 @@
         </div>
         </div>
         <div class="Product flex flex-wrap gap-2 justify-between paddingX">
-        <div
-            class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md"
-        >
-            <figure ref="photo" class="m-1">
-            <img
-                src="../../assets/img/FrontProduct.jpg"
-                alt="Product"
-                class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
-            />
-            </figure>
-            <div class="card-body flex flex-row items-center">
-            <div class="text">
-                <p class="card-title font-lora text-[16px]">
-                Café Racer Man Leather Jacket
-                </p>
-                <p class="font-lora text-[11px]">1.000.000 IDR</p>
-            </div>
-            <div class="card-actions justify-end">
-                <img src="../../assets/icon/heart-like.svg" class="" alt="heart" />
-            </div>
-            </div>
-        </div>
-        <div
-            class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md"
-        >
-            <figure ref="photo" class="m-1">
-            <img
-                src="../../assets/img/FrontProduct.jpg"
-                alt="Product"
-                class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
-            />
-            </figure>
-            <div class="card-body flex flex-row items-center">
-            <div class="text">
-                <p class="card-title font-lora text-[16px]">
-                Café Racer Man Leather Jacket
-                </p>
-                <p class="font-lora text-[11px]">1.000.000 IDR</p>
-            </div>
-            <div class="card-actions justify-end">
-                <img src="../../assets/icon/heart-like.svg" class="" alt="heart" />
-            </div>
-            </div>
-        </div>
-        <div
-            class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md"
-        >
-            <figure ref="photo" class="m-1">
-            <img
-                src="../../assets/img/FrontProduct.jpg"
-                alt="Product"
-                class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
-            />
-            </figure>
-            <div class="card-body flex flex-row items-center">
-            <div class="text">
-                <p class="card-title font-lora text-[16px]">
-                Café Racer Man Leather Jacket
-                </p>
-                <p class="font-lora text-[11px]">1.000.000 IDR</p>
-            </div>
-            <div class="card-actions justify-end">
-                <img src="../../assets/icon/heart-like.svg" class="" alt="heart" />
-            </div>
-            </div>
-        </div>
-        <div
-            class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md"
-        >
-            <figure ref="photo" class="m-1">
-            <img
-                src="../../assets/img/FrontProduct.jpg"
-                alt="Product"
-                class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
-            />
-            </figure>
-            <div class="card-body flex flex-row items-center">
-            <div class="text">
-                <p class="card-title font-lora text-[16px]">
-                Café Racer Man Leather Jacket
-                </p>
-                <p class="font-lora text-[11px]">1.000.000 IDR</p>
-            </div>
-            <div class="card-actions justify-end">
-                <img src="../../assets/icon/heart-like.svg" class="" alt="heart" />
-            </div>
-            </div>
-        </div>
-        <div
-            class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md"
-        >
-            <figure ref="photo" class="m-1">
-            <img
-                src="../../assets/img/FrontProduct.jpg"
-                alt="Product"
-                class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
-            />
-            </figure>
-            <div class="card-body flex flex-row items-center">
-            <div class="text">
-                <p class="card-title font-lora text-[16px]">
-                Café Racer Man Leather Jacket
-                </p>
-                <p class="font-lora text-[11px]">1.000.000 IDR</p>
-            </div>
-            <div class="card-actions justify-end">
-                <img src="../../assets/icon/heart-like.svg" class="" alt="heart" />
-            </div>
-            </div>
-        </div>
-        <div
-            class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md"
-        >
-            <figure ref="photo" class="m-1">
-            <img
-                src="../../assets/img/FrontProduct.jpg"
-                alt="Product"
-                class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
-            />
-            </figure>
-            <div class="card-body flex flex-row items-center">
-            <div class="text">
-                <p class="card-title font-lora text-[16px]">
-                Café Racer Man Leather Jacket
-                </p>
-                <p class="font-lora text-[11px]">1.000.000 IDR</p>
-            </div>
-            <div class="card-actions justify-end">
-                <img src="../../assets/icon/heart-like.svg" class="" alt="heart" />
-            </div>
-            </div>
-        </div>
-        <div
-            class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md"
-        >
-            <figure ref="photo" class="m-1">
-            <img
-                src="../../assets/img/FrontProduct.jpg"
-                alt="Product"
-                class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
-            />
-            </figure>
-            <div class="card-body flex flex-row items-center">
-            <div class="text">
-                <p class="card-title font-lora text-[16px]">
-                Café Racer Man Leather Jacket
-                </p>
-                <p class="font-lora text-[11px]">1.000.000 IDR</p>
-            </div>
-            <div class="card-actions justify-end">
-                <img src="../../assets/icon/heart-like.svg" class="" alt="heart" />
-            </div>
-            </div>
-        </div>
-        <div
-            class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md"
-        >
-            <figure ref="photo" class="m-1">
-            <img
-                src="../../assets/img/FrontProduct.jpg"
-                alt="Product"
-                class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
-            />
-            </figure>
-            <div class="card-body flex flex-row items-center">
-            <div class="text">
-                <p class="card-title font-lora text-[16px]">
-                Café Racer Man Leather Jacket
-                </p>
-                <p class="font-lora text-[11px]">1.000.000 IDR</p>
-            </div>
-            <div class="card-actions justify-end">
-                <img src="../../assets/icon/heart-like.svg" class="" alt="heart" />
-            </div>
-            </div>
-        </div>
+            <NuxtLink to="/product/detail_men">
+                <div
+                    class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md"
+                >
+                    <figure ref="photo" class="mx-2 mt-1">
+                    <img
+                        src="../../assets/img/FrontProduct.jpg"
+                        alt="Product"
+                        class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
+                    />
+                    </figure>
+                    <div class="card-body flex flex-row items-center">
+                    <div class="text">
+                        <p class="card-title font-lora text-[16px]">
+                        Café Racer Man Leather Jacket
+                        </p>
+                        <p class="font-lora text-[11px]">1.000.000 IDR</p>
+                    </div>
+                    <div class="card-actions justify-end">
+                        <img src="../../assets/icon/heart-like.svg" class="" alt="heart" />
+                    </div>
+                    </div>
+                </div>
+            </NuxtLink>
+            <NuxtLink to="/product/detail_men">
+                <div
+                    class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md"
+                >
+                    <figure ref="photo" class="mx-2 mt-1">
+                    <img
+                        src="../../assets/img/FrontProduct.jpg"
+                        alt="Product"
+                        class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
+                    />
+                    </figure>
+                    <div class="card-body flex flex-row items-center">
+                    <div class="text">
+                        <p class="card-title font-lora text-[16px]">
+                        Café Racer Man Leather Jacket
+                        </p>
+                        <p class="font-lora text-[11px]">1.000.000 IDR</p>
+                    </div>
+                    <div class="card-actions justify-end">
+                        <img src="../../assets/icon/heart-like.svg" class="" alt="heart" />
+                    </div>
+                    </div>
+                </div>
+            </NuxtLink>
+            <NuxtLink to="/product/detail_men">
+                <div
+                    class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md"
+                >
+                    <figure ref="photo" class="mx-2 mt-1">
+                    <img
+                        src="../../assets/img/FrontProduct.jpg"
+                        alt="Product"
+                        class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
+                    />
+                    </figure>
+                    <div class="card-body flex flex-row items-center">
+                    <div class="text">
+                        <p class="card-title font-lora text-[16px]">
+                        Café Racer Man Leather Jacket
+                        </p>
+                        <p class="font-lora text-[11px]">1.000.000 IDR</p>
+                    </div>
+                    <div class="card-actions justify-end">
+                        <img src="../../assets/icon/heart-like.svg" class="" alt="heart" />
+                    </div>
+                    </div>
+                </div>
+            </NuxtLink>
+            <NuxtLink to="/product/detail_men">
+                <div
+                    class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md"
+                >
+                    <figure ref="photo" class="mx-2 mt-1">
+                    <img
+                        src="../../assets/img/FrontProduct.jpg"
+                        alt="Product"
+                        class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
+                    />
+                    </figure>
+                    <div class="card-body flex flex-row items-center">
+                    <div class="text">
+                        <p class="card-title font-lora text-[16px]">
+                        Café Racer Man Leather Jacket
+                        </p>
+                        <p class="font-lora text-[11px]">1.000.000 IDR</p>
+                    </div>
+                    <div class="card-actions justify-end">
+                        <img src="../../assets/icon/heart-like.svg" class="" alt="heart" />
+                    </div>
+                    </div>
+                </div>
+            </NuxtLink>
+            <NuxtLink to="/product/detail_men">
+                <div
+                    class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md"
+                >
+                    <figure ref="photo" class="mx-2 mt-1">
+                    <img
+                        src="../../assets/img/FrontProduct.jpg"
+                        alt="Product"
+                        class="hover:content-[url('../../assets/img/BackProduct.jpg')]"
+                    />
+                    </figure>
+                    <div class="card-body flex flex-row items-center">
+                    <div class="text">
+                        <p class="card-title font-lora text-[16px]">
+                        Café Racer Man Leather Jacket
+                        </p>
+                        <p class="font-lora text-[11px]">1.000.000 IDR</p>
+                    </div>
+                    <div class="card-actions justify-end">
+                        <img src="../../assets/icon/heart-like.svg" class="" alt="heart" />
+                    </div>
+                    </div>
+                </div>
+            </NuxtLink>
         </div>
         <footer class="bg-[#1C3D32] max-w-full mt-5 text-white py-3">
         <div class="flex justify-between paddingX items-center">
