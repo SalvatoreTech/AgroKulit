@@ -1,4 +1,109 @@
 <template>
+    <!-- Navbar -->
+        <nav
+    class="bg-white text-black fixed w-[100%] z-50 flex justify-between items-center paddingX font-bodoni"
+    >
+    <div class="Contact hover:underline hover:decoration-wavy active:font-medium">
+        <NuxtLink to="/contact" class="flex gap-1 items-center">
+            <img
+            src="../assets/icon/PlusRounded.svg"
+            alt="plus rounded"
+            class="w-4"
+            />
+            <p>contact us</p>
+        </NuxtLink>
+    </div>
+    <NuxtLink to="/">
+        <img src="../assets/img/logo.png" alt="logo" class="w-12" />
+    </NuxtLink>
+    <div>
+        <span
+        @click="menu"
+        class="flex items-center cursor-pointer hover:underline hover:decoration-wavy active:font-medium"
+        >
+        <img src="../assets/icon/hamburger.svg" alt="hamburger" class="m-2" />
+        <p class="font-bodoni">menu</p>
+        </span>
+        <div id="navbar-toggle"
+        class="fixed navbar-toggle w-[100%] paddingX left-0 top-0 overflow-hidden bg-white rounded-b-2xl shadow-2xl duration-200"
+        :class="{ 'h-0': isHidden }"
+        ref="hamburger"
+        >
+        <div class="flex justify-between">
+            <img src="../assets/img/logo.png" alt="logo" class="w-12" />
+            <span
+            @click="menu"
+            class="flex items-center gap-3 cursor-pointer hover:underline hover:decoration-wavy active:font-medium"
+            >
+            <img src="../assets/icon/Close.svg" alt="close" class="" />
+            <p class="font-bodoni">close</p>
+            </span>
+        </div>
+        <div class="MenuList flex justify-between py-5">
+            <ul class="font-bodoni flex flex-col gap-2">
+            <li>
+                <NuxtLink
+                to="/"
+                class="hover:underline hover:decoration-wavy active:font-medium"
+                >Home
+                </NuxtLink>
+            </li>
+            <li>
+                <NuxtLink
+                to="/about"
+                class="hover:underline hover:decoration-wavy active:font-medium"
+                >About
+                </NuxtLink>
+            </li>
+            <li>
+                <NuxtLink
+                to="/product/men"
+                class="hover:underline hover:decoration-wavy active:font-medium"
+                >Men
+                </NuxtLink>
+            </li>
+            <li>
+                <NuxtLink
+                to="/product/women"
+                class="hover:underline hover:decoration-wavy active:font-medium"
+                >Women
+                </NuxtLink>
+            </li>
+            <li>
+                <NuxtLink
+                to="/product/accessories"
+                class="hover:underline hover:decoration-wavy active:font-medium"
+                >
+                Accessories</NuxtLink
+                >
+            </li>
+            <li>
+                <NuxtLink
+                to="/"
+                class="hover:underline hover:decoration-wavy active:font-medium"
+                >
+                Contact us</NuxtLink
+                >
+            </li>
+            </ul>
+            <NuxtLink to="/admin/login" class="flex items-end">
+            <button
+                class="bg-[#1C3D32] text-white flex rounded-md p-1 mb-5 focus:outline-none focus:ring focus:ring-green-900"
+            >
+                <img
+                src="../assets/icon/AdminLogin.svg"
+                alt="iconAdmin"
+                class="hover:"
+                />
+                <p class="font-bodoni">Admin</p>
+            </button>
+            </NuxtLink>
+        </div>
+        </div>
+    </div>
+    </nav>
+    
+    <!-- Contect -->
     <div class="bg-white text-black pt-8">
         <div class="paddingX">
         <div class="Hero_container flex justify-between items-center">
@@ -304,7 +409,7 @@
         </div>
         <div class="Explore px-2 py-5">
         <figure class="DiscoverJacket relative max-w-full overflow-hidden">
-            <img src="../assets/img/BGDiscover.jpg" />
+            <img src="../assets/img/BGDiscover.jpg" class="w-full"/>
             <figcaption
             class="absolute px-4 text-lg text-white top-0 flex flex-col justify-center gap-20 items-center pb-5 w-full h-full"
             >
@@ -336,7 +441,7 @@
             </figcaption>
         </figure>
         <figure class="DiscoverJacket relative max-w-full pt-5 overflow-hidden">
-            <img src="../assets/img/AccessBG.jpg" />
+            <img src="../assets/img/AccessBG.jpg" class="w-full"/>
             <figcaption
             class="absolute px-4 text-lg text-white top-0 flex flex-col justify-center gap-20 items-center pb-5 w-full h-full"
             >
@@ -379,6 +484,8 @@
             </div>
             <img src="../assets/img/IMGCostum.jpg" alt="ImageCostum" class="w-[50vw]">
         </div>
+
+        <!-- Footer -->
         <footer class="bg-[#1C3D32] max-w-full mt-5 text-white py-3">
             <div class="flex justify-between paddingX items-center">
                 <div class="Profile text-center leading-tight">
@@ -401,27 +508,27 @@
                     </div>
                 </div>
                 <div class="Linked flex justify-between w-6/12">
-                    <NuxtLink>
+                    <NuxtLink to="/about">
                         <p class="font-lora hover:underline hover:decoration-wavy active:font-medium cursor-pointer">
                             Our Story
                         </p>
-                    </NuxtLink>
+                    </NuxtLink to="/product/men">
                     <NuxtLink>
                         <p class="font-lora hover:underline hover:decoration-wavy active:font-medium cursor-pointer">
                             Men
                         </p>
                     </NuxtLink>
-                    <NuxtLink>
+                    <NuxtLink to="/product/women">
                         <p class="font-lora hover:underline hover:decoration-wavy active:font-medium cursor-pointer">
                             Women
                         </p>
                     </NuxtLink>
-                    <NuxtLink>
+                    <NuxtLink to="/product/accessories">
                         <p class="font-lora hover:underline hover:decoration-wavy active:font-medium cursor-pointer">
                             Accessories
                         </p>
                     </NuxtLink>
-                    <NuxtLink>
+                    <NuxtLink to="/contact">
                         <p class="font-lora hover:underline hover:decoration-wavy active:font-medium cursor-pointer">
                             Contact us
                         </p>
@@ -436,6 +543,11 @@
 </template>
 
 <script setup>
+const isHidden = ref(true);
+
+function menu() {
+    isHidden.value = !isHidden.value;
+}
 </script>
 
 <style scoped></style>
