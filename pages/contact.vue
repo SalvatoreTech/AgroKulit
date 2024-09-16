@@ -1,4 +1,5 @@
 <template>
+    <div>
     <!-- Navbar -->
     <nav
     class="bg-white text-black fixed w-[100%] z-50 flex justify-between items-center paddingX font-bodoni"
@@ -188,8 +189,8 @@
                         <p class="font-lora hover:underline hover:decoration-wavy active:font-medium cursor-pointer">
                             Our Story
                         </p>
-                    </NuxtLink to="/product/men">
-                    <NuxtLink>
+                    </NuxtLink>
+                    <NuxtLink to="/product/men">
                         <p class="font-lora hover:underline hover:decoration-wavy active:font-medium cursor-pointer">
                             Men
                         </p>
@@ -215,6 +216,7 @@
                 <p class="text-slate-100/50 text-[10px]">Salvatore © Copyright 2024</p>
             </div>
         </footer>
+    </div>
     </div>
 </template>
 
