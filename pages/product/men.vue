@@ -4,8 +4,8 @@
     <nav
     class="bg-white text-black fixed w-[100%] z-50 flex justify-between items-center paddingX font-bodoni"
     >
-    <div class="Contact hover:underline hover:decoration-wavy active:font-medium">
-        <NuxtLink to="/contact" class="flex gap-1 items-center">
+    <div class="Contact">
+        <NuxtLink to="/contact" class="flex gap-1 items-center relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
             <img
             src="../../assets/icon/PlusRounded.svg"
             alt="plus rounded"
@@ -20,60 +20,62 @@
     <div>
         <span
         @click="menu"
-        class="flex items-center cursor-pointer hover:underline hover:decoration-wavy active:font-medium"
+        class="flex items-center gap-2 cursor-pointer relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
         >
-        <img src="../../assets/icon/hamburger.svg" alt="hamburger" class="m-2" />
+        <img src="../../assets/icon/hamburger.svg" alt="hamburger" />
         <p class="font-bodoni">menu</p>
         </span>
         <div id="navbar-toggle"
-        class="fixed navbar-toggle w-[100%] paddingX left-0 top-0 overflow-hidden bg-white rounded-b-2xl shadow-2xl duration-200"
+        class="fixed navbar-toggle w-[100%] paddingX left-0 top-0 overflow-hidden bg-white rounded-b-2xl shadow-2xl duration-700"
         :class="{ 'h-0': isHidden }"
         ref="hamburger"
         >
-        <div class="flex justify-between">
+        <div class="flex justify-between items-center">
             <img src="../../assets/img/logo.png" alt="logo" class="w-12" />
-            <span
-            @click="menu"
-            class="flex items-center gap-3 cursor-pointer hover:underline hover:decoration-wavy active:font-medium"
-            >
-            <img src="../../assets/icon/Close.svg" alt="close" class="" />
-            <p class="font-bodoni">close</p>
-            </span>
+            <div class="close">
+                <span
+                @click="menu"
+                class="flex items-center gap-3 cursor-pointer relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
+                >
+                <img src="../../assets/icon/Close.svg" alt="close" class="" />
+                <p class="font-bodoni ">close</p>
+                </span>
+            </div>
         </div>
         <div class="MenuList flex justify-between py-5">
             <ul class="font-bodoni flex flex-col gap-2">
             <li>
                 <NuxtLink
                 to="/"
-                class="hover:underline hover:decoration-wavy active:font-medium"
+                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
                 >Home
                 </NuxtLink>
             </li>
             <li>
                 <NuxtLink
                 to="/about"
-                class="hover:underline hover:decoration-wavy active:font-medium"
+                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
                 >About
                 </NuxtLink>
             </li>
             <li>
                 <NuxtLink
                 to="/product/men"
-                class="hover:underline hover:decoration-wavy active:font-medium"
+                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
                 >Men
                 </NuxtLink>
             </li>
             <li>
                 <NuxtLink
                 to="/product/women"
-                class="hover:underline hover:decoration-wavy active:font-medium"
+                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
                 >Women
                 </NuxtLink>
             </li>
             <li>
                 <NuxtLink
                 to="/product/accessories"
-                class="hover:underline hover:decoration-wavy active:font-medium"
+                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
                 >
                 Accessories</NuxtLink
                 >
@@ -81,7 +83,7 @@
             <li>
                 <NuxtLink
                 to="/"
-                class="hover:underline hover:decoration-wavy active:font-medium"
+                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
                 >
                 Contact us</NuxtLink
                 >
@@ -383,27 +385,27 @@
                 </div>
                 <div class="Linked flex justify-between w-6/12">
                     <NuxtLink to="/about">
-                        <p class="font-lora hover:underline hover:decoration-wavy active:font-medium cursor-pointer">
+                        <p class="font-lora relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                             Our Story
                         </p>
                     </NuxtLink>
                     <NuxtLink to="/product/men">
-                        <p class="font-lora hover:underline hover:decoration-wavy active:font-medium cursor-pointer">
+                        <p class="font-lora relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                             Men
                         </p>
                     </NuxtLink>
                     <NuxtLink to="/product/women">
-                        <p class="font-lora hover:underline hover:decoration-wavy active:font-medium cursor-pointer">
+                        <p class="font-lora relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                             Women
                         </p>
                     </NuxtLink>
                     <NuxtLink to="/product/accessories">
-                        <p class="font-lora hover:underline hover:decoration-wavy active:font-medium cursor-pointer">
+                        <p class="font-lora relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                             Accessories
                         </p>
                     </NuxtLink>
                     <NuxtLink to="/contact">
-                        <p class="font-lora hover:underline hover:decoration-wavy active:font-medium cursor-pointer">
+                        <p class="font-lora relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                             Contact us
                         </p>
                     </NuxtLink>

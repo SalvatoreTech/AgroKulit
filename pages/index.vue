@@ -4,8 +4,8 @@
         <nav
     class="bg-white text-black fixed w-[100%] z-50 flex justify-between items-center paddingX font-bodoni"
     >
-    <div class="Contact hover:underline hover:decoration-wavy active:font-medium">
-        <NuxtLink to="/contact" class="flex gap-1 items-center">
+    <div class="Contact">
+        <NuxtLink to="/contact" class="flex gap-1 items-center relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
             <img
             src="../assets/icon/PlusRounded.svg"
             alt="plus rounded"
@@ -20,60 +20,62 @@
     <div>
         <span
         @click="menu"
-        class="flex items-center cursor-pointer hover:underline hover:decoration-wavy active:font-medium"
+        class="flex items-center gap-2 cursor-pointer relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
         >
-        <img src="../assets/icon/hamburger.svg" alt="hamburger" class="m-2" />
+        <img src="../assets/icon/hamburger.svg" alt="hamburger" />
         <p class="font-bodoni">menu</p>
         </span>
         <div id="navbar-toggle"
-        class="fixed navbar-toggle w-[100%] paddingX left-0 top-0 overflow-hidden bg-white rounded-b-2xl shadow-2xl duration-200"
+        class="fixed navbar-toggle w-[100%] paddingX left-0 top-0 overflow-hidden bg-white rounded-b-2xl shadow-2xl duration-700"
         :class="{ 'h-0': isHidden }"
         ref="hamburger"
         >
-        <div class="flex justify-between">
+        <div class="flex justify-between items-center">
             <img src="../assets/img/logo.png" alt="logo" class="w-12" />
-            <span
-            @click="menu"
-            class="flex items-center gap-3 cursor-pointer hover:underline hover:decoration-wavy active:font-medium"
-            >
-            <img src="../assets/icon/Close.svg" alt="close" class="" />
-            <p class="font-bodoni">close</p>
-            </span>
+            <div class="close">
+                <span
+                @click="menu"
+                class="flex items-center gap-3 cursor-pointer relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
+                >
+                <img src="../assets/icon/Close.svg" alt="close" class="" />
+                <p class="font-bodoni ">close</p>
+                </span>
+            </div>
         </div>
         <div class="MenuList flex justify-between py-5">
             <ul class="font-bodoni flex flex-col gap-2">
             <li>
                 <NuxtLink
                 to="/"
-                class="hover:underline hover:decoration-wavy active:font-medium"
+                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
                 >Home
                 </NuxtLink>
             </li>
             <li>
                 <NuxtLink
                 to="/about"
-                class="hover:underline hover:decoration-wavy active:font-medium"
+                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
                 >About
                 </NuxtLink>
             </li>
             <li>
                 <NuxtLink
                 to="/product/men"
-                class="hover:underline hover:decoration-wavy active:font-medium"
+                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
                 >Men
                 </NuxtLink>
             </li>
             <li>
                 <NuxtLink
                 to="/product/women"
-                class="hover:underline hover:decoration-wavy active:font-medium"
+                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
                 >Women
                 </NuxtLink>
             </li>
             <li>
                 <NuxtLink
                 to="/product/accessories"
-                class="hover:underline hover:decoration-wavy active:font-medium"
+                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
                 >
                 Accessories</NuxtLink
                 >
@@ -81,7 +83,7 @@
             <li>
                 <NuxtLink
                 to="/"
-                class="hover:underline hover:decoration-wavy active:font-medium"
+                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
                 >
                 Contact us</NuxtLink
                 >
@@ -103,13 +105,13 @@
         </div>
     </div>
     </nav>
-    
+
     <!-- Contect -->
     <div class="bg-white text-black pt-8">
         <div class="paddingX">
         <div class="Hero_container flex justify-between items-center">
             <div class="Hero_text max-w-2xl">
-            <p class="font-bodoni lg:text-[71px] text-[51px]">
+            <p class="font-bodoni text-[5.2rem]">
                 Express Yourself with Leather
             </p>
             <p class="max-w-sm font-lora">
@@ -135,7 +137,7 @@
                 src="../assets/icon/BestSellerVector.svg"
                 alt="BestSellerVector"
             />
-            <p class="font-bodoni text-[35px] font-medium">Most Liked</p>
+            <p class="font-bodoni text-[3rem] font-medium">Most Liked</p>
             </div>
             <div class="BestSeller_product">
             <div class="BestSeller_jacket flex justify-between">
@@ -148,16 +150,16 @@
                     class="group-hover:opacity-100 group-hover:scale-95 duration-300 rounded-md shadow-lg absolute h-full flex flex-col gap-[350px] w-full bottom-0 text-xl text-gray-700/70"
                 >
                     <div class="flex justify-between px-3 items-start">
-                    <div class="ProductInfo flex flex-col leading-3">
+                    <div class="ProductInfo flex flex-col leading-5">
                         <p
-                        class="lg:text-xl md:text-lg sm:text-md text-sm font-lora"
+                        class="text-[1.2rem] font-lora"
                         >
                         Black Texture Leather
                         </p>
-                        <p class="font-lora text-[16px]">1.000.000 IDR</p>
+                        <p class="font-lora text-[1rem]">1.000.000 IDR</p>
                     </div>
                     <div class="GenderProduct">
-                        <p class="font-lora text-[16px]">Men</p>
+                        <p class="font-lora text-[1rem]">Men</p>
                     </div>
                     </div>
                     <div class="Order_btn flex justify-end me-5">
@@ -165,7 +167,7 @@
                         <button
                         class="flex items-center gap-1 bg-white shadow-lg rounded-full px-1"
                         >
-                        <p class="font-lora text-[16px] text-black">Order now</p>
+                        <p class="font-lora text-[1rem] text-black">Order now</p>
                         <img
                             src="../assets/icon/Plus.svg"
                             alt=""
@@ -184,17 +186,17 @@
                 <div
                     class="group-hover:opacity-100 group-hover:scale-95 duration-300 rounded-md shadow-lg absolute h-full flex flex-col gap-[350px] w-full bottom-0 text-xl text-gray-700/70"
                 >
-                    <div class="flex justify-between px-3 items-start">
-                    <div class="ProductInfo flex flex-col leading-3">
+                <div class="flex justify-between px-3 items-start">
+                    <div class="ProductInfo flex flex-col leading-5">
                         <p
-                        class="lg:text-xl md:text-lg sm:text-md text-sm font-lora"
+                        class="text-[1.2rem] font-lora"
                         >
                         Black Texture Leather
                         </p>
-                        <p class="font-lora text-[16px]">1.000.000 IDR</p>
+                        <p class="font-lora text-[1rem]">1.000.000 IDR</p>
                     </div>
                     <div class="GenderProduct">
-                        <p class="font-lora text-[16px]">Men</p>
+                        <p class="font-lora text-[1rem]">Men</p>
                     </div>
                     </div>
                     <div class="Order_btn flex justify-end me-5">
@@ -202,7 +204,7 @@
                         <button
                         class="flex items-center gap-1 bg-white shadow-lg rounded-full px-1"
                         >
-                        <p class="font-lora text-[16px] text-black">Order now</p>
+                        <p class="font-lora text-[1rem] text-black">Order now</p>
                         <img
                             src="../assets/icon/Plus.svg"
                             alt=""
@@ -221,17 +223,17 @@
                 <div
                     class="group-hover:opacity-100 group-hover:scale-95 duration-300 rounded-md shadow-lg absolute h-full flex flex-col gap-[350px] w-full bottom-0 text-xl text-gray-700/70"
                 >
-                    <div class="flex justify-between px-3 items-start">
-                    <div class="ProductInfo flex flex-col leading-3">
+                <div class="flex justify-between px-3 items-start">
+                    <div class="ProductInfo flex flex-col leading-5">
                         <p
-                        class="lg:text-xl md:text-lg sm:text-md text-sm font-lora"
+                        class="text-[1.2rem] font-lora"
                         >
                         Black Texture Leather
                         </p>
-                        <p class="font-lora text-[16px]">1.000.000 IDR</p>
+                        <p class="font-lora text-[1rem]">1.000.000 IDR</p>
                     </div>
                     <div class="GenderProduct">
-                        <p class="font-lora text-[16px]">Men</p>
+                        <p class="font-lora text-[1rem]">Men</p>
                     </div>
                     </div>
                     <div class="Order_btn flex justify-end me-5">
@@ -239,7 +241,7 @@
                         <button
                         class="flex items-center gap-1 bg-white shadow-lg rounded-full px-1"
                         >
-                        <p class="font-lora text-[16px] text-black">Order now</p>
+                        <p class="font-lora text-[1rem] text-black">Order now</p>
                         <img
                             src="../assets/icon/Plus.svg"
                             alt=""
@@ -266,16 +268,16 @@
                     class="absolute px-4 text-lg text-white top-0 flex flex-col justify-between pb-5 w-full h-full"
                 >
                     <div class="flex justify-between items-start">
-                    <div class="ProductInfo flex flex-col leading-3">
+                    <div class="ProductInfo flex flex-col leading-5">
                         <p
-                        class="lg:text-xl md:text-lg sm:text-md text-sm font-lora"
+                        class="text-[1.2rem] font-lora"
                         >
                         Green Forest Wallet
                         </p>
-                        <p class="font-lora text-[16px]">400.000 IDR</p>
+                        <p class="font-lora text-[1rem]">400.000 IDR</p>
                     </div>
                     <div class="GenderProduct">
-                        <p class="font-lora text-[16px]">Men</p>
+                        <p class="font-lora text-[1rem]">Men</p>
                     </div>
                     </div>
                     <div class="Order_btn flex justify-end">
@@ -283,7 +285,7 @@
                         <button
                         class="flex items-center gap-1 bg-white shadow-lg rounded-full px-1 hover:scale-75 duration-150"
                         >
-                        <p class="font-lora text-[16px] text-black">Order now</p>
+                        <p class="font-lora text-[1rem] text-black">Order now</p>
                         <img src="../assets/icon/Plus.svg" alt="" />
                         </button>
                     </NuxtLink>
@@ -303,17 +305,17 @@
                 <figcaption
                     class="absolute px-4 text-lg text-white top-0 flex flex-col justify-between pb-5 w-full h-full"
                 >
-                    <div class="flex justify-between items-start">
-                    <div class="ProductInfo flex flex-col leading-3">
+                <div class="flex justify-between items-start">
+                    <div class="ProductInfo flex flex-col leading-5">
                         <p
-                        class="lg:text-xl md:text-lg sm:text-md text-sm font-lora"
+                        class="text-[1.2rem] font-lora"
                         >
                         Green Forest Wallet
                         </p>
-                        <p class="font-lora text-[16px]">400.000 IDR</p>
+                        <p class="font-lora text-[1rem]">400.000 IDR</p>
                     </div>
                     <div class="GenderProduct">
-                        <p class="font-lora text-[16px]">Men</p>
+                        <p class="font-lora text-[1rem]">Men</p>
                     </div>
                     </div>
                     <div class="Order_btn flex justify-end">
@@ -321,7 +323,7 @@
                         <button
                         class="flex items-center gap-1 bg-white shadow-lg rounded-full px-1 hover:scale-75 duration-150"
                         >
-                        <p class="font-lora text-[16px] text-black">Order now</p>
+                        <p class="font-lora text-[1rem] text-black">Order now</p>
                         <img src="../assets/icon/Plus.svg" alt="" />
                         </button>
                     </NuxtLink>
@@ -341,17 +343,17 @@
                 <figcaption
                     class="absolute px-4 text-lg text-white top-0 flex flex-col justify-between pb-5 w-full h-full"
                 >
-                    <div class="flex justify-between items-start">
-                    <div class="ProductInfo flex flex-col leading-3">
+                <div class="flex justify-between items-start">
+                    <div class="ProductInfo flex flex-col leading-5">
                         <p
-                        class="lg:text-xl md:text-lg sm:text-md text-sm font-lora"
+                        class="text-[1.2rem] font-lora"
                         >
                         Green Forest Wallet
                         </p>
-                        <p class="font-lora text-[16px]">400.000 IDR</p>
+                        <p class="font-lora text-[1rem]">400.000 IDR</p>
                     </div>
                     <div class="GenderProduct">
-                        <p class="font-lora text-[16px]">Men</p>
+                        <p class="font-lora text-[1rem]">Men</p>
                     </div>
                     </div>
                     <div class="Order_btn flex justify-end">
@@ -359,7 +361,7 @@
                         <button
                         class="flex items-center gap-1 bg-white shadow-lg rounded-full px-1 hover:scale-75 duration-150"
                         >
-                        <p class="font-lora text-[16px] text-black">Order now</p>
+                        <p class="font-lora text-[1rem] text-black">Order now</p>
                         <img src="../assets/icon/Plus.svg" alt="" />
                         </button>
                     </NuxtLink>
@@ -379,17 +381,17 @@
                 <figcaption
                     class="absolute px-4 text-lg text-white top-0 flex flex-col justify-between pb-5 w-full h-full"
                 >
-                    <div class="flex justify-between items-start">
-                    <div class="ProductInfo flex flex-col leading-3">
+                <div class="flex justify-between items-start">
+                    <div class="ProductInfo flex flex-col leading-5">
                         <p
-                        class="lg:text-xl md:text-lg sm:text-md text-sm font-lora"
+                        class="text-[1.2rem] font-lora"
                         >
                         Green Forest Wallet
                         </p>
-                        <p class="font-lora text-[16px]">400.000 IDR</p>
+                        <p class="font-lora text-[1rem]">400.000 IDR</p>
                     </div>
                     <div class="GenderProduct">
-                        <p class="font-lora text-[16px]">Men</p>
+                        <p class="font-lora text-[1rem]">Men</p>
                     </div>
                     </div>
                     <div class="Order_btn flex justify-end">
@@ -397,7 +399,7 @@
                         <button
                         class="flex items-center gap-1 bg-white shadow-lg rounded-full px-1 hover:scale-75 duration-150"
                         >
-                        <p class="font-lora text-[16px] text-black">Order now</p>
+                        <p class="font-lora text-[1rem] text-black">Order now</p>
                         <img src="../assets/icon/Plus.svg" alt="" />
                         </button>
                     </NuxtLink>
@@ -426,14 +428,14 @@
             <div class="Linked flex justify-between w-6/12 font-lora">
                 <NuxtLink
                 to=""
-                class="flex items-center content-center gap-2 cursor-pointer hover:underline hover:decoration-wavy"
+                class="flex items-center content-center gap-2 cursor-pointer relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
                 >
                 <p>Men</p>
                 <img src="../assets/icon/RightArrow.svg" alt="" />
                 </NuxtLink>
                 <NuxtLink
                 to=""
-                class="flex items-center content-center gap-2 cursor-pointer hover:underline hover:decoration-wavy"
+                class="flex items-center content-center gap-2 cursor-pointer relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
                 >
                 <p>Women</p>
                 <img src="../assets/icon/RightArrow.svg" alt="" />
@@ -456,8 +458,8 @@
             </div>
             <div class="Linked flex justify-center w-6/12 font-lora">
                 <NuxtLink
-                to=""
-                class="flex items-center content-center gap-2 cursor-pointer hover:underline hover:decoration-wavy"
+                to="product/accessories"
+                class="flex items-center content-center gap-2 cursor-pointer relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
                 >
                 <p>Discover</p>
                 <img src="../assets/icon/RightArrow.svg" alt="" />
@@ -478,9 +480,11 @@
                     that fit your lifestyle and are unmistakably you.
                     </p>
                 </div>
-                <div class="flex justify-end gap-2 hover:underline hover:decoration-wavy">
-                    <img src="../assets/icon/WA.svg" alt="">
-                    <p class="font-lora">WhatsApp</p>
+                <div class="flex justify-end gap-2">
+                    <NuxtLink class="flex justify-end gap-2 relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer">
+                        <img src="../assets/icon/WA.svg" alt="">
+                        <p class="font-lora">WhatsApp</p>
+                    </NuxtLink>
                 </div>
             </div>
             <img src="../assets/img/IMGCostum.jpg" alt="ImageCostum" class="w-[50vw]">
@@ -510,27 +514,27 @@
                 </div>
                 <div class="Linked flex justify-between w-6/12">
                     <NuxtLink to="/about">
-                        <p class="font-lora hover:underline hover:decoration-wavy active:font-medium cursor-pointer">
+                        <p class="font-lora relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                             Our Story
                         </p>
                     </NuxtLink>
                     <NuxtLink to="/product/men">
-                        <p class="font-lora hover:underline hover:decoration-wavy active:font-medium cursor-pointer">
+                        <p class="font-lora relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                             Men
                         </p>
                     </NuxtLink>
                     <NuxtLink to="/product/women">
-                        <p class="font-lora hover:underline hover:decoration-wavy active:font-medium cursor-pointer">
+                        <p class="font-lora relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                             Women
                         </p>
                     </NuxtLink>
                     <NuxtLink to="/product/accessories">
-                        <p class="font-lora hover:underline hover:decoration-wavy active:font-medium cursor-pointer">
+                        <p class="font-lora relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                             Accessories
                         </p>
                     </NuxtLink>
                     <NuxtLink to="/contact">
-                        <p class="font-lora hover:underline hover:decoration-wavy active:font-medium cursor-pointer">
+                        <p class="font-lora relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                             Contact us
                         </p>
                     </NuxtLink>
