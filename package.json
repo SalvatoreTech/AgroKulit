@@ -12,6 +12,7 @@
   "dependencies": {
     "flowbite": "^2.5.1",
     "gsap": "^3.12.5",
+    "lenis": "^1.1.13",
     "nuxt": "^3.13.0",
     "vue": "latest",
     "vue-router": "latest"

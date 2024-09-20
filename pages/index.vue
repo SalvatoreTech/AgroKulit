@@ -549,11 +549,36 @@
 </template>
 
 <script setup>
+import {gsap} from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
+import Lenis from 'lenis'
+gsap.registerPlugin(ScrollTrigger)
+
+let tl = gsap.timeline()
+let st = gsap.timeline({
+    ScrollTrigger: {
+        start: '',
+        end: '',
+    }
+})
 const isHidden = ref(true);
 
 function menu() {
     isHidden.value = !isHidden.value;
 }
+
+// SmoothScrollLenis
+const lenis = new Lenis()
+
+    lenis.on('scroll', (e) => {
+    })
+
+    function raf(time) {
+        lenis.raf(time)
+        requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
 </script>
 
 <style scoped></style>
