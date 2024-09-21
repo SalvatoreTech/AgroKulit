@@ -14,6 +14,7 @@
     "gsap": "^3.12.5",
     "lenis": "^1.1.13",
     "nuxt": "^3.13.0",
+    "split-type": "^0.3.4",
     "vue": "latest",
     "vue-router": "latest"
   },
