@@ -1,234 +1,152 @@
 <template>
     <div>
-    <!-- Navbar -->
-    <nav
-    class="bg-white text-black fixed w-[100%] z-50 flex justify-between items-center paddingX font-bodoni"
-    >
-    <div class="Contact">
-        <NuxtLink to="/contact" class="flex gap-1 items-center relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
-            <img
-            src="../assets/icon/PlusRounded.svg"
-            alt="plus rounded"
-            class="w-4"
-            />
-            <p>contact us</p>
-        </NuxtLink>
-    </div>
-    <NuxtLink to="/">
-        <img src="../assets/img/logo.png" alt="logo" class="w-12" />
-    </NuxtLink>
-    <div>
-        <span
-        @click="menu"
-        class="flex items-center gap-2 cursor-pointer relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
+        <Header />
+        <!-- Content -->
+        <div class="bg-white text-black flex flex-col justify-between">
+        <div
+            class="Contact_container h-[92vh] flex flex-col gap-10 mt-12"
         >
-        <img src="../assets/icon/hamburger.svg" alt="hamburger" />
-        <p class="font-bodoni">menu</p>
-        </span>
-        <div id="navbar-toggle"
-        class="fixed navbar-toggle w-[100%] paddingX left-0 top-0 overflow-hidden bg-white rounded-b-2xl shadow-2xl duration-700"
-        :class="{ 'h-0': isHidden }"
-        ref="hamburger"
-        >
-        <div class="flex justify-between items-center">
-            <img src="../assets/img/logo.png" alt="logo" class="w-12" />
-            <div class="close">
-                <span
-                @click="menu"
-                class="flex items-center gap-3 cursor-pointer relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
-                >
-                <img src="../assets/icon/Close.svg" alt="close" class="" />
-                <p class="font-bodoni ">close</p>
-                </span>
+            <div
+                class="bg-[#767676] rounded-r-2xl shadow-2xl p-5 backdrop-blur-[8px] opacity-95 flex lg:flex-row md:flex-row flex-col w-6/12 h-[100vh] gap-20"
+            >
+            <div class="flex flex-col items-center justify-center">
+                <div class="Titl_contact text-center leading-9 text-white">
+                    <p class="font-bodoni text-[3rem]">Contact</p>
+                    <p class="font-lora">Send your feelings.</p>
+                </div>
+                    <form
+                    class="lg:w-[500px] md:w-[400px] sm:w-[400px] w-[250px] font-lora"
+                    autocomplete="off"
+                    >
+                    <div class="relative z-0 mb-5 group">
+                        <input
+                        type="text"
+                        name="floating_name"
+                        class="block py-2.5 ps-2 w-full text-sm bg-transparent border rounded-md border-white text-white appearance-none outline-none dark:border-white peer"
+                        placeholder=" "
+                        required
+                        />
+                        <label
+                        for="floating_name"
+                        class="peer-focus:font-medium absolute text-sm ms-2 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-white peer-focus:dark:text-white text-white peer-focus:z-10 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >Your Name</label
+                        >
+                    </div>
+                    <div class="relative z-0 mb-5 group">
+                        <input
+                        type="email"
+                        name="floating_email"
+                        class="block py-2.5 ps-2 w-full text-sm bg-transparent border rounded-md border-white text-white appearance-none outline-none dark:border-white peer"
+                        placeholder=" "
+                        required
+                        />
+                        <label
+                        for="floating_email"
+                        class="peer-focus:font-medium absolute text-sm ms-2 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-white peer-focus:dark:text-white text-white peer-focus:z-10 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >Your Email</label
+                        >
+                    </div>
+                    <div class="relative z-0 mb-5 group">
+                        <textarea
+                        name="floating_message"
+                        class="block py-2.5 ps-2 w-full text-sm bg-transparent border rounded-md border-white text-white appearance-none outline-none dark:border-white peer"
+                        placeholder=" "
+                        required
+                        />
+                        <label
+                        for="floating_message"
+                        class="peer-focus:font-medium absolute text-sm ms-2 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-white peer-focus:dark:text-white text-white peer-focus:z-10 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        >Message</label
+                        >
+                    </div>
+                    <input
+                        type="submit"
+                        value="Send"
+                        class="float-end text-white bg-transparent outline-none rounded-lg text-sm w-full sm:w-auto px-5 py-1.5 text-center border hover:bg-white hover:text-black"
+                    />
+                    </form>
+            </div>
             </div>
         </div>
-        <div class="MenuList flex justify-between py-5">
-            <ul class="font-bodoni flex flex-col gap-2">
-            <li>
-                <NuxtLink
-                to="/"
-                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
-                >Home
-                </NuxtLink>
-            </li>
-            <li>
-                <NuxtLink
-                to="/about"
-                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
-                >About
-                </NuxtLink>
-            </li>
-            <li>
-                <NuxtLink
-                to="/product/men"
-                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
-                >Men
-                </NuxtLink>
-            </li>
-            <li>
-                <NuxtLink
-                to="/product/women"
-                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
-                >Women
-                </NuxtLink>
-            </li>
-            <li>
-                <NuxtLink
-                to="/product/accessories"
-                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
-                >
-                Accessories</NuxtLink
-                >
-            </li>
-            <li>
-                <NuxtLink
-                to="/"
-                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300"
-                >
-                Contact us</NuxtLink
-                >
-            </li>
-            </ul>
-            <NuxtLink to="/admin/login" class="flex items-end">
-            <button
-                class="bg-[#1C3D32] text-white flex rounded-md p-1 mb-5 focus:outline-none focus:ring focus:ring-green-900"
-            >
-                <img
-                src="../assets/icon/AdminLogin.svg"
-                alt="iconAdmin"
-                class="hover:"
-                />
-                <p class="font-bodoni">Admin</p>
-            </button>
-            </NuxtLink>
-        </div>
-        </div>
-    </div>
-    </nav>
-
-    <!-- Content -->
-    <div class="bg-white text-black h-[100vh] pt-32 flex flex-col justify-between">
-        <div class="flex justify-evenly paddingX">
-        <div class="FormLayer max-w-full">
-            <p class="font-bodoni text-[38px]">Contact</p>
-            <form class="max-w-full mx-auto">
-                <div class="relative z-0 mb-5 group">
-                            <input type="text" name="floating_name"
-                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border rounded-md border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                placeholder=" " required />
-                            <label for="floating_name"
-                                class="peer-focus:font-medium absolute text-sm ms-2  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:bg-white peer-focus:dark:text-blue-700 peer-focus:z-10 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Your Name</label>
-                        </div>
-                        <div class="relative z-0 mb-5 group w-[400px]">
-                            <input type="email" name="floating_email"
-                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border rounded-md border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                placeholder=" " required />
-                            <label for="floating_email"
-                                class="peer-focus:font-medium absolute text-sm ms-2  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:bg-white peer-focus:dark:text-blue-700 peer-focus:z-10 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Your Email</label>
-                        </div>
-                        <div class="relative z-0 mb-5 group w-[400px]">
-                            <textarea name="floating_message"
-                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border rounded-md border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                placeholder=" " required />
-                            <label for="floating_message"
-                                class="peer-focus:font-medium absolute text-sm ms-2  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:bg-white peer-focus:dark:text-blue-700 peer-focus:z-10 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Message</label>
-                        </div>
-            <input
-                type="submit" value="Send"
-                class=" float-end text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-            </form>
-        </div>
         <div
-            class="Location w-[520px] border-l border-black ps-10 font-lora flex flex-col gap-2"
+            class="Location max-w-full border-black ps-10 font-lora flex flex-col gap-10"
         >
-            <p class="text-[24px]">Our Locations</p>
-            <p>Tasikmalaya</p>
-            <ul class="list-disc ps-5">
-            <li>
+            <div class="Titl_location leading-6 pt-20">
+            <p class="text-[2rem] text-center">Our Stores</p>
+            <p class="text-center">Come to our store to see more products.</p>
+            </div>
+            <p class="font-bold">Tasikmalaya</p>
+            <ul class="list-none flex lg:flex-row flex-col gap-10">
+            <li class="max-w-xl">
+                <iframe
+                class="lg:w-11/12 lg:h-[250px]"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15828.940276474792!2d108.21893687936918!3d-7.327473918016089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f574b34e1ba4d%3A0x1c5119ecf9e43672!2sAgro%20Kulit%20Tasikmalaya!5e0!3m2!1sid!2sid!4v1727066527202!5m2!1sid!2sid"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+                <p class="underline">
                 Jln Martadinata, No. 18, Jl. Ahmad Yani No.1, Empangsari, Kec.
                 Tawang, Kab. Tasikmalaya, Jawa Barat 46134
+                </p>
             </li>
-            <li>
+            <li class="max-w-xl">
+                <iframe
+                class="lg:w-11/12 lg:h-[250px]"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31658.329182559228!2d108.20010198628258!3d-7.321156981319861!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f574b78674ed5%3A0x8f72a3492e920811!2sAgro%20Jaket%20Kulit!5e0!3m2!1sid!2sid!4v1727067043297!5m2!1sid!2sid"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+                <p class="underline">
                 Jl. R.E. Martadinata No.18, Panglayungan, Kec. Cipedes, Kab.
                 Tasikmalaya, Jawa Barat 46196
+                </p>
             </li>
             </ul>
-            <p>Ciamis</p>
-            <ul class="list-disc ps-5">
+            <p class="font-bold">Ciamis</p>
+            <ul class="list-none">
             <li>
+                <iframe
+                class="lg:w-11/12 lg:h-[250px]"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6655.229115820192!2d108.36226705428898!3d-7.328843053697464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f5e9373bf9ffd%3A0x389b3fc700bfe756!2sJl.%20Mr.%20Iwa%20Kusuma%20Sumantri%2C%20Kec.%20Ciamis%2C%20Kabupaten%20Ciamis%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1727070010411!5m2!1sid!2sid"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+                <p class="underline">
                 Jl. Mr. Iwa Kusuma Sumantri, Kertasari, Kec. Ciamis, Kabupaten
                 Ciamis, Jawa Barat 46213
+                </p>
             </li>
             </ul>
-        </div>
         </div>
 
         <!-- Footer -->
-        <footer class="bg-[#1C3D32] max-w-full mt-5 text-white py-3">
-            <div class="flex justify-between paddingX items-center">
-                <div class="Profile text-center leading-tight">
-                    <p class="font-bodoni text-[38px]">
-                        Agro Leather
-                    </p>
-                    <p class="font-lora text-[11px]">
-                        Free shipping in Indonesia, Malaysia and World Wide.
-                    </p>
-                    <div class="Hyper_link flex gap-2 justify-center">
-                        <NuxtLink>
-                            <img src="../assets/icon/FB.svg" alt="Facebook">
-                        </NuxtLink>
-                        <NuxtLink>
-                            <img src="../assets/icon/IG.svg" alt="Instagram">
-                        </NuxtLink>
-                        <NuxtLink>
-                            <img src="../assets/icon/TW.svg" alt="Twitter">
-                        </NuxtLink>
-                    </div>
-                </div>
-                <div class="Linked flex justify-between w-6/12">
-                    <NuxtLink to="/about">
-                        <p class="font-lora relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
-                            Our Story
-                        </p>
-                    </NuxtLink>
-                    <NuxtLink to="/product/men">
-                        <p class="font-lora relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
-                            Men
-                        </p>
-                    </NuxtLink>
-                    <NuxtLink to="/product/women">
-                        <p class="font-lora relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
-                            Women
-                        </p>
-                    </NuxtLink>
-                    <NuxtLink to="/product/accessories">
-                        <p class="font-lora relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
-                            Accessories
-                        </p>
-                    </NuxtLink>
-                    <NuxtLink to="/contact">
-                        <p class="font-lora relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
-                            Contact us
-                        </p>
-                    </NuxtLink>
-                </div>
-            </div>
-            <div class="text-center font-lora">
-                <p class="text-slate-100/50 text-[10px]">Salvatore © Copyright 2024</p>
-            </div>
-        </footer>
-    </div>
+        <Footer />
+        </div>
     </div>
 </template>
 
 <script setup>
+import {gsap} from 'gsap'
 const isHidden = ref(true);
 
 function menu() {
     isHidden.value = !isHidden.value;
 }
+
+onMounted(() => {
+    
+})
 </script>
 
 <style scoped>
+.Contact_container {
+    background: url("@/assets/img/BGContact.jpg") center;
+    background-size: cover;
+}
 </style>

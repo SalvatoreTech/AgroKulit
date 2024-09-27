@@ -16,6 +16,32 @@
     padding: 50px 0px;
 }
 
+.paddingXY {
+    padding: 50px 90px;
+}
+
 .paddingDash{
     padding-left: 10em;
+}
+
+@media (max-width: 460px) {
+    .marginX {
+        margin: 0px;
+    }
+
+    .paddingX {
+        padding: 0px;
+    }
+
+    .paddingY {
+        padding: 0px;
+    }
+
+    .paddingXY {
+        padding: 0px;
+    }
+
+    .paddingDash{
+        padding-left: 0px;
+    }
 }
