@@ -22,24 +22,12 @@
           <div class="flex flex-col items-center gap-10">
             <img src="@/assets/img/logo.png" alt="logo" class="w-20" />
             <ul class="NavList font-bodoni flex flex-col gap-2">
-              <NuxtLink to="/admin/">
-                <li
-                  class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
-                  <p>Dashboard</p>
-                </li>
-              </NuxtLink>
-              <NuxtLink to="/admin/colour/">
-                <li
-                  class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
-                  <p>Colours</p>
-                </li>
-              </NuxtLink>
-              <NuxtLink to="/admin/category/">
-                <li
-                  class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
-                  <p>Categories</p>
-                </li>
-              </NuxtLink>
+              <li v-for="(navLink , i) in navLinks" :key="i"
+                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
+                <NuxtLink :to="navLink.path ">
+                  <p>{{ navLink.title }}</p>
+                </NuxtLink>
+              </li>
               <li>
                 <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" @click="dropdown()"
                   class="flex items-center justify-between w-full relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black text-black md:hover:bg-transparent md:border-0">
@@ -56,17 +44,17 @@
                   <ul class="text-gray-400 dark:text-gray-400 flex flex-col gap-2 pt-2"
                     aria-labelledby="dropdownLargeButton">
                     <li>
-                      <NuxtLink to="/admin/addProduct/addMen"
+                      <NuxtLink to="/admin/men/"
                         class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
                         Men</NuxtLink>
                     </li>
                     <li>
-                      <NuxtLink to="/admin/addProduct/addWomen"
+                      <NuxtLink to="/admin/women"
                         class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
                         Women</NuxtLink>
                     </li>
                     <li>
-                      <NuxtLink to="/admin/addProduct/addAccessories"
+                      <NuxtLink to="/admin/accessories/"
                         class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
                         Accessories</NuxtLink>
                     </li>
@@ -75,7 +63,7 @@
               </li>
             </ul>
           </div>
-          <img src="@/assets/icon/AdminLogout.svg" alt="Logout" class="w-7 cursor-pointer" @click="logout"/>
+          <img src="@/assets/icon/AdminLogout.svg" alt="Logout" class="w-7 cursor-pointer" @click="logout" />
         </div>
       </div>
     </nav>
@@ -83,6 +71,25 @@
 </template>
 
 <script setup>
+const navLinks = ref([
+  {
+    title: 'Dashboard',
+    path: '/admin/'
+  },
+  {
+    title: 'Categories of Jackets',
+    path: '/admin/categories/'
+  },
+  {
+    title: 'Colours',
+    path: '/admin/colours/'
+  },
+  {
+    title: 'Types of Accessories',
+    path: '/admin/types/'
+  },
+])
+
 const user = useSupabaseUser()
 const supabase = useSupabaseClient()
 const isHidden = ref(true);
@@ -97,12 +104,10 @@ function dropdown() {
 }
 
 async function logout() {
-  const {error} = await supabase.auth.signOut();
+  const { error } = await supabase.auth.signOut();
   if (error) throw 'Unsuccessfully to logout!'
   else navigateTo('/login')
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
