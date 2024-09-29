@@ -29,7 +29,7 @@
                         <div class="addType font-lora flex gap-1 border border-black rounded-md w-fit px-1 cursor-pointer"
                             @click="toggleAdd">
                             <img src="@/assets/icon/PlusRounded.svg" alt="">
-                            Add Colour
+                            Type
                         </div>
                         <input type="checkbox" id="addType" class="modal-toggle" v-model="showAddModal">
                         <label for="addType" class="modal">
@@ -88,7 +88,10 @@
                     </p>
                     <span class="w-5"></span>
                 </div>
-                <div class="mt-2">
+                <div v-if="isFetching" class="flex justify-center items-center h-64">
+                    <p class="font-lora">Load data...</p>
+                </div>
+                <div v-else class="mt-2">
                     <div v-for="type in types" :key="type.id"
                         class="type flex w-full p-2 items-center mt-1 bg-[#EBEDEC] hover:bg-[#D6D6D6] rounded-md">
                         <p class="lg:w-5/12">{{ type.nama }}</p>
@@ -145,7 +148,7 @@ const toggleDelete = (type) => {
 
 
 
-const { data: types, refresh } = useLazyAsyncData('types', async () => {
+const { data: types, isFetching, refresh } = useLazyAsyncData('types', async () => {
     let query = supabase.from('itemAksesoris').select('*')
     if (searchType.value) {
         query = query.ilike("nama", `%${searchType.value}%`)

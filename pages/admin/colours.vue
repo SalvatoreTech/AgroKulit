@@ -29,7 +29,7 @@
                         <div class="addColour font-lora flex gap-1 border border-black rounded-md w-fit px-1 cursor-pointer"
                             @click="toggleAdd">
                             <img src="@/assets/icon/PlusRounded.svg" alt="">
-                            Add colour
+                            Colour
                         </div>
                         <input type="checkbox" id="addColour" class="modal-toggle" v-model="showAddModal">
                         <label for="addColour" class="modal">
@@ -88,7 +88,10 @@
                     </p>
                     <span class="w-5"></span>
                 </div>
-                <div class="mt-2">
+                <div v-if="isFetching" class="flex justify-center items-center h-64">
+                    <p class="font-lora">Load data...</p>
+                </div>
+                <div v-else class="mt-2">
                     <div v-for="colour in colours" :key="colour.id"
                         class="colour flex w-full py-2 mt-1 bg-[#EBEDEC] hover:bg-[#D6D6D6] rounded-md">
                         <p class="lg:w-5/12">{{ colour.nama }}</p>
@@ -145,7 +148,7 @@ const toggleDelete = (colour) => {
 }
 
 
-const { data: colours, refresh } = useLazyAsyncData('colours', async () => {
+const { data: colours,isFetching, refresh } = useLazyAsyncData('colours', async () => {
     let query = supabase.from('warna').select('*')
     if (searchColour.value) {
         query = query.ilike("nama", `%${searchColour.value}%`)
@@ -153,7 +156,8 @@ const { data: colours, refresh } = useLazyAsyncData('colours', async () => {
     const { data, error } = await query
     if (error) throw error
     return data
-})
+}
+)
 
 const { execute: addColour } = useAsyncData('addColour', async () => {
     const { error } = await supabase.from('warna').insert({
@@ -182,14 +186,18 @@ const deleteColour = async (id) => {
     if (error) throw error
     else
         showDeleteModal.value = false
-        refresh()
-        submittedDelete.value = true
-        nama.value = ''
-        keterangan.value = ''
-        setTimeout(() => {
-            submittedDelete.value = false
-        }, 4000)
+    refresh()
+    submittedDelete.value = true
+    nama.value = ''
+    keterangan.value = ''
+    setTimeout(() => {
+        submittedDelete.value = false
+    }, 4000)
 }
+
+onMounted (() => {
+    refresh()
+})
 </script>
 
 <style scoped>

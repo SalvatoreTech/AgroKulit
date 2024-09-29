@@ -29,7 +29,7 @@
                         <div class="addCategory font-lora flex gap-1 border border-black rounded-md w-fit px-1 cursor-pointer"
                             @click="toggleAdd">
                             <img src="@/assets/icon/PlusRounded.svg" alt="">
-                            Add Category
+                            Category
                         </div>
                         <input type="checkbox" id="addCategory" class="modal-toggle" v-model="showAddModal">
                         <label for="addCategory" class="modal">
@@ -88,7 +88,10 @@
                     </p>
                     <span class="w-5"></span>
                 </div>
-                <div class="mt-2">
+                <div v-if="isFetching" class="flex justify-center items-center h-64">
+                    <p class="font-lora">Load data</p>
+                </div>
+                <div v-else class="mt-2">
                     <div v-for="category in categories" :key="category.id"
                         class="category flex w-full p-2 items-center mt-1 bg-[#EBEDEC] hover:bg-[#D6D6D6] rounded-md">
                         <p class="lg:w-5/12">{{ category.nama }}</p>
@@ -145,7 +148,7 @@ const toggleDelete = (category) => {
 }
 
 
-const { data: categories, refresh } = useLazyAsyncData('categories', async () => {
+const { data: categories, isFetching, refresh } = useLazyAsyncData('categories', async () => {
     let query = supabase.from('kategoriJaket').select('*')
     if (searchCategory.value) {
         query = query.ilike("nama", `%${searchCategory.value}%`)
