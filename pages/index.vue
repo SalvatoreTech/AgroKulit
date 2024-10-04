@@ -15,11 +15,11 @@
                             turpis molestie, dictum est a, mattis tellus. Sed dignissim,.
                         </p>
                         <div class="collection_btn flex gap-5 mt-12 font-lora">
-                            <NuxtLink to="/product/men"
+                            <NuxtLink to="/men/"
                                 class="Btn_hero bg-[#1C3D32] rounded-md text-white py-2 px-3 border-2 border-[#1C3D32] hover:bg-transparent hover:text-black hover:border-2 hover:border-[#1C3D32]">
                                 <p>Men's Collection</p>
                             </NuxtLink>
-                            <NuxtLink to="/product/women"
+                            <NuxtLink to="/women/"
                                 class="Btn_hero bg-[#1C3D32] rounded-md text-white py-2 px-3 border-2 border-[#1C3D32] hover:bg-transparent hover:text-black hover:border-2 hover:border-[#1C3D32]"
                                 @mouseenter="womenShow" @mouseleave="womenHidden">
                                 <p>Women's Collection</p>
@@ -279,12 +279,12 @@
                             </p>
                         </div>
                         <div class="Linked flex justify-between w-6/12 font-lora">
-                            <NuxtLink to="/product/men"
+                            <NuxtLink to="/men/"
                                 class="flex items-center content-center gap-2 cursor-pointer relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                                 <p>Men</p>
                                 <img src="@/assets/icon/RightArrow.svg" alt="" />
                             </NuxtLink>
-                            <NuxtLink to="/product/women"
+                            <NuxtLink to="/women/"
                                 class="flex items-center content-center gap-2 cursor-pointer relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                                 <p>Women</p>
                                 <img src="@/assets/icon/RightArrow.svg" alt="" />
@@ -306,7 +306,7 @@
                             </p>
                         </div>
                         <div class="LinkedAcc flex justify-center w-6/12 font-lora">
-                            <NuxtLink to="product/accessories"
+                            <NuxtLink to="/accessories/"
                                 class="flex items-center content-center gap-2 cursor-pointer relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                                 <p>Discover</p>
                                 <img src="@/assets/icon/RightArrow.svg" alt="" />
@@ -354,21 +354,20 @@ import Lenis from 'lenis'
 import SplitType from 'split-type';
 gsap.registerPlugin(ScrollTrigger)
 
-const isHidden = ref(true);
+// const isHidden = ref(true);
 // const isShow = ref(true)
 // const isUnshow = ref(true)c
 
-function menu() {
-    isHidden.value = !isHidden.value;
-    gsap.from('.stagg', {
-        opacity: 0,
-        stagger: 0.3,
-        duration: 0.5
-    })
-}
+// function menu() {
+//     isHidden.value = !isHidden.value;
+//     gsap.from('.stagg', {
+//         opacity: 0,
+//         stagger: 0.3,
+//         duration: 0.5
+//     })
+// }
 
 function womenShow() {
-    // isShow.value = !isShow.value;
     gsap.to(".women", {
         scale: 1,
         y: 0,
@@ -610,4 +609,5 @@ onMounted(() => {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

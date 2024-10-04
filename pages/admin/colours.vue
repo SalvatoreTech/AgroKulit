@@ -148,7 +148,7 @@ const toggleDelete = (colour) => {
 }
 
 
-const { data: colours,isFetching, refresh } = useLazyAsyncData('colours', async () => {
+const { data: colours, isFetching, refresh } = useLazyAsyncData('colours', async () => {
     let query = supabase.from('warna').select('*')
     if (searchColour.value) {
         query = query.ilike("nama", `%${searchColour.value}%`)
