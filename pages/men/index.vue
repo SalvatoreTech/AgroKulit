@@ -61,7 +61,7 @@
             <div class="Product flex flex-wrap gap-2 justify-between paddingX">
                 <div v-for="menJacket in menJackets" :key="menJacket.id"
                     class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md">
-                    <NuxtLink to="/men/detail_men">
+                    <NuxtLink :to="`/men/${menJacket.id}`">
                         <figure ref="photo" class="mx-2 mt-1">
                             <img src="../../assets/img/FrontProduct.jpg" alt="Product"
                                 class="hover:content-[url('../../assets/img/BackProduct.jpg')]" />

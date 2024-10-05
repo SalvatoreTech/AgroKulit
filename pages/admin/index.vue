@@ -2,18 +2,39 @@
   <div class="bg-white text-black">
     <!-- Sidebar -->
     <Sidebar />
-    <div class="Statistic lg:w-full h-screen">
-      <div class="flex w-full justify-center gap-20">
-        <div class="MostLikedJacket w-3/12 p-4 shadow-xl rounded-xl flex">
-          <Line :data="mostLikedJacketChartData" :options="mostLikedJacketChartOptions"/>
-        </div>
-        <div class="MostLikedAccessories w-3/12 p-4 shadow-xl rounded-xl flex">
-          <Line :data="mostLikedAccessoriesChartData" :options="mostLikedAccessoriesChartOptions"/>
+    <div class="paddingXY">
+      <div class="Statistic lg:w-full">
+        <p class="font-lora text-3xl">Latest Data</p>
+        <div class="flex w-full justify-center gap-20">
+          <div class="MostLikedJacket w-3/12 p-4 shadow-xl rounded-xl flex">
+            <Line :data="mostLikedJacketChartData" :options="mostLikedJacketChartOptions" />
+          </div>
+          <div class="AmountofProducts w-5/12 p-4 shadow-xl rounded-xl">
+            <Bar :data="productChartData" :options="productChartOptions" />
+          </div>
+          <div class="MostLikedAccessories w-3/12 p-4 shadow-xl rounded-xl flex">
+            <Line :data="mostLikedAccessoriesChartData" :options="mostLikedAccessoriesChartOptions" />
+          </div>
         </div>
       </div>
-      <div class="flex justify-center">
-        <div class="AmountofProducts w-5/12 p-4 shadow-xl rounded-xl">
-          <Bar :data="productChartData" :options="productChartOptions"/>
+      <div class="Hyper_link">
+        <div class="Product">
+          <figure class="w-full h-40 relative max-w-full mt-5 overflow-hidden">
+            <img src="@/assets/img/BGDiscover.jpg" alt="" class="w-full brightness-50">
+            <figcaption
+              class="absolute text-lg font-lora text-white top-0 flex flex-col justify-center gap-5 items-center content-center w-full h-ful">
+              <p class="text-3xl">Add Product</p>
+              <div class="flex justify-evenly w-full">
+                <NuxtLink to="/admin/men">
+                  Men
+                </NuxtLink>
+                |
+                <NuxtLink to="/admin/women">
+                  women
+                </NuxtLink>
+              </div>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </div>

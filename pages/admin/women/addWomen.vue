@@ -1,4 +1,3 @@
-import { type } from '../../../.nuxt/types/imports';
 <template>
     <div class="container bg-white text-black h-screen">
         <div class="AddProduct paddingXY">
@@ -103,6 +102,9 @@ import { type } from '../../../.nuxt/types/imports';
 </template>
 
 <script setup>
+definePageMeta({
+    middleware: ["auth"]
+})
 const supabase = useSupabaseClient()
 
 const form = ({
@@ -145,7 +147,7 @@ const { data: categories } = useAsyncData('categorires', async () => {
 async function photoPicked(event) {
     const file = event.target.files[0]
     photoProduct.value = file
-    const { data, error } = await supabase.from('womenJaket').select('foto').eq('id', form.value.kategori).maybeSingle()
+    const { data, error } = await supabase.from('jaketWomen').select('foto').eq('id', form.value.kategori).maybeSingle()
     if (error) throw error
     form.value.photo = `${data.nama.replace(' ', '_').toLowerCase()}/${file.name}`
 }
