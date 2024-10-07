@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="Sidebar bg-white text-black shadow-2xl shadow-red-950 rounded-md fixed p-1 m-2">
+    <nav class="Sidebar z-10 bg-white text-black shadow-2xl shadow-red-950 rounded-md fixed p-1 m-2">
       <span @click="menu"
         class="flex items-center gap-2 cursor-pointer relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
         <img src="@/assets/icon/hamburger.svg" alt="hamburger" />

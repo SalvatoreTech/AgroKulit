@@ -81,7 +81,7 @@
                     <p class="w-2/12">Gender</p>
                     <p class="w-2/12">Category</p>
                     <p class="w-2/12">Created</p>
-                    <span class="w-10"></span>
+                    <span class="w-24"></span>
                 </div>
                 <div v-if="isFetching" class="flex justify-center items-center h-64">
                     <p class="font-lora">Load data...</p>
@@ -96,23 +96,29 @@
                         <p class="w-2/12">{{ jacket.kategoriJaket?.nama }}</p>
                         <p class="w-2/12">{{ jacket.created_at.split('.')[0].split('T')[0] }}, {{
                             jacket.created_at.split('.')[0].split('T')[1] }}</p>
-                        <NuxtLink :to="`women/${jacket.id}`"
-                            class="btn w-5 cursor-pointer bg-[#E9E9E9] hover:bg-[#aeeab3] rounded-md">
-                            <img src="@/assets/icon/edit.svg" alt="Rubbish bin" class="max-w-5">
-                        </NuxtLink>
-                        <input type="checkbox" id="deleteCategory" class="modal-toggle" v-model="showDeleteModal" />
-                        <label for="deleteCategory" class="modal" @click="showDeleteModal = false">
-                            <label class="modal-box relative font-lora bg-[#ebedec]" @click.stop>
-                                <p class="font-lora text-red-500">Delete!</p>
-                                <p class="font-lora">Are you sure to delete this {{ selectedWomen.nama }}</p>
-                                <div class="modal-action">
-                                    <label for="deleteCategory"
-                                        class="btn bg-[#d6d6d6] text-black hover:text-white">No</label>
-                                    <label for="deleteCategory" @click="deleteCategory(selectedWomen.id)"
-                                        class="btn btn-error ">Yes</label>
-                                </div>
+                        <div class="flex gap-2">
+                            <NuxtLink :to="`women/${jacket.id}`"
+                                class="btn w-5 cursor-pointer bg-[#E9E9E9] hover:bg-[#aeeab3] rounded-md">
+                                <img src="@/assets/icon/edit.svg" alt="Rubbish bin" class="max-w-5">
+                            </NuxtLink>
+                            <input type="checkbox" id="deleteCategory" class="modal-toggle" v-model="showDeleteModal" />
+                            <label for="deleteCategory" class="modal" @click="showDeleteModal = false">
+                                <label class="modal-box relative font-lora bg-[#ebedec]" @click.stop>
+                                    <p class="font-lora text-red-500">Delete!</p>
+                                    <p class="font-lora">Are you sure to delete this {{ selectedWomen.warna?.nama }} {{ selectedWomen.kategoriJaket?.nama }} {{ selectedWomen.nama }}</p>
+                                    <div class="modal-action">
+                                        <label for="deleteCategory"
+                                            class="btn bg-[#d6d6d6] text-black hover:text-white">No</label>
+                                        <label for="deleteCategory" @click="deleteCategory(selectedWomen.id)"
+                                            class="btn btn-error ">Yes</label>
+                                    </div>
+                                </label>
                             </label>
-                        </label>
+                            <button @click="toggleDelete(jacket)"
+                                class="btn w-5 cursor-pointer bg-[#E9E9E9] hover:bg-red-500 rounded-md">
+                                <img src="@/assets/icon/trash.svg" alt="Rubbish bin" class="max-w-5">
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -145,8 +151,8 @@ function toggleAdd() {
     showAddModal.value = true
 }
 
-const toggleDelete = (category) => {
-    selectedWomen.value = category;
+const toggleDelete = (jacket) => {
+    selectedWomen.value = jacket;
     showDeleteModal.value = true;
 }
 

@@ -1,6 +1,5 @@
 <template>
     <div class="container bg-white text-black h-screen">
-
         <Head>
             <Title> {{ jacket?.warna?.nama }} {{ jacket?.kategoriJaket?.nama }} {{ jacket?.nama }}</Title>
         </Head>
