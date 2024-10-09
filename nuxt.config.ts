@@ -10,6 +10,6 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: ['@nuxtjs/supabase', '@nuxt/ui'],
+  modules: ['@nuxtjs/tailwindcss','@nuxtjs/supabase', '@nuxt/ui'],
   supabase: { redirect: false }
 })
