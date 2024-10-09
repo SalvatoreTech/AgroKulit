@@ -90,7 +90,8 @@
                 <div v-else class="mt-2">
                     <div v-for="jacket in jacketMen" :key="jacket.id"
                         class="jacket flex p-1 w-full items-center content-center mt-1 bg-[#EBEDEC] hover:bg-[#D6D6D6] rounded-md">
-                        <p class="lg:w-5/12"> {{ jacket.cover }} {{jacket.warna?.nama }} {{ jacket.kategoriJaket?.nama }} {{ jacket.nama }}</p>
+                        <img :src="jacket.foto" alt="" class="w-10 mx-1">
+                        <p class="lg:w-5/12">{{jacket.warna?.nama }} {{ jacket.kategoriJaket?.nama }} {{ jacket.nama }}</p>
                         <p class="w-2/12">{{ jacket.harga }}</p>
                         <p class="w-2/12">{{ jacket.stok }}</p>
                         <p class="w-2/12">{{ jacket.gender?.nama }}</p>
@@ -153,7 +154,7 @@ const toggleDelete = (jacket) => {
 
 
 const { data: jacketMen, isFetching, refresh } = useLazyAsyncData('jacketMen', async () => {
-    let query = supabase.from('jaketMen').select(`*, kategoriJaket(*), warna(*)`)
+    let query = supabase.from('jaketMen').select(`*, kategoriJaket(*), warna(*)`).order('id')
     if (searchJacket.value) query = query.or(`harga.ilike.%${searchJacket.value}%, nama.ilike.%${searchJacket.value}%`)
     if (category.value) query = query.eq('kategori', category.value)
     if (size.value) query = query.eq('ukuran', size.value)

@@ -19,13 +19,13 @@
           </div>
         </div>
         <div class="flex flex-col items-center h-[100vh] gap-5 paddingY justify-between">
-          <div class="flex flex-col items-center gap-10">
+          <div class="flex flex-col items-center gap-10 px-5">
             <img src="@/assets/img/logo.png" alt="logo" class="w-20" />
             <ul class="NavList font-bodoni flex flex-col gap-2">
               <li v-for="(navLink , i) in navLinks" :key="i"
-                class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
+                class="">
                 <NuxtLink :to="navLink.path ">
-                  <p>{{ navLink.title }}</p>
+                  <p class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">{{ navLink.title }}</p>
                 </NuxtLink>
               </li>
               <li>
@@ -41,21 +41,18 @@
                 <div id="dropdownNavbar"
                   class="z-10 font-bodoni divide-y divide-black dark:bg-transparant dark:divide-black"
                   :class="{ hidden: isInvisble }">
-                  <ul class="text-gray-400 dark:text-gray-400 flex flex-col gap-2 pt-2"
+                  <ul class="flex flex-col gap-2 pt-2"
                     aria-labelledby="dropdownLargeButton">
-                    <li>
-                      <NuxtLink to="/admin/men/"
-                        class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
+                    <li class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
+                      <NuxtLink to="/admin/men/">
                         Men</NuxtLink>
                     </li>
-                    <li>
-                      <NuxtLink to="/admin/women"
-                        class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
+                    <li class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
+                      <NuxtLink to="/admin/women">
                         Women</NuxtLink>
                     </li>
-                    <li>
-                      <NuxtLink to="/admin/accessories/"
-                        class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
+                    <li class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
+                      <NuxtLink to="/admin/accessories/">
                         Accessories</NuxtLink>
                     </li>
                   </ul>

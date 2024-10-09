@@ -1,60 +1,81 @@
 <template>
-    <div>
-    <!-- Navbar -->
-    <Header />
+    <div class="bg-white h-screen flex flex-col justify-between">
+        <!-- Navbar -->
+        <Header />
 
-    <!-- Content -->
-    <div class="bg-white text-black pt-20">
-        <div class="paddingX">
-            <NuxtLink to="/product/men">
-                <img src="../../assets/icon/LeftArrow.svg" alt="LeftArrow">
-            </NuxtLink>
-            <div class="flex justify-evenly">
-                <div class="carousel rounded-box w-96" data-carousel="slide">
-                    <div class="carousel-item w-full" data-carousel-item="active">
-                        <img src="../../assets/img/FrontProduct.jpg" class="w-full"
-                            alt="Tailwind CSS Carousel component" />
+        <!-- Content -->
+        <div class="bg-white text-black pt-20 pb-3">
+            <div class="paddingX">
+                <NuxtLink to="/men/" class="w-20">
+                    <img src="../../assets/icon/LeftArrow.svg" alt="LeftArrow">
+                </NuxtLink>
+                <div class="flex justify-evenly">
+                    <div class="rounded-box lg:w-96 border-4 border-[#ebedec] shadow-md bg-[#ebedec]" data-carousel="slide">
+                        <div class="">
+                            <img :src="getJacket?.foto" class="xzoom w-full" alt="Tailwind CSS Carousel component"
+                                @mouseover="mouseEnterPhoto" @mouseout="mouseLeavePhoto" />
+                        </div>
                     </div>
-                    <div class="carousel-item w-full" data-carousel-item>
-                        <img src="../../assets/img/BackProduct.jpg" class="w-full"
-                            alt="Tailwind CSS Carousel component" />
-                    </div>
-                </div>
-                <div class="ProfuctInfo font-lora max-w-lg flex flex-col justify-evenly">
-                    <div class="Tilt leading-[15px] ps-3">
-                        <p class="text-[24px] font-bold">Café Racer Man Leather Jacket</p>
-                        <p class="text-[11px]">Agro 01</p>
-                    </div>
-                    <div class="General">
-                        <p>1.000.000 IDR</p>
-                        <p>Colour : Black</p>
-                        <p>Size : L</p>
-                        <p>Stock : 10</p>
-                        <p>Cafe Racer Jacket. Cafe racer jackets typically have a simple, minimalist design with a clean
-                            and tailored silhouette.</p>
-                    </div>
-                    <div class="OrderLink font-lora ps-3">
-                        <p class="text-[11px] ">Shipping, Exchanges, and Returns</p>
-                        <button class="flex py-1 px-3 gap-1 border border-black rounded-md hover:bg-[#1C3D32] hover:text-white">
-                            <p>Order now</p>
-                            <img src="../../assets/icon/WABlack.svg" alt="WhatsApp">
-                        </button>
+                    <div class="ProfuctInfo font-lora max-w-lg flex flex-col justify-evenly">
+                        <div class="Tilt leading-[15px] ps-3">
+                            <p class="text-[24px] font-bold">{{ getJacket?.warna?.nama }} {{
+                                getJacket?.kategoriJaket?.nama }} for Man</p>
+                            <p class="text-[11px]">{{ getJacket?.nama }}</p>
+                        </div>
+                        <div class="General">
+                            <p>{{ getJacket?.harga }}</p>
+                            <p>Colour : {{ getJacket?.warna?.nama }}</p>
+                            <p>Size : {{ getJacket?.ukuranJaket?.nama }}</p>
+                            <p>Stock : {{ getJacket?.stok }}</p>
+                            <p>{{ getJacket?.deskription }}</p>
+                        </div>
+                        <div class="OrderLink font-lora ps-3">
+                            <p class="text-[11px] ">Shipping, Exchanges, and Returns</p>
+                            <button
+                                class="flex py-1 px-3 gap-1 border border-black rounded-md hover:bg-[#1C3D32] hover:text-white">
+                                <p>Order now</p>
+                                <UIcon name="fa6-brands:whatsapp" class="w-5 h-5" />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- Footer -->
         </div>
-        <!-- Footer -->
         <Footer />
-    </div>
     </div>
 </template>
 
 <script setup>
-const isHidden = ref(true);
+import { gsap } from 'gsap'
+const supabase = useSupabaseClient()
 
-function menu() {
-    isHidden.value = !isHidden.value;
+const { id } = useRoute().params
+
+const { data: getJacket, error } = useAsyncData('getJacket', async () => {
+    const { error, data } = await supabase.from('jaketMen').select(`*, kategoriJaket(*), ukuranJaket(*), warna(*)`).eq('id', id).maybeSingle()
+    if (error) throw error
+    if (data) {
+        const { data: url } = supabase.storage.from('fotoProduk').getPublicUrl(data.foto)
+        return data
+    }
+})
+
+function mouseEnterPhoto() {
+    gsap.to(".xzoom", {
+        scale: 1.15,
+        duration: 0.3,
+        ease: 'power2.inOut',
+    })
 }
+function mouseLeavePhoto() {
+    gsap.to(".xzoom", {
+        scale: 1,
+        duration: 0.3,
+        ease: 'power2.inOut',
+    })
+}
+
 </script>
 
 <style scoped></style>

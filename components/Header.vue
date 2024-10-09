@@ -88,8 +88,7 @@ function menu() {
     isHidden.value = !isHidden.value;
     gsap.from('.stagg', {
         opacity: 0,
-        stagger: 0.3,
-        duration: 0.5
+        stagger: 0.025,
     })
 }
 </script>

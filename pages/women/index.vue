@@ -29,12 +29,12 @@
                             </svg>
                         </div>
                         <input v-model="searchJacket" @input="refresh" type="search"
-                            class="block w-xl w-[230px] p-1 ps-8 text-xs text-gray-950 border outline-none border-gray-300 rounded-lg bg-transparent dark:border-gray-600 dark:placeholder-gray-700"
-                            placeholder="Search by name or price" required />
+                            class="block w-xl w-[300px] p-1 ps-8 text-xs text-gray-950 border outline-none border-gray-300 rounded-lg bg-transparent dark:border-gray-600 dark:placeholder-gray-700"
+                            placeholder="Search by name or number (ex. Agro 25)" required />
                     </div>
                     <select v-model="category" @change="refresh"
                         class="block w-full p-1 mb-6 text-xs text-gray-900 border outline-none border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
-                        <option :value="null" selected >
+                        <option :value="null" selected>
                             Category
                         </option>
                         <option v-for="category in categories" :key="category.id" :value="category.id"
@@ -42,7 +42,7 @@
                     </select>
                     <select v-model="size" @change="refresh"
                         class="block w-full p-1 mb-6 text-xs text-gray-900 border border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
-                        <option :value="null" selected >
+                        <option :value="null" selected>
                             Size
                         </option>
                         <option v-for="size in sizes" :key="size.id" :value="size.id"
@@ -50,7 +50,7 @@
                     </select>
                     <select v-model="colour" @change="refresh"
                         class="block w-full p-1 mb-6 text-xs text-gray-900 border border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
-                        <option :value="null" selected >
+                        <option :value="null" selected>
                             Colour
                         </option>
                         <option v-for="colour in colours" :key="colour.id" :value="colour.id"
@@ -61,20 +61,20 @@
             <div class="Product flex flex-wrap gap-2 justify-between paddingX">
                 <div v-for="womenJacket in womenJackets" :key="womenJacket.id"
                     class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md">
-                    <NuxtLink :to="`/women/${womenJackets.id}`">
+                    <NuxtLink :to="`/women/${womenJacket.id}`">
                         <figure ref="photo" class="mx-2 mt-1">
-                            <img src="../../assets/img/FrontProduct.jpg" alt="Product"
-                                class="hover:content-[url('../../assets/img/BackProduct.jpg')]" />
+                            <img :src="womenJacket.foto" alt="Product"
+                                class="h-[300px] object-contain hover:scale-110 transition-all duration-200" />
                         </figure>
-                        <div class="card-body flex flex-row items-center">
+                        <div class="card-body flex flex-row items-center justify-between">
                             <div class="text">
                                 <p class="card-title font-lora text-[16px]">
-                                    {{ womenJacket.warna?.nama }} {{ womenJacket.kategoriJaket?.nama }} {{
-                                        womenJacket.nama }}
+                                    {{ womenJacket.warna?.nama }} {{ womenJacket.kategoriJaket?.nama }}
                                 </p>
+                                <p class="font-lora text-[11px]"> {{ womenJacket.nama }}</p>
                                 <p class="font-lora text-[11px]">{{ womenJacket.harga }} IDR</p>
                             </div>
-                            <div class="card-actions justify-end">
+                            <div class="card-actions justify-end w-5">
                                 <img src="../../assets/icon/heart-like.svg" class="" alt="heart" />
                             </div>
                         </div>
@@ -99,13 +99,19 @@ const colour = ref(null)
 
 const { data: womenJackets, status, error, refresh } = useLazyAsyncData('womenJackets', async () => {
     let query = supabase.from('jaketWomen').select(`*, kategoriJaket(*), warna(*)`)
-    if (searchJacket.value) query = query.or(`harga.ilike.%${searchJacket.value}%, nama.ilike.%${searchJacket.value}%`)
+    if (searchJacket.value) query = query.ilike('nama', `%${searchJacket.value}%`)
     if (category.value) query = query.eq('kategori', category.value)
     if (size.value) query = query.eq('ukuran', size.value)
     if (colour.value) query = query.eq('warna', colour.value)
 
     const { data, error } = await query
     if (error) throw error
+    if (data) {
+        womenJackets.value = data;
+        data.forEach(jacket => {
+            const { data } = supabase.storage.from('fotoProduk').getPublicUrl(jacket.foto)
+        })
+    }
     return data
 })
 
@@ -127,7 +133,9 @@ const { data: colours } = useAsyncData('colours', async () => {
     return data
 })
 
-onMounted(() => { });
+onMounted(() => {
+
+});
 </script>
 
 <style scoped></style>

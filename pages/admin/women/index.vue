@@ -89,27 +89,29 @@
                 <div v-else class="mt-2">
                     <div v-for="jacket in jacketWomen" :key="jacket.id"
                         class="jacket flex p-1 w-full items-center content-center mt-1 bg-[#EBEDEC] hover:bg-[#D6D6D6] rounded-md">
-                        <p class="lg:w-5/12"> {{ jacket.cover }} {{ jacket.kategoriJaket?.nama }} {{ jacket.nama }}</p>
+                        <img :src="jacket.foto" alt="" class="w-10 mx-1">
+                        <p class="lg:w-5/12"> {{ jacket.kategoriJaket?.nama }} {{ jacket.nama }}</p>
                         <p class="w-2/12">{{ jacket.harga }}</p>
                         <p class="w-2/12">{{ jacket.stok }}</p>
                         <p class="w-2/12">{{ jacket.gender?.nama }}</p>
                         <p class="w-2/12">{{ jacket.kategoriJaket?.nama }}</p>
                         <p class="w-2/12">{{ jacket.created_at.split('.')[0].split('T')[0] }}, {{
                             jacket.created_at.split('.')[0].split('T')[1] }}</p>
-                        <div class="flex gap-2">
-                            <NuxtLink :to="`women/${jacket.id}`"
-                                class="btn w-5 cursor-pointer bg-[#E9E9E9] hover:bg-[#aeeab3] rounded-md">
+                        <div class="flex gap-2 w-20">
+                            <NuxtLink :to="`/admin/women/${jacket.id}`"
+                                class="btn w-5 cursor-pointer bg-[#E9E9E9] hover:bg-[#2bb371] rounded-md">
                                 <img src="@/assets/icon/edit.svg" alt="Rubbish bin" class="max-w-5">
                             </NuxtLink>
                             <input type="checkbox" id="deleteCategory" class="modal-toggle" v-model="showDeleteModal" />
                             <label for="deleteCategory" class="modal" @click="showDeleteModal = false">
                                 <label class="modal-box relative font-lora bg-[#ebedec]" @click.stop>
                                     <p class="font-lora text-red-500">Delete!</p>
-                                    <p class="font-lora">Are you sure to delete this {{ selectedWomen.warna?.nama }} {{ selectedWomen.kategoriJaket?.nama }} {{ selectedWomen.nama }}</p>
+                                    <p class="font-lora">Are you sure to delete this {{ selectedWomen.warna?.nama }} {{
+                                        selectedWomen.kategoriJaket?.nama }} {{ selectedWomen.nama }}</p>
                                     <div class="modal-action">
                                         <label for="deleteCategory"
                                             class="btn bg-[#d6d6d6] text-black hover:text-white">No</label>
-                                        <label for="deleteCategory" @click="deleteCategory(selectedWomen.id)"
+                                        <label for="deleteCategory" @click="deleteProduct(selectedWomen.id)"
                                             class="btn btn-error ">Yes</label>
                                     </div>
                                 </label>
@@ -158,13 +160,19 @@ const toggleDelete = (jacket) => {
 
 
 const { data: jacketWomen, isFetching, refresh } = useLazyAsyncData('jacketWomen', async () => {
-    let query = supabase.from('jaketWomen').select(`*, kategoriJaket(*), warna(*)`)
+    let query = supabase.from('jaketWomen').select(`*, kategoriJaket(*), warna(*)`).order('id')
     if (searchJacket.value) query = query.or(`harga.ilike.%${searchJacket.value}%, nama.ilike.%${searchJacket.value}%`)
     if (category.value) query = query.eq('kategori', category.value)
     if (size.value) query = query.eq('ukuran', size.value)
     if (colour.value) query = query.eq('warna', colour.value)
     const { data, error } = await query
     if (error) throw error
+    if (data) {
+        jacketWomen.value = data;
+        data.forEach(jacket => {
+            const { data } = supabase.storage.from('fotoProduk').getPublicUrl(jacket.foto)
+        })
+    }
     return data
 })
 
@@ -208,20 +216,20 @@ const { data: colours } = useAsyncData('colours', async () => {
 //     immediate: false
 // })
 
-// const deleteCategory = async (id) => {
-//     console.log(id)
-//     const { error } = await supabase.from('jaketWomen').delete().eq('id', id)
-//     if (error) throw error
-//     else
-//         showDeleteModal.value = false
-//         refresh()
-//         submittedDelete.value = true
-//         nama.value = ''
-//         keterangan.value = ''
-//         setTimeout(() => {
-//             submittedDelete.value = false
-//         }, 4000)
-// }
+const deleteProduct = async (id) => {
+    console.log(id)
+    const { error } = await supabase.from('jaketWomen').delete().eq('id', id)
+    if (error) throw error
+    else
+        showDeleteModal.value = false
+        refresh()
+        submittedDelete.value = true
+        nama.value = ''
+        keterangan.value = ''
+        setTimeout(() => {
+            submittedDelete.value = false
+        }, 4000)
+}
 </script>
 
 <style scoped>

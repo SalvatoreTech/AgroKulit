@@ -1,6 +1,6 @@
 <template>
   <div>
-    <footer class="Footer bg-[#1C3D32] max-w-full mt-5 text-white py-3">
+    <footer class="Footer bg-[#1C3D32] max-w-full text-white py-3">
       <div class="flex justify-between paddingX items-center">
         <div class="Profile text-center leading-tight">
           <p class="Titl_footer font-bodoni text-[38px]">

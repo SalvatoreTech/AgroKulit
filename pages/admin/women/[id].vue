@@ -1,5 +1,6 @@
 <template>
-    <div class="container bg-white text-black h-screen">
+    <div class="bg-white text-black h-screen">
+
         <Head>
             <Title> {{ jacket?.warna?.nama }} {{ jacket?.kategoriJaket?.nama }} {{ jacket?.nama }}</Title>
         </Head>
@@ -7,7 +8,7 @@
             <div class="Titl font-lora flex justify-between">
                 <p class="text-lg font-medium">Manage Product</p>
                 <div class="flex gap-3">
-                    <NuxtLink to="/admin/women/"
+                    <NuxtLink to="/admin/men/"
                         class="flex gap-1 p-1 items-center border border-black rounded-md outline-none ">
                         <img src="@/assets/icon/Close.svg" alt="">
                         <p>Cancel</p>
@@ -32,13 +33,13 @@
                     <form>
                         <div class="relative flex flex-col">
                             <label for="name">Product Name</label>
-                            <input name="name" type="text"
+                            <input v-model="form.name" name="name" type="text"
                                 class="bg-white placeholder:text-black rounded-md p-1 outline-none"
                                 placeholder="Product Name">
                         </div>
                         <div class="relative flex flex-col">
                             <label for="description">Product Description</label>
-                            <textarea name="description"
+                            <textarea v-model="form.description" name="description"
                                 class="bg-white placeholder:text-black rounded-md p-1 outline-none"
                                 placeholder="Product Description"></textarea>
                         </div>
@@ -47,7 +48,7 @@
                                 <label for="size">Size</label>
                                 <div class="size-selection flex flex-wrap justify-center gap-5">
                                     <div v-for="size in sizes" :key="size.id">
-                                        <input type="radio" id="size" name="size" :value="size.id">
+                                        <input v-model="form.size" type="radio" id="size" name="size" :value="size.id">
                                         <label for="size"
                                             class="size-label cursor-pointer inline-block py-2 px-4 border border-gray-300 bg-white rounded">{{
                                                 size.nama }}</label>
@@ -58,7 +59,7 @@
                                 <label for="size">Size</label>
                                 <div class="gender-selection flex flex-wrap h-10 items-center content-center gap-5">
                                     <div v-for="gender in genders" :key="gender.id">
-                                        <input type="radio" id="gender" name="gender" :value="gender.id"
+                                        <input v-model="form.gender" type="radio" id="gender" name="gender" :value="gender.id"
                                             class="peer cursor-pointer">
                                         <label for="gender" class="">{{ gender.nama }}</label>
                                     </div>
@@ -66,10 +67,10 @@
                             </div>
                             <div class="relative w-2/5">
                                 <label for="colour">Colour</label>
-                                <select v-model="colour"
+                                <select v-model="form.colour"
                                     class="block w-full p-1 text-gray-900 bg-white rounded-md outline-none">
                                     <option :value="null" selected>
-                                        Colour
+                                        {{ getJacket?.warna?.nama }}
                                     </option>
                                     <option v-for="colour in colours" :key="colour.id" :value="colour.id"
                                         class="text-black hover:bg-slate-600 hover:text-white">{{ colour.nama }}
@@ -78,10 +79,10 @@
                             </div>
                             <div class="relative w-2/5">
                                 <label for="category">Category</label>
-                                <select v-model="category"
+                                <select v-model="form.category"
                                     class="block w-full p-1 text-gray-900 bg-white rounded-md outline-none">
                                     <option :value="null" selected>
-                                        Category
+                                        {{ getJacket?.kategoriJaket?.nama }}
                                     </option>
                                     <option v-for="category in categories" :key="category.id" :value="category.id"
                                         class="text-black hover:bg-slate-600 hover:text-white">{{ category.nama }}
@@ -90,13 +91,13 @@
                             </div>
                             <div class="relative flex flex-col w-2/5">
                                 <label for="price">Price</label>
-                                <input name="price" type="text"
+                                <input v-model="form.price" name="price" type="text"
                                     class="bg-white placeholder:text-black rounded-md p-1 outline-none"
                                     placeholder="Price">
                             </div>
                             <div class="relative flex flex-col w-2/5">
                                 <label for="stock">Stock</label>
-                                <input name="stock" type="text"
+                                <input v-model="form.stock" name="stock" type="text"
                                     class="bg-white placeholder:text-black rounded-md p-1 outline-none"
                                     placeholder="Stock">
                             </div>
@@ -106,11 +107,9 @@
                 <div class="flex flex-col items-center justify-center">
                     <h1 class="text-3xl font-bold mb-4">Upload Photos</h1>
                     <form @submit.prevent="uploadPhoto">
-                        <input type="file" accept="image/*" class="form-control" id="cover"
-                            @change="coverPicked">
+                        <input type="file" accept="image/*" class="form-control" id="cover" @change="photoPicked">
                         <input type="submit"
-                            class="inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                            :disabled="uploading" value="Upload">
+                            class="inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" value="Upload">
                     </form>
                     <div v-if="uploadedPhoto">
                         <img :src="uploadedPhoto" class="w-full h-full object-cover">
@@ -122,69 +121,47 @@
 </template>
 
 <script setup>
-definePageMeta({
-    middleware: ["auth"]
-})
-
 const supabase = useSupabaseClient()
 
 const { id } = useRoute().params
-const colour = ref(null)
-const category = ref(null)
 
-const { data: jacket } = useLazyAsyncData('getJacetById', async () => {
-    const { data, error } = await supabase.from('jaketWomen').select(`*,  kategoriJaket(*), warna(*)`).eq('id', id).maybeSingle()
+const form = ({
+    name: '',
+    description: '',
+    size: null,
+    colour: null,
+    category: null,
+    price: '',
+    stock: '',
+})
+
+const {data: getJacket} = useLazyAsyncData('getJacket', async () => {
+    const { data, error } = await supabase.from('jaketWomen').select(`*, kategoriJaket(),  warna(), ukuranJaket()`).eq('id', id).maybeSingle()
     if (error) throw error
     return data
 })
 
-const { data: sizes } = useAsyncData('sizes', async () => {
-    const { data, error } = await supabase.from('ukuranJaket').select()
+const {data: sizes} = useAsyncData('sizes', async () => {
+    const {data, error} = await supabase.from('ukuranJaket').select()
     if (error) throw error
     return data
 })
-
-const { data: genders } = useAsyncData('genders', async () => {
-    const { data, error } = await supabase.from('gender').select()
+const {data: genders} = useAsyncData('genders', async () => {
+    const {data, error} = await supabase.from('gender').select()
     if (error) throw error
     return data
 })
-
-const { data: colours } = useAsyncData('colours', async () => {
-    const { data, error } = await supabase.from('warna').select()
+const {data: colours} = useAsyncData('colours', async () => {
+    const {data, error} = await supabase.from('warna').select()
     if (error) throw error
     return data
 })
-
-const { data: categories } = useAsyncData('categorires', async () => {
-    const { data, error } = await supabase.from('kategoriJaket').select()
+const {data: categories} = useAsyncData('categories', async () => {
+    const {data, error} = await supabase.from('kategoriJaket').select()
     if (error) throw error
     return data
 })
-
-// const uploading = ref(false)
-// const uploadedPhoto = ref(null)
-
-// async function handleFileChange(event) {
-//     const file = event.target.files[0]
-//     uploading.value = file
-//     const {data, error } = await supabase.from('jaketWomen').select('cover').eq('id', )
-//     uploadedPhoto.value = response.data.url
-//     uploading.value = false
-// }
-
-// const { execute: uploadPhoto } = useAsyncData('uploadPhoto', async () => {
-//     const { data, error } = await supabase.from('jaketWomen').insert()
-// })
 
 </script>
 
-<style scoped>
-.size-selection input[name="size"] {
-    @apply hidden;
-}
-
-.size-selection input[name="size"]:checked+.size-label {
-    @apply bg-[#bbbbbb] text-black;
-}
-</style>
+<style scoped></style>
