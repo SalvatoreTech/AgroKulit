@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <div class="Product flex flex-wrap gap-2 justify-between paddingX">
+            <div class="Product flex flex-wrap gap-5 justify-between paddingX mb-5">
                 <div v-for="accessory in accessories" :key="accessory.id"
                     class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md">
                     <NuxtLink to="/accessories/detail_accessories">

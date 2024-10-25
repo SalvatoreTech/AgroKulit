@@ -25,7 +25,7 @@
                         </div>
                         <input v-model="searchJacket" @input="refresh" type="search"
                             class="block w-xl w-[230px] p-1 ps-8 text-xs text-gray-950 border outline-none border-gray-300 rounded-lg bg-transparent dark:border-gray-600 dark:placeholder-gray-700"
-                            placeholder="Search by name or price" />
+                            placeholder="Search (e.g Agro 25)" />
                     </div>
                     <select v-model="category" @change="refresh"
                         class=" p-1 text-xs text-gray-900 border outline-none border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">

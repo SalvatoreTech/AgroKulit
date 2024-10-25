@@ -4,12 +4,12 @@
         <Header />
 
         <!-- Content -->
-        <div class="Story bg-white text-black">
+        <div class="Story bg-white text-black lg:h-full h-[100vh] flex flex-col justify-between">
             <div class="overflow-hidden">
-                <img src="@/assets/img/Story.jpg" alt="Story" class="w-full BG_story" />
+                <img src="@/assets/img/Story.jpg" alt="Story" class="w-full BG_story lg:mt-0 mt-12" />
             </div>
-            <div class="Desc paddingX">
-                <p class="font-bodoni text-[41px]">Our Story</p>
+            <div class="Desc paddingXY">
+                <p class="font-bodoni lg:text-[41px] text-[2rem]">Our Story</p>
                 <p class="relative font-lora">
                     Agro yang berasal dari singkatan
                     <b class="sptext"><i>(Anak Garut Rea Order)</i></b> , yaitu seorang
@@ -22,33 +22,21 @@
 
             <!-- Footer -->
             <Footer />
-    </div>
+        </div>
     </div>
 </template>
 
 <script setup>
 import { gsap } from "gsap";
-import SplitType from "split-type";
+// import SplitType from "split-type";
 import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 
 const isHidden = ref(true);
-
-//Shown Navbar
-function menu() {
-    isHidden.value = !isHidden.value;
-}
-
 onMounted(() => {
     // let text = new SplitType("");
     let tl = gsap.timeline();
-    let st = gsap.timeline({
-        scrollTrigger: {
-            start: 'center center',
-            end: '70% 60%',
-        }
-    })
 
     tl.from('.Navbar', {
         y: '-200%',
@@ -60,13 +48,13 @@ onMounted(() => {
         scale: 1.09,
     })
 
-    st.from(".sptext", {
+    .from(".sptext", {
         opacity: 0,
         stagger: 0.06,
         x: -100,
         duration: 1.3,
         ease: "circ.inOut",
-    })
+    }, 0.3)
 
     //SmoothScrollLenis
     const lenis = new Lenis()

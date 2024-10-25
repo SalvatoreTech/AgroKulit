@@ -23,7 +23,7 @@
                         </div>
                         <input v-model="searchType" @input="refresh" type="search"
                             class="block w-xl w-[230px] p-1 ps-8 text-xs text-gray-950 border border-gray-300 rounded-lg bg-transparent dark:border-gray-600 dark:placeholder-gray-700"
-                            placeholder="Search for an item and type" required />
+                            placeholder="Search by name" required />
                     </div>
                     <div class="add">
                         <div class="addType font-lora flex gap-1 border border-black rounded-md w-fit px-1 cursor-pointer"

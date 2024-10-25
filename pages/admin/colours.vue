@@ -23,7 +23,7 @@
                         </div>
                         <input v-model="searchColour" @input="refresh" type="search"
                             class="block w-xl w-[230px] p-1 ps-8 text-xs text-gray-950 border border-gray-300 rounded-lg bg-transparent dark:border-gray-600 dark:placeholder-gray-700"
-                            placeholder="Search for an item and colour" required />
+                            placeholder="Search by name" required />
                     </div>
                     <div class="add">
                         <div class="addColour font-lora flex gap-1 border border-black rounded-md w-fit px-1 cursor-pointer"
@@ -181,15 +181,13 @@ const { execute: addColour } = useAsyncData('addColour', async () => {
 })
 
 const deleteColour = async (id) => {
-    console.log(id)
+    // console.log(id)
     const { error } = await supabase.from('warna').delete().eq('id', id)
     if (error) throw error
     else
         showDeleteModal.value = false
     refresh()
     submittedDelete.value = true
-    nama.value = ''
-    keterangan.value = ''
     setTimeout(() => {
         submittedDelete.value = false
     }, 4000)

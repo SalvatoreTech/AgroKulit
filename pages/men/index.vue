@@ -5,21 +5,21 @@
 
         <!-- Content -->
         <div class="bg-white text-black">
-            <figure class="relative pt-12 flex justify-center items-start">
-                <img src="../../assets/img/BGMen's.jpg" alt="bgMenProduct" class="w-full" />
-                <figcaption class="absolute text-center max-w-xs mt-28">
-                    <p class="font-bodoni text-[38px] font-bold">Men Leather Jackets</p>
-                    <div class="font-lora text-[11px]">Find your style.</div>
+            <figure class="relative pt-12 flex justify-center items-start overflow-hidden" style="clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%)">
+                <img src="../../assets/img/BGMen's.jpg" alt="bgMenProduct" class="w-full bgMen" />
+                <figcaption class="absolute text-center max-w-xs lg:mt-28 mt-5">
+                    <p class="font-bodoni lg:text-[38px] text-[1.2rem] font-bold Tilt_men" style="clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%)">Men Leather Jackets</p>
+                    <div class="font-lora text-[11px] Sub_men">Find your style.</div>
                 </figcaption>
             </figure>
-            <div class="Filter flex justify-between paddingX mt-1">
+            <div class="Filter flex justify-between paddingX mt-1 lg:flex-row flex-col">
                 <div class="hyper_link">
                     <p class="font-lora">
                         <NuxtLink to="/"> Home </NuxtLink>
                         / Men
                     </p>
                 </div>
-                <div class="flex gap-3 font-lora">
+                <div class="flex gap-3 font-lora lg:flex-nowrap mb-3 flex-wrap">
                     <div class="relative">
                         <div class="absolute pt-1 start-0 flex items-center ps-3 pointer-none">
                             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -29,11 +29,11 @@
                             </svg>
                         </div>
                         <input v-model="searchJacket" @input="refresh" type="search"
-                            class="block w-xl w-[300px] p-1 ps-8 text-xs text-gray-950 border outline-none border-gray-300 rounded-lg bg-transparent dark:border-gray-600 dark:placeholder-gray-700"
+                            class="block lg:w-[300px] w-[370px] p-1 ps-8 text-xs text-gray-950 border outline-none border-gray-300 rounded-lg bg-transparent dark:border-gray-600 dark:placeholder-gray-700"
                             placeholder="Search by name or number (ex. Agro 25)" required />
                     </div>
                     <select v-model="category" @change="refresh"
-                        class="block w-full p-1 mb-6 text-xs text-gray-900 border outline-none border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
+                        class="block w-full p-1 text-xs text-gray-900 border outline-none border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
                         <option :value="null" selected>
                             Category
                         </option>
@@ -41,7 +41,7 @@
                             class="text-black hover:bg-slate-600 hover:text-white">{{ category.nama }}</option>
                     </select>
                     <select v-model="size" @change="refresh"
-                        class="block w-full p-1 mb-6 text-xs text-gray-900 border border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
+                        class="block w-full p-1 text-xs text-gray-900 border border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
                         <option :value="null" selected>
                             Size
                         </option>
@@ -49,7 +49,7 @@
                             class="text-black hover:bg-slate-600 hover:text-white">{{ size.nama }}</option>
                     </select>
                     <select v-model="colour" @change="refresh"
-                        class="block w-full p-1 mb-6 text-xs text-gray-900 border border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
+                        class="block w-full p-1 text-xs text-gray-900 border border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
                         <option :value="null" selected>
                             Colour
                         </option>
@@ -58,13 +58,13 @@
                     </select>
                 </div>
             </div>
-            <div class="Product flex flex-wrap gap-2 justify-between paddingX">
+            <div class="Product flex flex-wrap gap-5 justify-between paddingX mb-5">
                 <div v-for="menJacket in menJackets" :key="menJacket.id"
-                    class="card card-compact rounded-none bg-[#E9ECEB] w-60 drop-shadow-md">
+                    class="card card-compact rounded-none bg-[#E9ECEB] lg:w-60 w-40 drop-shadow-md">
                     <NuxtLink :to="`/men/${menJacket.id}`">
                         <figure ref="photo" class=" mx-2 mt-1">
                             <img :src="menJacket.foto" alt="Product"
-                                class="h-[300px] object-contain hover:scale-110 transition-all duration-200"/>
+                                class="lg:h-[300px] h-[150px] object-contain hover:scale-110 transition-all duration-200"/>
                         </figure>
                         <div class="card-body flex flex-row items-center justify-between">
                             <div class="text">
@@ -90,6 +90,10 @@
 
 <script setup>
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/all';
+import Lenis from 'lenis'
+import SplitType from 'split-type';
+gsap.registerPlugin(ScrollTrigger)
 
 const supabase = useSupabaseClient()
 const searchJacket = ref('')
@@ -98,7 +102,7 @@ const size = ref(null)
 const colour = ref(null)
 
 const { data: menJackets, status, error, refresh } = useLazyAsyncData('menJackets', async () => {
-    let query = supabase.from('jaketMen').select(`*, kategoriJaket(*), warna(*)`)
+    let query = supabase.from('jaketMen').select(`*, kategoriJaket(*), warna(*)`).order('id')
     if (searchJacket.value) query = query.ilike('nama', `%${searchJacket.value}%`)
     if (category.value) query = query.eq('kategori', category.value)
     if (size.value) query = query.eq('ukuran', size.value)
@@ -133,7 +137,36 @@ const { data: colours } = useAsyncData('colours', async () => {
     return data
 })
 
-onMounted(() => { });
+onMounted(() => {
+    const tl = gsap.timeline()
+    const text = new SplitType('.Tilt_men')
+    const st = gsap.timeline({
+        scrollTrigger: {
+            start: '10% center',
+            end: '70% center',
+        }
+    })
+
+    tl.from('.bgMen',{
+        scale: 1.2,
+        duration: 1.5,
+        ease: 'power4.inOut'
+    }).from('.char', {
+        y: 150,
+        stagger: 0.08,
+        ease: 'power4.inOut'
+    }).from('.Sub_men', {
+        opacity: 0,
+        scale: 0.8,
+        ease: 'power4.inOut',
+        duration: 1
+    }, 2)
+
+    st.from('.card', {
+        opacity: 0,
+        stagger: 0.1
+    })
+});
 </script>
 
 <style scoped></style>
