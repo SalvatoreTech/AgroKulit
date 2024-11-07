@@ -6,10 +6,12 @@
         <!-- Content -->
         <div class="bg-white text-black">
             <figure class="relative pt-12 flex justify-center items-start">
-                <img src="../../assets/img/BGWomen's.jpg" alt="bgWomenProduct" class="w-full" />
+                <img src="../../assets/img/BGWomen's.jpg" alt="bgWomen" class="bgWomen w-full"
+                    style="clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%)" />
                 <figcaption class="absolute text-center max-w-xs lg:mt-28 mt-5">
-                    <p class="font-bodoni lg:text-[38px] text-[1.2rem]  font-bold">Women Leather Jackets</p>
-                    <div class="font-lora text-[11px]">Find your style.</div>
+                    <p class="font-bodoni lg:text-[38px] text-[1.2rem]  font-bold Tilt_women"
+                        style="clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%)">Women Leather Jackets</p>
+                    <div class="font-lora text-[11px] Sub_women">Find your style.</div>
                 </figcaption>
             </figure>
             <div class="Filter flex justify-between paddingX mt-1 lg:flex-row flex-col">
@@ -90,6 +92,10 @@
 
 <script setup>
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/all';
+import Lenis from 'lenis'
+import SplitType from 'split-type';
+gsap.registerPlugin(ScrollTrigger)
 
 const supabase = useSupabaseClient()
 const searchJacket = ref('')
@@ -134,7 +140,46 @@ const { data: colours } = useAsyncData('colours', async () => {
 })
 
 onMounted(() => {
+    const tl = gsap.timeline()
+    const text = new SplitType('.Tilt_women')
+    const st = gsap.timeline({
+        scrollTrigger: {
+            start: '10% center',
+            end: '70% center',
+        }
+    })
 
+    tl.from('.bgWomen', {
+        scale: 1.2,
+        duration: 1.5,
+        ease: 'power4.inOut'
+    }).from('.char', {
+        y: 150,
+        stagger: 0.08,
+        ease: 'power4.inOut'
+    }).from('.Sub_women', {
+        opacity: 0,
+        scale: 0.8,
+        ease: 'power4.inOut',
+        duration: 1
+    }, 2)
+
+    st.from('.card', {
+        opacity: 0,
+        stagger: 0.1
+    })
+    //SmoothScrollLenis
+    const lenis = new Lenis()
+
+    lenis.on('scroll', (e) => {
+    })
+
+    function raf(time) {
+        lenis.raf(time)
+        requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
 });
 </script>
 

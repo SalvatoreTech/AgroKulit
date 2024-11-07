@@ -5,10 +5,12 @@
 
         <!-- Content -->
         <div class="bg-white text-black">
-            <figure class="relative pt-12 flex justify-center items-start overflow-hidden" style="clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%)">
+            <figure class="relative pt-12 flex justify-center items-start overflow-hidden"
+                style="clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%)">
                 <img src="../../assets/img/BGMen's.jpg" alt="bgMenProduct" class="w-full bgMen" />
                 <figcaption class="absolute text-center max-w-xs lg:mt-28 mt-5">
-                    <p class="font-bodoni lg:text-[38px] text-[1.2rem] font-bold Tilt_men" style="clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%)">Men Leather Jackets</p>
+                    <p class="font-bodoni lg:text-[38px] text-[1.2rem] font-bold Tilt_men"
+                        style="clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%)">Men Leather Jackets</p>
                     <div class="font-lora text-[11px] Sub_men">Find your style.</div>
                 </figcaption>
             </figure>
@@ -64,25 +66,22 @@
                     <NuxtLink :to="`/men/${menJacket.id}`">
                         <figure ref="photo" class=" mx-2 mt-1">
                             <img :src="menJacket.foto" alt="Product"
-                                class="lg:h-[300px] h-[150px] object-contain hover:scale-110 transition-all duration-200"/>
+                                class="lg:h-[300px] h-[150px] object-contain hover:scale-110 transition-all duration-200" />
                         </figure>
                         <div class="card-body flex flex-row items-center justify-between">
                             <div class="text">
-                                <p class="card-title font-lora text-[16px]">
-                                    {{ menJacket.warna?.nama }} {{ menJacket.kategoriJaket?.nama }} for Man
-                                </p>
-                                <p class="font-lora text-[11px]">{{ menJacket.nama }}</p>
-                                <p class="font-lora text-[16px]">{{ menJacket.harga }} IDR</p>
-                            </div>
-                            <div class="card-actions justify-end w-5">
-                                <img src="../../assets/icon/heart-like.svg" class="" alt="heart" />
+                                <div class="flex justify-between w-full">
+                                    <p class="card-title font-lora text-[16px] w-40">
+                                        {{ menJacket.warna?.nama }} {{ menJacket.kategoriJaket?.nama }} for Man
+                                    </p>
+                                    <p class="font-lora text-[11px]">{{ menJacket.nama }}</p>
+                                </div>
+                                <p class="font-lora text-[16px]">{{ rupiah(menJacket.harga) }}</p>
                             </div>
                         </div>
                     </NuxtLink>
                 </div>
             </div>
-
-            <!-- Footer -->
             <Footer />
         </div>
     </div>
@@ -126,7 +125,7 @@ const { data: categories } = useAsyncData('kategoriJaket', async () => {
 })
 
 const { data: sizes } = useAsyncData('sizes', async () => {
-    const { data, error } = await supabase.from('ukuranJaket').select()
+    const { data, error } = await supabase.from('ukuranJaket').select().range(0, 4)
     if (error) throw error
     return data
 })
@@ -147,7 +146,7 @@ onMounted(() => {
         }
     })
 
-    tl.from('.bgMen',{
+    tl.from('.bgMen', {
         scale: 1.2,
         duration: 1.5,
         ease: 'power4.inOut'
@@ -166,6 +165,18 @@ onMounted(() => {
         opacity: 0,
         stagger: 0.1
     })
+    //SmoothScrollLenis
+    const lenis = new Lenis()
+
+    lenis.on('scroll', (e) => {
+    })
+
+    function raf(time) {
+        lenis.raf(time)
+        requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
 });
 </script>
 

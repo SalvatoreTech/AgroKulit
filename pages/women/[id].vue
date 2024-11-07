@@ -10,7 +10,8 @@
                     <img src="../../assets/icon/LeftArrow.svg" alt="LeftArrow">
                 </NuxtLink>
                 <div class="flex justify-evenly">
-                    <div class="rounded-box lg:w-96 border-4 border-[#ebedec] shadow-md bg-[#ebedec]" data-carousel="slide">
+                    <div class="rounded-box lg:w-96 border-4 border-[#ebedec] shadow-md bg-[#ebedec]"
+                        data-carousel="slide">
                         <div class="">
                             <img :src="getJacket?.foto" class="xzoom w-full" alt="Tailwind CSS Carousel component"
                                 @mouseover="mouseEnterPhoto" @mouseout="mouseLeavePhoto" />
@@ -33,8 +34,7 @@
                             <p class="text-[11px] ">Shipping, Exchanges, and Returns</p>
                             <button
                                 class="flex py-1 px-3 gap-1 border border-black rounded-md hover:bg-[#1C3D32] hover:text-white">
-                                <p>Order now</p>
-                                <UIcon name="fa6-brands:whatsapp" class="w-5 h-5" />
+                                <p>Order now via WhatsApp</p>
                             </button>
                         </div>
                     </div>

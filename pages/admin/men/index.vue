@@ -79,10 +79,10 @@
                     <p class="lg:w-5/12">Product</p>
                     <p class="w-2/12">Price</p>
                     <p class="w-2/12">Stock</p>
-                    <p class="w-2/12">Gender</p>
+                    <p class="w-2/12">Size</p>
                     <p class="w-2/12">Category</p>
                     <p class="w-2/12">Created</p>
-                    <span class="w-24"></span>
+                    <span class="w-18"></span>
                 </div>
                 <div v-if="isFetching" class="flex justify-center items-center h-64">
                     <p class="font-lora">Load data...</p>
@@ -92,9 +92,9 @@
                         class="jacket flex p-1 w-full items-center content-center mt-1 bg-[#EBEDEC] hover:bg-[#D6D6D6] rounded-md">
                         <img :src="jacket.foto" alt="" class="w-10 mx-1">
                         <p class="lg:w-5/12">{{jacket.warna?.nama }} {{ jacket.kategoriJaket?.nama }} {{ jacket.nama }}</p>
-                        <p class="w-2/12">{{ jacket.harga }}</p>
+                        <p class="w-2/12">Rp.{{ rupiah(jacket.harga) }}</p>
                         <p class="w-2/12">{{ jacket.stok }}</p>
-                        <p class="w-2/12">{{ jacket.gender?.nama }}</p>
+                        <p class="w-2/12">{{ jacket.ukuranJaket?.nama }}</p>
                         <p class="w-2/12">{{ jacket.kategoriJaket?.nama }}</p>
                         <p class="w-2/12">{{ jacket.created_at.split('.')[0].split('T')[0] }}, {{
                             jacket.created_at.split('.')[0].split('T')[1] }}</p>
@@ -120,6 +120,7 @@
                                     </div>
                                 </label>
                             </label>
+
                         </div>
                     </div>
                 </div>
@@ -154,8 +155,8 @@ const toggleDelete = (jacket) => {
 
 
 const { data: jacketMen, isFetching, refresh } = useLazyAsyncData('jacketMen', async () => {
-    let query = supabase.from('jaketMen').select(`*, kategoriJaket(*), warna(*)`).order('id')
-    if (searchJacket.value) query = query.or(`harga.ilike.%${searchJacket.value}%, nama.ilike.%${searchJacket.value}%`)
+    let query = supabase.from('jaketMen').select(`*, kategoriJaket(*), warna(*), ukuranJaket(*)`).order('id')
+    if (searchJacket.value) query = query.ilike('nama', `%${searchJacket.value}%`)
     if (category.value) query = query.eq('kategori', category.value)
     if (size.value) query = query.eq('ukuran', size.value)
     if (colour.value) query = query.eq('warna', colour.value)
@@ -182,27 +183,6 @@ const { data: colours } = useAsyncData('colours', async () => {
     if (error) throw error
     return data
 })
-
-// const { execute: addCategory } = useAsyncData('addCategory', async () => {
-//     const { error } = await supabase.from('jaketMen').insert({
-//         nama: nama.value,
-//         keterangan: keterangan.value
-//     })
-//         .select('*')
-//     if (error) throw error
-//     else {
-//         showAddModal.value = false
-//         refresh()
-//         submittedAdd.value = true
-//         nama.value = ''
-//         keterangan.value = ''
-//         setTimeout(() => {
-//             submittedAdd.value = false
-//         }, 4000)
-//     }
-// }, {
-//     immediate: false
-// })
 
 const deleteProduct = async (id) => {
     console.log(id)

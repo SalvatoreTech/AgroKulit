@@ -33,8 +33,7 @@
                             <p class="text-[11px] ">Shipping, Exchanges, and Returns</p>
                             <button
                                 class="flex py-1 px-3 gap-1 border border-black rounded-md hover:bg-[#1C3D32] hover:text-white">
-                                <p>Order now</p>
-                                <UIcon name="fa6-brands:whatsapp" class="w-5 h-5" />
+                                <p>Order now via WhatsApp</p>
                             </button>
                         </div>
                     </div>

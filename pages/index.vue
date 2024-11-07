@@ -278,14 +278,14 @@
                         </div>
                         <div class="Linked flex justify-between w-6/12 font-lora">
                             <NuxtLink to="/men/"
-                                class="flex items-center content-center gap-2 cursor-pointer relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
+                                class="flex items-center content-center gap-2 cursor-pointer relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 group after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                                 <p class="lg:text-[1rem] text-[0.8rem]">Men</p>
-                                <img src="@/assets/icon/RightArrow.svg" alt="" />
+                                <img src="@/assets/icon/RightArrow.svg" alt="" class="group-hover:translate-x-2 group-hover:transition-all group-hover:duration-100"/>
                             </NuxtLink>
                             <NuxtLink to="/women/"
-                                class="flex items-center content-center gap-2 cursor-pointer relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
+                                class="flex items-center content-center gap-2 cursor-pointer relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 group after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                                 <p class="lg:text-[1rem] text-[0.8rem]">Women</p>
-                                <img src="@/assets/icon/RightArrow.svg" alt="" />
+                                <img src="@/assets/icon/RightArrow.svg" alt="" class="group-hover:translate-x-2 group-hover:transition-all group-hover:duration-100"/>
                             </NuxtLink>
                         </div>
                     </figcaption>
@@ -303,11 +303,11 @@
                                 Essential Style Come Alive in Bright Colours.
                             </p>
                         </div>
-                        <div class="LinkedAcc flex justify-center w-6/12 font-lora">
+                        <div class="LinkedAcc flex justify-center group w-6/12 font-lora">
                             <NuxtLink to="/accessories/"
                                 class="flex items-center content-center gap-2 cursor-pointer relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                                 <p class="lg:text-[1rem] text-[0.8rem]">Discover</p>
-                                <img src="@/assets/icon/RightArrow.svg" alt="" />
+                                <img src="@/assets/icon/RightArrow.svg" alt=""  class="group-hover:translate-x-2 group-hover:transition-all group-hover:duration-100"/>
                             </NuxtLink>
                         </div>
                     </figcaption>
@@ -330,9 +330,10 @@
                     </div>
                     <div class="HyperLink_costum flex justify-end gap-2 me-3">
                         <NuxtLink
-                            class="flex justify-end gap-2 relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer">
-                            <img src="@/assets/icon/WA.svg" alt="">
+                            class="flex justify-end gap-2 relative group after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer">
+                            <!-- <img src="@/assets/icon/WA.svg" alt=""> -->
                             <p class="font-lora">WhatsApp</p>
+                            <img src="@/assets/icon/RightArrow.svg" alt="" class="group-hover:translate-x-2 group-hover:transition-all group-hover:duration-100"/>
                         </NuxtLink>
                     </div>
                 </div>
@@ -568,4 +569,5 @@ onMounted(() => {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

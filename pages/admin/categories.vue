@@ -6,8 +6,10 @@
 
         <div class="category bg-white text-black paddingXY">
             <div class="flex justify-between items-center">
-                <div class="Titl_category flex gap-2">
-                    <img src="@/assets/icon/Arrows.svg" alt="" class="w-3">
+                <div class="Titl_category flex gap-2 items-center">
+                    <NuxtLink to="/admin/">
+                        <img src="@/assets/icon/Arrows.svg" alt="" class="w-3">
+                    </NuxtLink>
                     <p class="font-lora text-[2rem]">
                         List of Jackets Categories ({{ categories?.length }})
                     </p>

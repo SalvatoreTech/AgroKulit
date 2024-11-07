@@ -23,6 +23,10 @@
                             <img src="../assets/icon/error.svg" alt="" class="w-5">
                             {{ error.message }}
                         </div>
+                        <div v-if="status == 'loading'" class="error font-lora flex gap-2 rounded-md my-2 p-1">
+                            <!-- <img src="../assets/icon/error.svg" alt="" class="w-5"> -->
+                            Loading...
+                        </div>
                         <div class="stagg relative z-0 mb-5 group w-[400px]">
                             <input v-model="email" type="email" name="floating_email"
                                 class="block py-2.5 ps-2 px-0 w-full text-sm text-white bg-transparent border rounded-md border-white appearance-none dark:border-white dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer"
@@ -37,7 +41,7 @@
                             <label for="floating_password"
                                 class="peer-focus:font-medium absolute text-sm ms-2 text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-white peer-focus:dark:text-white peer-focus:z-10 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password*</label>
                         </div>
-                        <input type="submit" value="Send"
+                        <input type="submit" value="Login"
                             class="stagg float-end text-white bg-transparent outline-none hover:bg-[#1C3D32] hover:border-[#1C3D32] font-md rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-transparent border">
                     </form>
                 </div>
@@ -47,6 +51,9 @@
 </template>
 
 <script setup>
+definePageMeta({
+    middleware: 'auth'
+})
 import { gsap } from "gsap";
 
 const supabase = useSupabaseClient()
@@ -54,14 +61,15 @@ const supabase = useSupabaseClient()
 const email = ref("")
 const password = ref("")
 
-
-const { status, error, execute: login } = useAsyncData("user", async() => {
+const { status, error, loading, execute: login } = useAsyncData("user", async() => {
     const {data, error} = await supabase.auth.signInWithPassword({
         email: email.value,
         password: password.value
     });
     if (error) throw 'Email or Password is wrong'
-    if (data) navigateTo('/admin/')
+    if (data) {
+        navigateTo('/admin/')
+    }
 }, {
     immediate: false,
 })

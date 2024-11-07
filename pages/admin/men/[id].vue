@@ -1,29 +1,42 @@
 <template>
-    <div class="bg-white text-black pb-10">
-
-        <!-- <Head>
-            <Title> {{ product?.warna?.nama }} {{ product?.kategoriJaket?.nama }} {{ product?.nama }}</Title>
-        </Head> -->
-        <div class="Manage_container paddingXY">
-            <div class="Titl font-lora flex justify-between">
-                <p class="text-lg font-medium">Manage Product</p>
-                <p v-if="isLoading">Updating...</p>
+    <div class="bg-white text-black">
+        <div class="EditProduct paddingXY h-screen">
+            <p class="font-lora text-3xl font-medium">Edit Jacket</p>
+            <div v-if="isLoading" class="flex">
+                <p>Loading</p><svg class="w-5 pt-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+                    <circle fill="#000" stroke="#000" stroke-width="2" r="15" cx="40" cy="100">
+                        <animate attributeName="opacity" calcMode="spline" dur="2" values="1;0;1;"
+                            keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4">
+                        </animate>
+                    </circle>
+                    <circle fill="#000" stroke="#000" stroke-width="2" r="15" cx="100" cy="100">
+                        <animate attributeName="opacity" calcMode="spline" dur="2" values="1;0;1;"
+                            keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2">
+                        </animate>
+                    </circle>
+                    <circle fill="#000" stroke="#000" stroke-width="2" r="15" cx="160" cy="100">
+                        <animate attributeName="opacity" calcMode="spline" dur="2" values="1;0;1;"
+                            keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0">
+                        </animate>
+                    </circle>
+                </svg>
             </div>
-            <div class="Product flex">
-                <div class="General_info font-lora">
-                    <form @submit.prevent="updateProduct" class="flex gap-5">
-                        <div class="flex gap-3">
-                            <NuxtLink to="/admin/men/"
-                                class="flex gap-1 p-1 items-center border border-black rounded-md outline-none ">
-                                <img src="@/assets/icon/Close.svg" alt="">
-                                <p>Cancel</p>
-                            </NuxtLink>
-                            <button
-                                class="save flex items-center p-1 bg-[#1C3D32] hover:bg-green-800 rounded-md outline-none">
-                                <p class="text-white">✓ Save</p>
-                            </button>
-                        </div>
-                        <div class="bg- rounded-md outline-none p-3 bg-[#ebedec] w-[50%]">
+            <div v-if="status == 'error'">{{ error }}</div>
+            <div class="Product">
+                <form @submit.prevent="editProduct" autocomplete="off" class="flex flex-col gap-3">
+                    <div class="flex justify-end gap-3">
+                        <NuxtLink to="/admin/men/"
+                            class="flex gap-1 p-1 items-center border border-black rounded-md outline-none ">
+                            <img src="@/assets/icon/Close.svg" alt="">
+                            <p>Cancel</p>
+                        </NuxtLink>
+                        <button type="submit"
+                            class="save text-white flex items-center p-1 bg-[#1C3D32] hover:bg-green-800 rounded-md outline-none">✓
+                            Add</button>
+                    </div>
+                    <div class="flex justify-between gap-10">
+                        <div class="General_info font-lora bg-[#ebedec] rounded-md outline-none p-3 w-[50%]">
+                            <p class="font-medium text-xl">General Information</p>
                             <div class="relative flex flex-col">
                                 <label for="name">Product Name</label>
                                 <input v-model="product.nama" name="name" type="text"
@@ -37,33 +50,22 @@
                                     placeholder="Product Description"></textarea>
                             </div>
                             <div class="flex flex-wrap items-center gap-10">
-                                <div class="relative flex flex-col">
-                                    <label for="size">Size</label>
-                                    <div class="size-selection flex flex-wrap justify-center gap-5">
-                                        <div v-for="size in sizes" :key="size.id">
-                                            <input v-model="product.ukuran" type="radio" id="size" name="size">
-                                            <label for="size"
-                                                class="size-label cursor-pointer inline-block py-2 px-4 border border-gray-300 bg-white rounded">{{
-                                                    size.nama }}</label>
-                                        </div>
-                                    </div>
+                                <div class="relative w-2/5">
+                                    <label for="colour">Size</label>
+                                    <select v-model="product.ukuran"
+                                        class="block w-full p-1 text-gray-900 bg-white rounded-md outline-none">
+                                        <option :value="null" selected>Size</option>
+                                        <option v-for="size in sizes" :key="size.id" :value="size.id"
+                                            class="text-black hover:bg-slate-600 hover:text-white">{{ size.nama }}
+                                        </option>
+                                    </select>
                                 </div>
-                                <!-- <div class="relative flex flex-col">
-                                    <label for="size">Size</label>
-                                    <div class="gender-selection flex flex-wrap h-10 items-center content-center gap-5">
-                                        <div v-for="gender in genders" :key="gender.id">
-                                            <input v-model="form.gender" type="radio" id="gender" name="gender"
-                                                :value="gender.id" class="peer cursor-pointer">
-                                            <label for="gender" class="">{{ gender.nama }}</label>
-                                        </div>
-                                    </div>
-                                </div> -->
                                 <div class="relative w-2/5">
                                     <label for="colour">Colour</label>
                                     <select v-model="product.warna"
                                         class="block w-full p-1 text-gray-900 bg-white rounded-md outline-none">
                                         <option :value="null" selected>
-                                            {{ product?.warna?.nama }}
+                                            Colour
                                         </option>
                                         <option v-for="colour in colours" :key="colour.id" :value="colour.id"
                                             class="text-black hover:bg-slate-600 hover:text-white">{{ colour.nama }}
@@ -75,7 +77,7 @@
                                     <select v-model="product.kategori"
                                         class="block w-full p-1 text-gray-900 bg-white rounded-md outline-none">
                                         <option :value="null" selected>
-                                            {{ product?.kategoriJaket?.nama }}
+                                            Category
                                         </option>
                                         <option v-for="category in categories" :key="category.id" :value="category.id"
                                             class="text-black hover:bg-slate-600 hover:text-white">{{ category.nama }}
@@ -84,39 +86,45 @@
                                 </div>
                                 <div class="relative flex flex-col w-2/5">
                                     <label for="price">Price</label>
-                                    <input v-model="product.harga" name="price" type="number"
+                                    <input v-model.trim="product.harga" name="price" type="number" step="0.001"
                                         class="bg-white placeholder:text-black rounded-md p-1 outline-none"
                                         placeholder="Price">
                                 </div>
                                 <div class="relative flex flex-col w-2/5">
                                     <label for="stock">Stock</label>
-                                    <input v-model="product.stok" name="stock" type="text"
+                                    <input v-model.trim="product.stok" name="stock" type="number"
                                         class="bg-white placeholder:text-black rounded-md p-1 outline-none"
                                         placeholder="Stock">
                                 </div>
                             </div>
                         </div>
-                        <div
-                            class="flex flex-col items-center justify-center bg- rounded-md outline-none p-3 bg-[#ebedec] w-[50%]">
-                            <p class="text-xl font-bold mb-4">Upload Photos</p>
-                            <img :src="product.foto" alt="">
-                            <input type="file" accept="image/*" class="form-control" id="cover">
-                            <!-- <div v-if="uploadedPhoto">
-                                <img :src="uploadedPhoto" class="w-full h-full object-cover">
-                            </div> -->
+                        <div class="Photos bg-[#ebedec] w-[50%] rounded-md p-3">
+                            <p class="labelImage font-medium text-xl font-lora">Photo</p>
+                            <div class="flex flex-col items-center justify-center">
+                                <div class="h-[250px] w-[250px] border-2">
+                                    <img :src="newImage || product.foto" alt="imageProduct" class="object-fit">
+                                </div>
+                                <input type="file" accept="image/*" class="form-control" id="uploadImage"
+                                    @change="imagePicked" name="photo">
+                            </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
+definePageMeta({
+    middleware: "auth"
+})
 const supabase = useSupabaseClient()
-
+const url_img = 'https://hzidiiekhnkimhrxbokx.supabase.co/storage/v1/object/public/fotoProduk/'
 const route = useRoute()
 const productId = route.params.id
+const isLoading = ref(false);
+
 const product = ref({
     nama: '',
     harga: '',
@@ -127,79 +135,91 @@ const product = ref({
     keterangan: '',
     foto: null,
 })
-const isLoading = ref(false)
+
 
 async function getProduct() {
-    const { data, error } = await supabase.from('jaketMen').select().eq('id', productId).single()
-    if (data) product.value = data
+    const { data, error } = await supabase.from('jaketMen').select().eq('id', productId).maybeSingle()
+    if (error) throw error
+    if (data) {
+        data.newFoto = data.foto
+        product.value = data
+    }
 }
-
 const { data: sizes } = useAsyncData('sizes', async () => {
     const { data, error } = await supabase.from('ukuranJaket').select().range(0, 4)
     if (error) throw error
     return data
 })
-const { data: genders } = useAsyncData('genders', async () => {
-    const { data, error } = await supabase.from('gender').select()
-    if (error) throw error
-    return data
-})
+
 const { data: colours } = useAsyncData('colours', async () => {
     const { data, error } = await supabase.from('warna').select()
     if (error) throw error
     return data
 })
+
 const { data: categories } = useAsyncData('categories', async () => {
     const { data, error } = await supabase.from('kategoriJaket').select()
     if (error) throw error
     return data
 })
 
+const imageProduct = ref()
+const newImage = ref()
 
-async function updateProduct() {
-    isLoading.value = true
-    const { error } = await supabase.from('jaketMen').update(product.value).eq('id', productId)
-    if (error) throw error
-    isLoading.value = false
-    navigateTo('/admin/men/')
+function imagePicked(e) {
+    const file = e.target.files[0]
+    imageProduct.value = file
+    product.value.newFoto = `jaketMen/${file.name}`
+    let fr = new FileReader()
+    fr.readAsDataURL(file)
+    fr.onload = () => newImage.value = fr.result
 }
 
-// const imageProduct = ref()
 
-// async function productPicked(e) => {
-//     const file = e.targer.files[0]
-//     image"Product.value" = file
-//     const {data, error} = await supabase.from('jaketMen').select('nama').eq('id', product.value.jaketMen.id).maybeSingle()
-//     if (error) throw error
-//     product.value.foto = `${data.nama.replace(' ', '_').toLowerCase()}/${file.name}`
-// }
-
-// const { execute: editProduct } = useAsyncData('editProduct', async () => {
-//     if(image"Product.value") {
-//         let url = product.value.fotoUrl.publicUrl
-//         if (product.value.foto == url.substr(url.indexOf('fotoProduk'))) {
-//             const {error} = await supabase.storage.from("fotoProduk").update(`cover`)
-//         }
-//     }
-//     const { error } = await supabase.from("jaketMen").update({
-//         name: product.value.nama,
-//         price: product.value.harga,
-//         colour: product.value.warna?.nama,
-//         size: product.value.ukuranJaket?.nama,
-//         stock: product.value.stok,
-//         category: product.value.kategoriJaket?.nama,
-//         description: product.value.keterangan,
-//         foto : product.value.foto
-//     }).eq('id', id)
-//     if (error) throw error
-//     else navigateTo('/admin/women/')
-// }, {
-//     immediate: false
-// })
-
+const { status, error, execute: editProduct } = useAsyncData('editProduct', async () => {
+    if (imageProduct.value) {
+        let oldFoto = product.value.foto.substr(product.value.foto.indexOf('jaketMen'))
+        if (product.value.newFoto == oldFoto) {
+            console.log("updating")
+            const { error } = await supabase.storage.from('fotoProduk').update(oldFoto, imageProduct.value)
+            if (error) throw error
+        }
+        else {
+            console.log("uploading")
+            const { error } = await supabase.storage.from('fotoProduk').upload(oldFoto, imageProduct.value)
+            if (error) throw error
+            else {
+                const { error } = await supabase.storage.from('fotoProduk').remove(oldFoto)
+                if (error) throw error
+            }
+        }
+    }
+    const { error } = await supabase.from('jaketMen').update({
+        nama: product.value.nama,
+        harga: product.value.harga,
+        warna: product.value.warna?.nama,
+        ukuran: product.value.ukuranJaket?.nama,
+        stok: product.value.stok,
+        kategori: product.value.kategoriJaket?.nama,
+        keterangan: product.value.keterangan,
+        foto: url_img + product.value.newFoto
+    }).eq('id   ', productId)
+    if (error) throw error
+    else navigateTo('/admin/men')
+}, {
+    immediate: false
+})
 onMounted(() => {
     getProduct()
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+/*.size-selection input[name="size"] {
+    @apply hidden;
+}
+
+.size-selection input[name="size"]:checked+.size-label {
+    @apply bg-[#bbbbbb] text-black;
+} */
+</style>

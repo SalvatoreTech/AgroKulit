@@ -70,6 +70,10 @@
 <script setup>
 const navLinks = ref([
   {
+    title: 'Homepage',
+    path: '/'
+  },
+  {
     title: 'Dashboard',
     path: '/admin/'
   },
@@ -100,11 +104,15 @@ function dropdown() {
   isInvisble.value = !isInvisble.value;
 }
 
-async function logout() {
-  const { error } = await supabase.auth.signOut();
-  if (error) throw 'Unsuccessfully to logout!'
-  else navigateTo('/login')
-}
+const { execute: logout, status, error } = useAsyncData('logout', async () => {
+  const { error } = await supabase.auth.signOut({ scope: 'local' })
+  if (error) throw 'Logout gagal'
+  else {
+    navigateTo('/login')
+  }
+}, {
+  immediate: false
+})
 </script>
 
 <style scoped></style>
