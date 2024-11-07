@@ -168,7 +168,7 @@ const toggleDelete = (jacket) => {
 
 const { data: jacketWomen, isFetching, refresh } = useLazyAsyncData('jacketWomen', async () => {
     let query = supabase.from('jaketWomen').select(`*, kategoriJaket(*), warna(*), ukuranJaket(*)`).order('id')
-    if (searchJacket.value) query = query.or(`harga.ilike.%${searchJacket.value}%, nama.ilike.%${searchJacket.value}%`)
+    if (searchJacket.value) query = query.ilike('nama', `%${searchJacket.value}%`)
     if (category.value) query = query.eq('kategori', category.value)
     if (size.value) query = query.eq('ukuran', size.value)
     if (colour.value) query = query.eq('warna', colour.value)

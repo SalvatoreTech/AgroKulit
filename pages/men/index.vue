@@ -6,9 +6,9 @@
         <!-- Content -->
         <div class="bg-white text-black">
             <figure class="relative pt-12 flex justify-center items-start overflow-hidden">
-                <img src="../../assets/img/BGMen.jpg" alt="bgMenProduct" class="w-full bgMen" />
+                <img src="../../assets/img/BGMen.jpg" alt="bgMenProduct" class="w-full bgMen" style="clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"/>
                 <figcaption class="absolute text-center max-w-xs lg:mt-28 mt-5">
-                    <p class="font-bodoni lg:text-[38px] text-[1.2rem] font-bold Tilt_men">Men Leather Jackets</p>
+                    <p class="font-bodoni lg:text-[38px] text-[1.2rem] font-bold Tilt_men" style="clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)">Men Leather Jackets</p>
                     <div class="font-lora text-[11px] Sub_men">Find your style.</div>
                 </figcaption>
             </figure>
@@ -172,8 +172,5 @@ onMounted(() => {
 })
 </script>
 
-<style>
-.bgMan, .Titl_men{
-    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
-}
+<style scoped>
 </style>

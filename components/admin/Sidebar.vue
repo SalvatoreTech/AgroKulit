@@ -22,10 +22,11 @@
           <div class="flex flex-col items-center gap-10 px-5">
             <img src="@/assets/img/logo.png" alt="logo" class="w-20" />
             <ul class="NavList font-bodoni flex flex-col gap-2">
-              <li v-for="(navLink , i) in navLinks" :key="i"
-                class="">
-                <NuxtLink :to="navLink.path ">
-                  <p class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">{{ navLink.title }}</p>
+              <li v-for="(navLink, i) in navLinks" :key="i" class="">
+                <NuxtLink :to="navLink.path">
+                  <p
+                    class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
+                    {{ navLink.title }}</p>
                 </NuxtLink>
               </li>
               <li>
@@ -41,17 +42,19 @@
                 <div id="dropdownNavbar"
                   class="z-10 font-bodoni divide-y divide-black dark:bg-transparant dark:divide-black"
                   :class="{ hidden: isInvisble }">
-                  <ul class="flex flex-col gap-2 pt-2"
-                    aria-labelledby="dropdownLargeButton">
-                    <li class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
-                      <NuxtLink to="/admin/men/">
+                  <ul class="flex flex-col gap-2 pt-2" aria-labelledby="dropdownLargeButton">
+                    <li
+                      class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
+                      <NuxtLink to="/admin/men">
                         Men</NuxtLink>
                     </li>
-                    <li class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
+                    <li
+                      class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
                       <NuxtLink to="/admin/women">
                         Women</NuxtLink>
                     </li>
-                    <li class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
+                    <li
+                      class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 hover:text-black">
                       <NuxtLink to="/admin/accessories/">
                         Accessories</NuxtLink>
                     </li>
@@ -75,19 +78,19 @@ const navLinks = ref([
   },
   {
     title: 'Dashboard',
-    path: '/admin/'
+    path: '/admin'
   },
   {
     title: 'Categories of Jackets',
-    path: '/admin/categories/'
+    path: '/admin/categories'
   },
   {
     title: 'Colours',
-    path: '/admin/colours/'
+    path: '/admin/colours'
   },
   {
     title: 'Types of Accessories',
-    path: '/admin/types/'
+    path: '/admin/types'
   },
 ])
 
