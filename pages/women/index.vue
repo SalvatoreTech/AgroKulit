@@ -6,11 +6,9 @@
         <!-- Content -->
         <div class="bg-white text-black">
             <figure class="relative pt-12 flex justify-center items-start">
-                <img src="../../assets/img/BGWomen's.jpg" alt="bgWomen" class="bgWomen w-full"
-                    style="clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%)" />
+                <img src="../../assets/img/BGWomen.jpg" alt="bgWomen" class="bgWomen w-full" />
                 <figcaption class="absolute text-center max-w-xs lg:mt-28 mt-5">
-                    <p class="font-bodoni lg:text-[38px] text-[1.2rem]  font-bold Tilt_women"
-                        style="clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%)">Women Leather Jackets</p>
+                    <p class="font-bodoni lg:text-[38px] text-[1.2rem]  font-bold Tilt_women">Women Leather Jackets</p>
                     <div class="font-lora text-[11px] Sub_women">Find your style.</div>
                 </figcaption>
             </figure>
@@ -183,4 +181,9 @@ onMounted(() => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.bgWomen,
+.Titl_women {
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+}
+</style>

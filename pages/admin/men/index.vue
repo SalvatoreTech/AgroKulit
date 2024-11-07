@@ -92,7 +92,7 @@
                         class="jacket flex p-1 w-full items-center content-center mt-1 bg-[#EBEDEC] hover:bg-[#D6D6D6] rounded-md">
                         <img :src="jacket.foto" alt="" class="w-10 mx-1">
                         <p class="lg:w-5/12">{{jacket.warna?.nama }} {{ jacket.kategoriJaket?.nama }} {{ jacket.nama }}</p>
-                        <p class="w-2/12">Rp.{{ rupiah(jacket.harga) }}</p>
+                        <!-- <p class="w-2/12">{{ rupiah(jacket.harga) }}</p> -->
                         <p class="w-2/12">{{ jacket.stok }}</p>
                         <p class="w-2/12">{{ jacket.ukuranJaket?.nama }}</p>
                         <p class="w-2/12">{{ jacket.kategoriJaket?.nama }}</p>
@@ -131,10 +131,9 @@
 
 <script setup>
 definePageMeta({
-    middleware: ["auth"]
+    middleware: "auth"
 })
 
-import Sidebar from '~/components/admin/Sidebar.vue';
 const supabase = useSupabaseClient()
 
 const searchJacket = ref('')

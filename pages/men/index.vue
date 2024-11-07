@@ -5,12 +5,10 @@
 
         <!-- Content -->
         <div class="bg-white text-black">
-            <figure class="relative pt-12 flex justify-center items-start overflow-hidden"
-                style="clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%)">
-                <img src="../../assets/img/BGMen's.jpg" alt="bgMenProduct" class="w-full bgMen" />
+            <figure class="relative pt-12 flex justify-center items-start overflow-hidden">
+                <img src="../../assets/img/BGMen.jpg" alt="bgMenProduct" class="w-full bgMen" />
                 <figcaption class="absolute text-center max-w-xs lg:mt-28 mt-5">
-                    <p class="font-bodoni lg:text-[38px] text-[1.2rem] font-bold Tilt_men"
-                        style="clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%)">Men Leather Jackets</p>
+                    <p class="font-bodoni lg:text-[38px] text-[1.2rem] font-bold Tilt_men">Men Leather Jackets</p>
                     <div class="font-lora text-[11px] Sub_men">Find your style.</div>
                 </figcaption>
             </figure>
@@ -89,9 +87,9 @@
 
 <script setup>
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/all';
+import { ScrollTrigger } from 'gsap/all'
 import Lenis from 'lenis'
-import SplitType from 'split-type';
+import SplitType from 'split-type'
 gsap.registerPlugin(ScrollTrigger)
 
 const supabase = useSupabaseClient()
@@ -109,12 +107,6 @@ const { data: menJackets, status, error, refresh } = useLazyAsyncData('menJacket
 
     const { data, error } = await query
     if (error) throw error
-    if (data) {
-        menJackets.value = data;
-        data.forEach(jacket => {
-            const { data } = supabase.storage.from('fotoProduk').getPublicUrl(jacket.foto)
-        })
-    }
     return data
 })
 
@@ -177,7 +169,11 @@ onMounted(() => {
     }
 
     requestAnimationFrame(raf)
-});
+})
 </script>
 
-<style scoped></style>
+<style>
+.bgMan, .Titl_men{
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+}
+</style>

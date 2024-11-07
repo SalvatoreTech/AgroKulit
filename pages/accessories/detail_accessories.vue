@@ -10,14 +10,6 @@
                 </NuxtLink>
                 <div class="flex justify-evenly">
                     <div class="carousel rounded-box w-96" data-carousel="slide">
-                        <div class="carousel-item w-full" data-carousel-item="active">
-                            <img src="../../assets/img/FrontProduct.jpg" class="w-full"
-                                alt="Tailwind CSS Carousel component" />
-                        </div>
-                        <div class="carousel-item w-full" data-carousel-item>
-                            <img src="../../assets/img/BackProduct.jpg" class="w-full"
-                                alt="Tailwind CSS Carousel component" />
-                        </div>
                     </div>
                     <div class="ProfuctInfo font-lora max-w-lg flex flex-col justify-evenly">
                         <div class="Tilt leading-[15px] ps-3">
