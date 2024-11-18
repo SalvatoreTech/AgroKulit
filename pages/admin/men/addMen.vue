@@ -24,7 +24,7 @@
             <div class="Product">
                 <form @submit.prevent="addJacket" autocomplete="off" class="flex flex-col gap-3">
                     <div class="flex justify-end gap-3">
-                        <NuxtLink to="/admin/women/"
+                        <NuxtLink to="/admin/men/"
                             class="flex gap-1 p-1 items-center border border-black rounded-md outline-none ">
                             <img src="@/assets/icon/Close.svg" alt="">
                             <p>Cancel</p>

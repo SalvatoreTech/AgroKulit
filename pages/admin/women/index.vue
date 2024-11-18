@@ -95,7 +95,7 @@
                             <img :src="jacket.foto" alt="" class="w-10 mx-1">
                             <p class=""> {{ jacket.kategoriJaket?.nama }} {{ jacket.nama }}</p>
                         </div>
-                        <!-- <p class="w-2/12">{{ rupiah(jacket.harga) }}</p> -->
+                        <p class="w-2/12">{{ rupiah(jacket.harga) }}</p>
                         <p class="w-2/12">{{ jacket.stok }}</p>
                         <p class="w-2/12">{{ jacket.ukuranJaket?.nama }}</p>
                         <p class="w-2/12">{{ jacket.kategoriJaket?.nama }}</p>
@@ -174,12 +174,12 @@ const { data: jacketWomen, isFetching, refresh } = useLazyAsyncData('jacketWomen
     if (colour.value) query = query.eq('warna', colour.value)
     const { data, error } = await query
     if (error) throw error
-    if (data) {
-        jacketWomen.value = data;
-        data.forEach(jacket => {
-            const { data } = supabase.storage.from('fotoProduk').getPublicUrl(jacket.foto)
-        })
-    }
+    // if (data) {
+    //     jacketWomen.value = data;
+    //     data.forEach(jacket => {
+    //         const { data } = supabase.storage.from('fotoProduk').getPublicUrl(jacket.foto)
+    //     })
+    // }
     return data
 })
 
