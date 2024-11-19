@@ -333,7 +333,7 @@
                         </p>
                     </div>
                     <div class="HyperLink_costum flex justify-end gap-2 me-3">
-                        <NuxtLink
+                        <NuxtLink to="wa.link/+6285294148997"
                             class="flex justify-end gap-2 relative group after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer">
                             <!-- <img src="@/assets/icon/WA.svg" alt=""> -->
                             <p class="font-lora">WhatsApp</p>
