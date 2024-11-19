@@ -31,8 +31,8 @@
               <p>Cancel</p>
             </NuxtLink>
             <button type="submit"
-              class="save text-white flex items-center p-1 bg-[#1C3D32] hover:bg-green-800 rounded-md outline-none">✓
-              Save</button>
+              class="save text-white flex items-center py-1 px-3 bg-[#1C3D32] hover:bg-green-800 rounded-md outline-none">✓
+              Add</button>
           </div>
           <div class="flex justify-between gap-10">
             <div class="General_info font-lora bg-[#ebedec] rounded-md outline-none p-3 w-[50%]">
@@ -78,19 +78,19 @@
                     <option :value="null" selected>
                       Type
                     </option>
-                    <option v-for="type in type" :key="type.id" :value="type.id"
+                    <option v-for="type in types" :key="type.id" :value="type.id"
                       class="text-black hover:bg-slate-600 hover:text-white">{{ type.nama }}
                     </option>
                   </select>
                 </div>
                 <div class="relative flex flex-col w-2/5">
                   <label for="price">Price</label>
-                  <input v-model.trim="product.harga" name="price" type="number" step="0.001" min="0"
+                  <input v-model.trim="product.harga" name="price" type="number" step="0.001"
                     class="bg-white placeholder:text-black rounded-md p-1 outline-none" placeholder="Price">
                 </div>
                 <div class="relative flex flex-col w-2/5">
                   <label for="stock">Stock</label>
-                  <input v-model.trim="product.stok" name="stock" type="number" min="0"
+                  <input v-model.trim="product.stok" name="stock" type="number"
                     class="bg-white placeholder:text-black rounded-md p-1 outline-none" placeholder="Stock">
                 </div>
               </div>
@@ -117,7 +117,7 @@ definePageMeta({
   middleware: "auth"
 })
 const supabase = useSupabaseClient()
-const url_img = 'https://hzidiiekhnkimhrxbokx.supabase.co/storage/v1/object/public/fotoProduk/'
+const url_img = 'https://hzidiiekhnkimhrxbokx.supabase.co/storage/v1/object/public/fotoProduk/aksesoris'
 const route = useRoute()
 const productId = route.params.id
 const isLoading = ref(false);
@@ -133,15 +133,16 @@ const product = ref({
   foto: null,
 })
 
-
 async function getProduct() {
   const { data, error } = await supabase.from('aksesoris').select().eq('id', productId).maybeSingle()
   if (error) throw error
   if (data) {
-    data.newFoto = data.foto
-    product.value = data
+    const { data: url } = supabase.storage.from('fotoProduk').getPublicUrl(`aksesoris/${data.foto}`)
+        data.fotoUrl = url
+        product.value = data
   }
 }
+
 const { data: genders } = useAsyncData('genders', async () => {
   const { data, error } = await supabase.from('gender').select().range(0, 4)
   if (error) throw error
@@ -154,7 +155,7 @@ const { data: colours } = useAsyncData('colours', async () => {
   return data
 })
 
-const { data: type } = useAsyncData('type', async () => {
+const { data: types } = useAsyncData('types', async () => {
   const { data, error } = await supabase.from('itemAksesoris').select()
   if (error) throw error
   return data
@@ -166,7 +167,7 @@ const newImage = ref()
 function imagePicked(e) {
   const file = e.target.files[0]
   imageProduct.value = file
-  product.value.newFoto = `aksesoris/${file.name}`
+  product.value.newFoto = file.name
   let fr = new FileReader()
   fr.readAsDataURL(file)
   fr.onload = () => newImage.value = fr.result
@@ -175,32 +176,29 @@ function imagePicked(e) {
 
 const { status, error, execute: editProduct } = useAsyncData('editProduct', async () => {
   if (imageProduct.value) {
-    let oldFoto = product.value.foto.substr(product.value.foto.indexOf('aksesoris'))
-    if (product.value.newFoto == oldFoto) {
-      console.log("updating")
-      const { error } = await supabase.storage.from('fotoProduk').update(oldFoto, imageProduct.value)
+    let url = product.value.fotoUrl.publicUrl
+    if (product.value.foto == url.substr(url.indexOf('aksesoris'))) {
+      const { error } = await supabase.storage.from('fotoProduk').update(`${product.value.foto}`, imageProduct.value)
       if (error) throw error
     }
     else {
-      console.log("uploading")
-      const { error } = await supabase.storage.from('fotoProduk').upload(oldFoto, imageProduct.value)
+      const { error } = await supabase.storage.from('fotoProduk').upload(`${product.value.foto}`, imageProduct.value)
       if (error) throw error
       else {
-        const { error } = await supabase.storage.from('fotoProduk').remove(oldFoto)
+        const { error } = await supabase.storage.from('fotoProduk').remove(`aksesoris/${url.substr(url.indexOf('aksesoris'))}`)
         if (error) throw error
       }
     }
   }
-
   const { error } = await supabase.from('aksesoris').update({
     nama: product.value.nama,
     harga: product.value.harga,
     warna: product.value.warna?.nama,
-    gender: product.value.gender?.nama,
+    genders: product.value.genders?.nama,
     stok: product.value.stok,
     item: product.value.itemAksesoris?.nama,
     keterangan: product.value.keterangan,
-    foto: url_img + product.value.newFoto
+    foto: url_img + product.value.foto
   }).eq('id   ', productId)
   if (error) throw error
   else navigateTo('/admin/accessories')

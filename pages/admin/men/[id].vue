@@ -31,7 +31,7 @@
                             <p>Cancel</p>
                         </NuxtLink>
                         <button type="submit"
-                            class="save text-white flex items-center p-1 bg-[#1C3D32] hover:bg-green-800 rounded-md outline-none">✓
+                            class="save text-white flex items-center py-1 px-3 bg-[#1C3D32] hover:bg-green-800 rounded-md outline-none">✓
                             Add</button>
                     </div>
                     <div class="flex justify-between gap-10">

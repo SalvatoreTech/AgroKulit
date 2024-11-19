@@ -43,7 +43,7 @@
                     </div>
                     <div class="BestSeller_product">
                         <div class="BestSeller_jacket flex lg:justify-between justify-center lg:gap-0 gap-2 flex-wrap">
-                            <figure class="jacketbs lg:w-80 w-48 relative group">
+                            <figure class="jacketbs lg:w-80 w-48 relative group cursor-pointer">
                                 <img src="@/assets/img/ExProduct.jpg" class="rounded-md" />
                                 <figcaption
                                     class="opacity-0 hover:opacity-100 transition-all duration-300 rounded-md shadow-lg absolute h-full flex flex-col justify-between pb-5 w-full bottom-0 text-xl text-gray-700/70">
@@ -70,7 +70,7 @@
                                     </div>
                                 </figcaption>
                             </figure>
-                            <figure class="jacketbs lg:w-80 w-48 relative group">
+                            <figure class="jacketbs lg:w-80 w-48 relative group cursor-pointer">
                                 <img src="@/assets/img/ExProduct.jpg" class="rounded-md" />
                                 <figcaption
                                     class="opacity-0 hover:opacity-100 transition-all duration-300 rounded-md shadow-lg absolute h-full flex flex-col justify-between pb-5 w-full bottom-0 text-xl text-gray-700/70">
@@ -97,7 +97,7 @@
                                     </div>
                                 </figcaption>
                             </figure>
-                            <figure class="jacketbs lg:w-80 w-48 relative group">
+                            <figure class="jacketbs lg:w-80 w-48 relative group cursor-pointer">
                                 <img src="@/assets/img/ExProduct.jpg" class="rounded-md" />
                                 <figcaption
                                     class="opacity-0 hover:opacity-100 transition-all duration-300 rounded-md shadow-lg absolute h-full flex flex-col justify-between pb-5 w-full bottom-0 text-xl text-gray-700/70">
@@ -280,12 +280,14 @@
                             <NuxtLink to="/men/"
                                 class="flex items-center content-center gap-2 cursor-pointer relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 group after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                                 <p class="lg:text-[1rem] text-[0.8rem]">Men</p>
-                                <img src="@/assets/icon/RightArrow.svg" alt="" class="group-hover:translate-x-2 group-hover:transition-all group-hover:duration-100"/>
+                                <img src="@/assets/icon/RightArrow.svg" alt=""
+                                    class="group-hover:translate-x-2 group-hover:transition-all group-hover:duration-100" />
                             </NuxtLink>
                             <NuxtLink to="/women/"
                                 class="flex items-center content-center gap-2 cursor-pointer relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 group after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                                 <p class="lg:text-[1rem] text-[0.8rem]">Women</p>
-                                <img src="@/assets/icon/RightArrow.svg" alt="" class="group-hover:translate-x-2 group-hover:transition-all group-hover:duration-100"/>
+                                <img src="@/assets/icon/RightArrow.svg" alt=""
+                                    class="group-hover:translate-x-2 group-hover:transition-all group-hover:duration-100" />
                             </NuxtLink>
                         </div>
                     </figcaption>
@@ -307,7 +309,8 @@
                             <NuxtLink to="/accessories/"
                                 class="flex items-center content-center gap-2 cursor-pointer relative after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                                 <p class="lg:text-[1rem] text-[0.8rem]">Discover</p>
-                                <img src="@/assets/icon/RightArrow.svg" alt=""  class="group-hover:translate-x-2 group-hover:transition-all group-hover:duration-100"/>
+                                <img src="@/assets/icon/RightArrow.svg" alt=""
+                                    class="group-hover:translate-x-2 group-hover:transition-all group-hover:duration-100" />
                             </NuxtLink>
                         </div>
                     </figcaption>
@@ -319,7 +322,8 @@
                 style="clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%)">
                 <div class="Costum_text text-white paddingX flex lg:h-[100vh] h-[50vh] justify-evenly flex-col">
                     <div class="text flex flex-col gap-5">
-                        <p class="Titl_costum font-bodoni lg:text-[3.3rem] text-[2rem] lg:text-start text-center">Costum Your Own</p>
+                        <p class="Titl_costum font-bodoni lg:text-[3.3rem] text-[2rem] lg:text-start text-center">Costum
+                            Your Own</p>
                         <p class="Sub_costum font-lora">
                             Our white-glove bespoke service is where your individuality is our
                             ultimate masterpiece. From bespoke illustrations to the selection of
@@ -333,7 +337,8 @@
                             class="flex justify-end gap-2 relative group after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer">
                             <!-- <img src="@/assets/icon/WA.svg" alt=""> -->
                             <p class="font-lora">WhatsApp</p>
-                            <img src="@/assets/icon/RightArrow.svg" alt="" class="group-hover:translate-x-2 group-hover:transition-all group-hover:duration-100"/>
+                            <img src="@/assets/icon/RightArrow.svg" alt=""
+                                class="group-hover:translate-x-2 group-hover:transition-all group-hover:duration-100" />
                         </NuxtLink>
                     </div>
                 </div>
@@ -569,5 +574,4 @@ onMounted(() => {
 
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

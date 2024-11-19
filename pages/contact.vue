@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            <div class="Location max-w-full border-black ps-10 font-lora flex flex-col gap-10">
+            <div class="Location max-w-full border-black ps-10 font-lora flex flex-col gap-10 mb-10">
                 <div class="Titl_location leading-6 pt-20">
                     <p class="text-[2rem] text-center">Our Stores</p>
                     <p class="text-center">Come to our store to see more products.</p>

@@ -28,7 +28,7 @@
                             placeholder="Search (e.g Agro 25)" required />
                     </div>
                     <select v-model="category" @change="refresh"
-                        class=" p-1 text-xs text-gray-900 border outline-none border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
+                        class=" p-1 text-xs text-gray-900 border cursor-pointer outline-none border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
                         <option :value="null" selected>
                             Category
                         </option>
@@ -36,7 +36,7 @@
                             class="text-black hover:bg-slate-600 hover:text-white">{{ category.nama }}</option>
                     </select>
                     <select v-model="size" @change="refresh"
-                        class=" p-1 text-xs text-gray-900 border border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
+                        class=" p-1 text-xs text-gray-900 border cursor-pointer border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
                         <option :value="null" selected>
                             Size
                         </option>
@@ -44,7 +44,7 @@
                             class="text-black hover:bg-slate-600 hover:text-white">{{ size.nama }}</option>
                     </select>
                     <select v-model="colour" @change="refresh"
-                        class=" p-1 text-xs text-gray-900 border border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
+                        class=" p-1 text-xs text-gray-900 border cursor-pointer border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
                         <option :value="null" selected>
                             Colour
                         </option>
