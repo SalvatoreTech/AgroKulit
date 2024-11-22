@@ -95,7 +95,7 @@
                 </div>
                 <div v-else class="mt-2">
                     <div v-for="colour in colours" :key="colour.id"
-                        class="colour flex w-full py-2 mt-1 bg-[#EBEDEC] hover:bg-[#D6D6D6] rounded-md">
+                        class="colour flex w-full py-2 mt-1 bg-[#EBEDEC] hover:bg-[#D6D6D6] rounded-md px-2 items-center">
                         <p class="lg:w-5/12">{{ colour.nama }}</p>
                         <p class="w-7/12">{{ colour.keterangan }}</p>
                         <button @click="toggleDelete(colour)"

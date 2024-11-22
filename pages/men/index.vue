@@ -13,25 +13,27 @@
                 </figcaption>
             </figure>
             <div class="Filter flex justify-between paddingX mt-1 lg:flex-row flex-col">
-                <div class="hyper_link">
-                    <p class="font-lora">
-                        <NuxtLink to="/"> Home </NuxtLink>
-                        / Men
-                    </p>
-                </div>
-                <div class="flex gap-3 font-lora lg:flex-nowrap mb-3 flex-wrap">
+                <div class="flex justify-between mb-2 w-full me-2">
+                    <div class="hyper_link">
+                        <p class="font-lora">
+                            <NuxtLink to="/"> Home </NuxtLink>
+                            / Men
+                        </p>
+                    </div>
                     <div class="relative">
                         <div class="absolute pt-1 start-0 flex items-center ps-3 pointer-none">
-                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400 cursor-pointer" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" @click="showInput" >
                                 <path stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                             </svg>
                         </div>
                         <input v-model="searchJacket" @input="refresh" type="search"
-                            class="block lg:w-[300px] w-[370px] p-1 ps-8 text-xs text-gray-950 border outline-none border-gray-300 rounded-lg bg-transparent dark:border-gray-600 dark:placeholder-gray-700"
-                            placeholder="Search by name or number (ex. Agro 25)" required />
+                            class="block search lg:w-[300px] w-[42px] p-1 ps-8 text-xs text-gray-950 border outline-none border-gray-300 rounded-lg bg-transparent dark:border-gray-600 dark:placeholder-gray-700"
+                            placeholder="Search by name or number (ex. Agro 25)" :class="{ 'w-[300px]' : isShow }" required />
                     </div>
+                </div>
+                <div class="flex gap-3 font-lora lg:flex-nowrap mb-3 flex-wrap">
                     <select v-model="category" @change="refresh"
                         class="block w-full p-1 text-xs text-gray-900 border cursor-pointer outline-none border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
                         <option :value="null" selected>
@@ -40,26 +42,29 @@
                         <option v-for="category in categories" :key="category.id" :value="category.id"
                             class="text-black hover:bg-slate-600 hover:text-white">{{ category.nama }}</option>
                     </select>
-                    <select v-model="size" @change="refresh"
-                        class="block w-full p-1 text-xs text-gray-900 border cursor-pointer border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
-                        <option :value="null" selected>
-                            Size
-                        </option>
-                        <option v-for="size in sizes" :key="size.id" :value="size.id"
-                            class="text-black hover:bg-slate-600 hover:text-white">{{ size.nama }}</option>
-                    </select>
-                    <select v-model="colour" @change="refresh"
-                        class="block w-full p-1 text-xs text-gray-900 border cursor-pointer border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
-                        <option :value="null" selected>
-                            Colour
-                        </option>
-                        <option v-for="colour in colours" :key="colour.id" :value="colour.id"
-                            class="text-black hover:bg-slate-600 hover:text-white">{{ colour.nama }}</option>
-                    </select>
+                    <div class="flex w-full gap-3">
+                        <select v-model="size" @change="refresh"
+                            class="block w-full p-1 text-xs text-gray-900 border cursor-pointer border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
+                            <option :value="null" selected>
+                                Size
+                            </option>
+                            <option v-for="size in sizes" :key="size.id" :value="size.nama"
+                                class="text-black hover:bg-slate-600 hover:text-white">{{ size.nama }}</option>
+                        </select>
+                        <select v-model="colour" @change="refresh"
+                            class="block w-full p-1 text-xs text-gray-900 border cursor-pointer border-gray-300 rounded-lg bg-transparent dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-700">
+                            <option :value="null" selected>
+                                Colour
+                            </option>
+                            <option v-for="colour in colours" :key="colour.id" :value="colour.nama"
+                                class="text-black hover:bg-slate-600 hover:text-white">{{ colour.nama }}</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="Product flex flex-wrap gap-5 justify-between paddingX mb-5">
-                <div v-for="menJacket in menJackets" :key="menJacket.id"
+                <div v-if="menJackets == 0" class="No_product text-medium font-lora">Sorry, Product {{ searchJacket }} is not found.</div>
+                <div v-else v-for="menJacket in menJackets" :key="menJacket.id"
                     class="card card-compact rounded-none bg-[#E9ECEB] lg:w-60 w-40 drop-shadow-md">
                     <NuxtLink :to="`/men/${menJacket.id}`">
                         <figure ref="photo" class=" mx-2 mt-1">
@@ -97,6 +102,7 @@ const searchJacket = ref('')
 const category = ref(null)
 const size = ref(null)
 const colour = ref(null)
+const isShow = ref(false)
 
 const { data: menJackets, status, error, refresh } = useLazyAsyncData('menJackets', async () => {
     let query = supabase.from('jaketMen').select(`*, kategoriJaket(*), warna(*)`).order('id')
@@ -127,6 +133,14 @@ const { data: colours } = useAsyncData('colours', async () => {
     if (error) throw error
     return data
 })
+
+function showInput() {
+    isShow.value = !isShow.value
+    gsap.to('.search', {
+        ease: 'power4.inOut',
+        duration: 1,
+    })
+}
 
 onMounted(() => {
     const tl = gsap.timeline()

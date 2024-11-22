@@ -23,19 +23,23 @@
                                 getJacket?.kategoriJaket?.nama }} for Man</p>
                             <p class="text-[11px]">{{ getJacket?.nama }}</p>
                         </div>
+                        <div class="Price w-fit px-5">
+                            <p>{{ rupiah(getJacket?.harga) }}</p>
+                        </div>
                         <div class="General">
-                            <p>{{ getJacket?.harga }}</p>
                             <p>Colour : {{ getJacket?.warna?.nama }}</p>
                             <p>Size : {{ getJacket?.ukuranJaket?.nama }}</p>
                             <p>Stock : {{ getJacket?.stok }}</p>
                             <p>{{ getJacket?.deskription }}</p>
                         </div>
-                        <div class="OrderLink font-lora ps-3">
+                        {{ message }}
+                        <div class="OrderLink w-fit font-lora ps-3">
                             <p class="text-[11px] ">Shipping, Exchanges, and Returns</p>
-                            <button
+                            <a :href="whatsappLink"
+                                target="_blank" rel="noopener noreferrer"
                                 class="flex py-1 px-3 gap-1 border border-black rounded-md hover:bg-[#1C3D32] hover:text-white">
                                 <p>Order now via WhatsApp</p>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -61,6 +65,10 @@ const { data: getJacket, error } = useAsyncData('getJacket', async () => {
     }
 })
 
+const phone = '6285294148997'
+const message = `Saya ingin memesan produk jaket ${getJacket.nama}, warna `
+const whatsappLink = `https://wa.me/${phone}?text=${message}`
+
 function mouseEnterPhoto() {
     gsap.to(".xzoom", {
         scale: 1.15,
@@ -75,7 +83,6 @@ function mouseLeavePhoto() {
         ease: 'power2.inOut',
     })
 }
-
 </script>
 
 <style scoped></style>

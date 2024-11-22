@@ -333,13 +333,13 @@
                         </p>
                     </div>
                     <div class="HyperLink_costum flex justify-end gap-2 me-3">
-                        <NuxtLink
+                        <a href="https://wa.me/6285294148997?text=Halo,%20Saya%20ingin%20kostum%20jaket"
                             class="flex justify-end gap-2 relative group after:bg-white after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer">
                             <!-- <img src="@/assets/icon/WA.svg" alt=""> -->
                             <p class="font-lora">WhatsApp</p>
                             <img src="@/assets/icon/RightArrow.svg" alt=""
                                 class="group-hover:translate-x-2 group-hover:transition-all group-hover:duration-100" />
-                        </NuxtLink>
+                        </a>
                     </div>
                 </div>
                 <img src="@/assets/img/IMGCostum.jpg" alt="ImageCostum" class="Costum_img lg:w-[50vw]">
