@@ -1,24 +1,23 @@
 <template>
-    <div class="bg-white h-screen flex flex-col justify-between">
+    <div class="bg-white lg:h-screen flex flex-col justify-between">
         <!-- Navbar -->
         <Header />
 
         <!-- Content -->
-        <div class="bg-white text-black pt-20 pb-3">
+        <div class="bg-white text-black lg:pt-20 pt-16 pb-3">
             <div class="paddingX">
                 <div class="w-fit">
                     <NuxtLink to="/men" class="w-20">
                         <img src="../../assets/icon/LeftArrow.svg" alt="LeftArrow">
                     </NuxtLink>
                 </div>
-                <div class="flex justify-evenly">
-                    <div class="rounded-box lg:w-96 border-4 border-[#ebedec] shadow-md bg-[#ebedec]" data-carousel="slide">
-                        <div class="">
-                            <img :src="getJacket?.foto" class="xzoom w-full" alt="Tailwind CSS Carousel component"/>
-                        </div>
+                <div class="flex justify-evenly lg:flex-row flex-col">
+                    <div class="rounded-box lg:w-96 w-full border-4 flex justify-center border-[#ebedec] shadow-md bg-[#ebedec]"
+                        data-carousel="slide">
+                        <img :src="getJacket?.foto" class="xzoom lg:w-full w-60" alt="Tailwind CSS Carousel component" />
                     </div>
                     <div class="ProfuctInfo font-lora max-w-lg flex flex-col justify-center gap-7">
-                        <div class="Tilt leading-[15px] ps-3">
+                        <div class="Tilt lg:leading-[15px] leading-6 lg:pt-0 pt-5 ps-3">
                             <p class="text-[24px] font-bold">{{ getJacket?.warna?.nama }} {{
                                 getJacket?.kategoriJaket?.nama }} for Man</p>
                             <p class="text-[11px]">{{ getJacket?.nama }}</p>

@@ -40,14 +40,14 @@
                             <div class="relative flex flex-col">
                                 <label for="name">Product Name</label>
                                 <input v-model="product.nama" name="name" type="text"
-                                    class="bg-white placeholder:text-black rounded-md p-1 outline-none"
-                                    placeholder="Product Name">
+                                    class="bg-white placeholder:text-[#4e4e4e] rounded-md p-1 outline-none"
+                                    placeholder="'Agro-25'">
                             </div>
                             <div class="relative flex flex-col">
                                 <label for="description">Product Description</label>
                                 <textarea v-model="product.keterangan" name="description"
-                                    class="bg-white placeholder:text-black rounded-md p-1 outline-none"
-                                    placeholder="Product Description"></textarea>
+                                    class="bg-white placeholder:text-[#4e4e4e] rounded-md p-1 outline-none"
+                                    placeholder="'Type here to describe the product'"></textarea>
                             </div>
                             <div class="flex flex-wrap items-center gap-10">
                                 <div class="relative w-2/5">
@@ -87,24 +87,25 @@
                                 <div class="relative flex flex-col w-2/5">
                                     <label for="price">Price</label>
                                     <input v-model.trim="product.harga" name="price" type="number" step="0.001"
-                                        class="bg-white placeholder:text-black rounded-md p-1 outline-none"
-                                        placeholder="Price">
+                                        class="bg-white placeholder:text-[#4e4e4e] rounded-md p-1 outline-none"
+                                        placeholder="0">
                                 </div>
                                 <div class="relative flex flex-col w-2/5">
                                     <label for="stock">Stock</label>
                                     <input v-model.trim="product.stok" name="stock" type="number"
-                                        class="bg-white placeholder:text-black rounded-md p-1 outline-none"
-                                        placeholder="Stock">
+                                        class="bg-white placeholder:text-[#4e4e4e] rounded-md p-1 outline-none"
+                                        placeholder="0">
                                 </div>
                             </div>
                         </div>
                         <div class="Photos bg-[#ebedec] w-[50%] rounded-md p-3">
                             <p class="labelImage font-medium text-xl font-lora">Photo</p>
+                            <p class="text-gray-500 text-[12px]">.png /only</p>
                             <div class="flex flex-col items-center justify-center">
                                 <div class="h-[250px] w-[250px] border-2">
                                     <img :src="newImage || product.foto" alt="imageProduct" class="object-fit">
                                 </div>
-                                <input type="file" accept="image/*" class="form-control" id="uploadImage"
+                                <input type="file" accept="image/png" class="form-control" id="uploadImage"
                                     @change="imagePicked" name="photo">
                             </div>
                         </div>
@@ -211,5 +212,4 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

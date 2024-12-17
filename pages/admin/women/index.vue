@@ -52,8 +52,7 @@
                             class="text-black hover:bg-slate-600 hover:text-white">{{ colour.nama }}</option>
                     </select>
                     <NuxtLink to="/admin/women/addWomen"
-                        class="addCategory font-lora flex gap-1 border border-black rounded-md px-1 cursor-pointer"
-                        @click="toggleAdd">
+                        class="addCategory font-lora flex gap-1 border border-black rounded-md px-1 cursor-pointer">
                         <img src="@/assets/icon/PlusRounded.svg" alt="" class="w-4">
                         <p>Jacket</p>
                     </NuxtLink>
@@ -78,7 +77,7 @@
             <div class="Listcategory font-lora">
                 <div class="HeadList flex p-1 font-medium border-b border-gray-800">
                     <p class="lg:w-5/12">Product</p>
-                    <p class="w-2/12">Price</p>
+                    <p class="w-3/12">Price</p>
                     <p class="w-2/12">Stock</p>
                     <p class="w-2/12">Size</p>
                     <p class="w-2/12">Category</p>
@@ -95,12 +94,11 @@
                             <img :src="jacket.foto" alt="" class="w-10 mx-1">
                             <p class=""> {{ jacket.kategoriJaket?.nama }} {{ jacket.nama }}</p>
                         </div>
-                        <p class="w-2/12">{{ rupiah(jacket.harga) }}</p>
+                        <p class="w-3/12">{{ rupiah(jacket.harga) }}</p>
                         <p class="w-2/12">{{ jacket.stok }}</p>
                         <p class="w-2/12">{{ jacket.ukuranJaket?.nama }}</p>
                         <p class="w-2/12">{{ jacket.kategoriJaket?.nama }}</p>
-                        <p class="w-2/12">{{ jacket.created_at.split('.')[0].split('T')[0] }}, {{
-                            jacket.created_at.split('.')[0].split('T')[1] }}</p>
+                        <p class="w-2/12">{{ jacket.created.split('.')[0].split('T')[0] }}, {{ jacket.created.split('.')[0].split('T').pop() }}  </p>
                         <div class="flex gap-2 w-20">
                             <NuxtLink :to="`/admin/women/${jacket.id}`"
                                 class="btn w-5 cursor-pointer bg-[#E9E9E9] hover:bg-[#2bb371] rounded-md">
@@ -141,6 +139,7 @@ definePageMeta({
     middleware: ["auth"]
 })
 
+import gsap from 'gsap';
 import Sidebar from '~/components/admin/Sidebar.vue';
 const supabase = useSupabaseClient()
 
@@ -153,13 +152,8 @@ const size = ref(null)
 
 const showDeleteModal = ref(false)
 const selectedWomen = ref({})
-const submittedAdd = ref(false)
 const submittedDelete = ref(false)
 
-
-function toggleAdd() {
-    showAddModal.value = true
-}
 
 const toggleDelete = (jacket) => {
     selectedWomen.value = jacket;
@@ -167,7 +161,7 @@ const toggleDelete = (jacket) => {
 }
 
 const { data: jacketWomen, isFetching, refresh } = useLazyAsyncData('jacketWomen', async () => {
-    let query = supabase.from('jaketWomen').select(`*, kategoriJaket(*), warna(*), ukuranJaket(*)`).order('id')
+    let query = supabase.from('jaketWomen').select(`*, kategoriJaket(*), warna(*), ukuranJaket(*)`).order('created', {ascending: false})
     if (searchJacket.value) query = query.ilike('nama', `%${searchJacket.value}%`)
     if (category.value) query = query.eq('kategori', category.value)
     if (size.value) query = query.eq('ukuran', size.value)
@@ -213,6 +207,13 @@ const deleteProduct = async (id) => {
         submittedDelete.value = false
     }, 4000)
 }
+onMounted(() => {
+    gsap.from('.jacket', {
+        opacity: 0,
+        stagger: 0.15,
+        ease: 'power4.inOut',
+    })
+})
 </script>
 
 <style scoped>

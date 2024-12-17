@@ -39,22 +39,18 @@
                             <div class="relative flex flex-col">
                                 <label for="name">Product Name</label>
                                 <input v-model.trim="form.nama" name="name" type="text"
-                                    class="bg-white placeholder:text-black rounded-md p-1 outline-none"
-                                    placeholder="Product Name">
+                                    class="bg-white placeholder:text-[#4e4e4e] rounded-md p-1 outline-none"
+                                    placeholder="'Agro-25'">
                             </div>
                             <div class="relative flex flex-col">
                                 <label for="description">Product Description</label>
                                 <textarea v-model="form.keterangan" name="description"
-                                    class="bg-white placeholder:text-black rounded-md p-1 outline-none"
-                                    placeholder="Product Description"></textarea>
+                                    class="bg-white placeholder:text-[#4e4e4e] rounded-md p-1 outline-none"
+                                    placeholder="'Type here to describe the product'"></textarea>
                             </div>
                             <div class="flex flex-wrap items-center gap-10">
                                 <div class="relative w-2/5">
                                     <label for="size">Size</label>
-                                    <!-- <div v-for="size in sizes" :key="size">
-                                        <input type="checkbox" :id="size" :value="size.id" v-model="form.ukuran" />
-                                        <label :for="ukuran">{{ ukuran }}</label>
-                                    </div> -->
                                     <select v-model="form.ukuran"
                                         class="block w-full p-1 text-gray-900 bg-white rounded-md outline-none">
                                         <option :value="null" selected>Size</option>
@@ -88,24 +84,25 @@
                                     </select>
                                 </div>
                                 <div class="relative flex flex-col w-2/5">
-                                    <label for="price">Price</label>
+                                    <label for="price">Price {{ rupiah(form.harga) }}</label>
                                     <input v-model.trim="form.harga" name="price" type="number"
-                                        class="bg-white placeholder:text-black rounded-md p-1 outline-none"
-                                        placeholder="Price">
+                                        class="bg-white placeholder:text-[#4e4e4e] rounded-md p-1 outline-none"
+                                        placeholder="0">
                                 </div>
                                 <div class="relative flex flex-col w-2/5">
                                     <label for="stock">Stock</label>
                                     <input v-model.trim="form.stok" name="stock" type="number"
-                                        class="bg-white placeholder:text-black rounded-md p-1 outline-none"
-                                        placeholder="Stock">
+                                        class="bg-white placeholder:text-[#4e4e4e] rounded-md p-1 outline-none"
+                                        placeholder="0">
                                 </div>
                             </div>
                         </div>
                         <div class="Photos bg-[#ebedec] w-[50%] rounded-md p-3">
                             <p class="labelImage font-medium text-xl font-lora">Photo</p>
+                            <p class="text-gray-500 text-[12px]">.png /only</p>
                             <div class="flex justify-center">
                                 <!-- <img v-if="files" :src="files" alt=""> -->
-                                <input type="file" accept="image/*" class="form-control" id="uploadImage"
+                                <input type="file" accept="image/png" class="form-control" id="uploadImage"
                                     @change="(e) => files = e.target.files" name="photo">
                             </div>
                         </div>
@@ -162,7 +159,7 @@ async function addJacket() {
 
     const file = files.value[0];
     const fileExt = file.name.split('.').pop();
-    const fileName = `${form.nama}.${fileExt}`;
+    const fileName = `${form.value.nama}.${fileExt}`;
     const filePath = `jaketMen/${fileName}`;
 
     const { data, error } = await supabase.storage

@@ -83,12 +83,12 @@
                 <span>The category {{ selectedCategory.nama }} was successfully deleted.</span>
             </div>
             <div class="Listcategory font-lora">
-                <div class="HeadList flex  font-medium border-b border-gray-800">
-                    <p class="lg:w-5/12">Name</p>
+                <div class="HeadList flex font-medium border-b border-gray-800">
+                    <p class="lg:w-5/12 ps-2">Name</p>
                     <p class="w-7/12">
                         Description
                     </p>
-                    <span class="w-5"></span>
+                    <span class="w-5 mx-2"></span>
                 </div>
                 <div v-if="isFetching" class="flex justify-center items-center h-64">
                     <p class="font-lora">Load data</p>
@@ -99,7 +99,7 @@
                         <p class="lg:w-5/12">{{ category.nama }}</p>
                         <p class="w-7/12">{{ category.keterangan }}</p>
                         <button @click="toggleDelete(category)"
-                            class="btn w-5 cursor-pointer bg-[#E9E9E9] hover:bg-red-500 rounded-md">
+                            class="btn w-5 mx-2 cursor-pointer bg-[#E9E9E9] hover:bg-red-500 rounded-md">
                             <img src="@/assets/icon/trash.svg" alt="Rubbish bin" class="max-w-5">
                         </button>
                         <input type="checkbox" id="deleteCategory" class="modal-toggle" v-model="showDeleteModal" />
@@ -127,6 +127,7 @@ definePageMeta({
     middleware: ["auth"]
 })
 
+import gsap from 'gsap';
 import Sidebar from '~/components/admin/Sidebar.vue';
 const supabase = useSupabaseClient()
 
@@ -195,6 +196,14 @@ const deleteCategory = async (id) => {
             submittedDelete.value = false
         }, 4000)
 }
+
+onMounted(() => {
+    gsap.from('.category', {
+        opacity: 0,
+        stagger: 0.15,
+        ease: 'power4.inOut',
+    })
+})
 </script>
 
 <style scoped>

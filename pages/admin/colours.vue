@@ -84,7 +84,7 @@
             </div>
             <div class="Listcolours font-lora">
                 <div class="HeadList flex  font-medium border-b border-gray-800">
-                    <p class="lg:w-5/12">Name</p>
+                    <p class="lg:w-5/12 ps-2">Name</p>
                     <p class="w-7/12">
                         Description
                     </p>
@@ -127,6 +127,7 @@ definePageMeta({
     middleware: ["auth"]
 })
 
+import gsap from 'gsap';
 import Sidebar from '~/components/admin/Sidebar.vue';
 const supabase = useSupabaseClient()
 
@@ -197,6 +198,11 @@ const deleteColour = async (id) => {
 
 onMounted (() => {
     refresh()
+    gsap.from('.colour', {
+        opacity: 0,
+        stagger: 0.15,
+        ease: 'power4.inOut',
+    })
 })
 </script>
 

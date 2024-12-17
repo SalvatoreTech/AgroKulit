@@ -76,56 +76,49 @@
             <div class="Listcategory font-lora">
                 <div class="HeadList flex p-1 font-medium border-b border-gray-800">
                     <p class="lg:w-5/12">Product</p>
-                    <p class="w-2/12">Price</p>
+                    <p class="w-3/12">Price</p>
                     <p class="w-2/12">Stock</p>
                     <p class="w-2/12">Size</p>
                     <p class="w-2/12">Category</p>
                     <p class="w-2/12">Created</p>
                     <span class="w-24"></span>
                 </div>
-                <!-- <div v-if="isFetching" class="flex justify-center items-center h-64">
-                  <p class="font-lora">Load data...</p>
-              </div> -->
-                <div class="mt-2">
-                    <div v-for="jacket in jacketMen" :key="jacket.id"
-                        class="jacket flex p-1 w-full items-center content-center mt-1 bg-[#EBEDEC] hover:bg-[#D6D6D6] rounded-md">
-                        <div class="lg:w-5/12 flex">
-                            <img :src="jacket.foto" alt="" class="w-10 mx-1">
-                            <p class=""> {{ jacket.kategoriJaket?.nama }} {{ jacket.nama }}</p>
-                        </div>
-                        <p class="w-2/12">{{ rupiah(jacket.harga) }}</p>
-                        <p class="w-2/12">{{ jacket.stok }}</p>
-                        <p class="w-2/12">{{ jacket.ukuranJaket?.nama }}</p>
-                        <p class="w-2/12">{{ jacket.kategoriJaket?.nama }}</p>
-                        <p class="w-2/12">{{ jacket.created_at.split('.')[0].split('T')[0] }}, {{
-                            jacket.created_at.split('.')[0].split('T')[1] }}</p>
-                        <div class="flex gap-2 w-20">
-                            <NuxtLink :to="`/admin/men/${jacket.id}`"
-                                class="btn w-5 cursor-pointer bg-[#E9E9E9] hover:bg-[#2bb371] rounded-md">
-                                <img src="@/assets/icon/edit.svg" alt="Rubbish bin" class="max-w-5">
-                            </NuxtLink>
-                            <div class="DeletedProduct">
-                                <input type="checkbox" id="deleteCategory" class="modal-toggle"
-                                    v-model="showDeleteModal" />
-                                <label for="deleteCategory" class="modal" @click="showDeleteModal = false">
-                                    <label class="modal-box relative font-lora bg-[#ebedec]" @click.stop>
-                                        <p class="font-lora text-red-500">Delete!</p>
-                                        <p class="font-lora">Are you sure to delete this {{ selectedMen.warna?.nama }}
-                                            {{
-                                                selectedMen.kategoriJaket?.nama }} {{ selectedMen.nama }}</p>
-                                        <div class="modal-action">
-                                            <label for="deleteCategory"
-                                                class="btn bg-[#d6d6d6] text-black hover:text-white">No</label>
-                                            <label for="deleteCategory" @click="deleteProduct(selectedMen.id)"
-                                                class="btn btn-error ">Yes</label>
-                                        </div>
-                                    </label>
+                <div v-for="jacket in jacketMen" :key="jacket.id"
+                    class="jacket flex p-1 w-full items-center content-center mt-1 bg-[#EBEDEC] hover:bg-[#D6D6D6] rounded-md">
+                    <div class="lg:w-5/12 flex">
+                        <img :src="jacket.foto" alt="" class="w-10 mx-1">
+                        <p class=""> {{ jacket.kategoriJaket?.nama }} {{ jacket.nama }}</p>
+                    </div>
+                    <p class="w-3/12">{{ rupiah(jacket.harga) }}</p>
+                    <p class="w-2/12">{{ jacket.stok }}</p>
+                    <p class="w-2/12">{{ jacket.ukuranJaket?.nama }}</p>
+                    <p class="w-2/12">{{ jacket.kategoriJaket?.nama }}</p>
+                    <p class="w-2/12">{{ jacket.created.split('.')[0].split('T')[0] }}, {{ jacket.created.split('.')[0].split('T').pop() }}  </p>
+                    <div class="flex gap-2 w-20">
+                        <NuxtLink :to="`/admin/men/${jacket.id}`"
+                            class="btn w-5 cursor-pointer bg-[#E9E9E9] hover:bg-[#2bb371] rounded-md">
+                            <img src="@/assets/icon/edit.svg" alt="Rubbish bin" class="max-w-5">
+                        </NuxtLink>
+                        <div class="DeletedProduct">
+                            <input type="checkbox" id="deleteCategory" class="modal-toggle" v-model="showDeleteModal" />
+                            <label for="deleteCategory" class="modal" @click="showDeleteModal = false">
+                                <label class="modal-box relative font-lora bg-[#ebedec]" @click.stop>
+                                    <p class="font-lora text-red-500">Delete!</p>
+                                    <p class="font-lora">Are you sure to delete this {{ selectedMen.warna?.nama }}
+                                        {{
+                                            selectedMen.kategoriJaket?.nama }} {{ selectedMen.nama }}</p>
+                                    <div class="modal-action">
+                                        <label for="deleteCategory"
+                                            class="btn bg-[#d6d6d6] text-black hover:text-white">No</label>
+                                        <label for="deleteCategory" @click="deleteProduct(selectedMen.id)"
+                                            class="btn btn-error ">Yes</label>
+                                    </div>
                                 </label>
-                                <button @click="toggleDelete(jacket)"
-                                    class="btn w-5 cursor-pointer bg-[#E9E9E9] hover:bg-red-500 rounded-md">
-                                    <img src="@/assets/icon/trash.svg" alt="Rubbish bin" class="max-w-5">
-                                </button>
-                            </div>
+                            </label>
+                            <button @click="toggleDelete(jacket)"
+                                class="btn w-5 cursor-pointer bg-[#E9E9E9] hover:bg-red-500 rounded-md">
+                                <img src="@/assets/icon/trash.svg" alt="Rubbish bin" class="max-w-5">
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -139,6 +132,7 @@ definePageMeta({
     middleware: "auth"
 })
 
+import gsap from 'gsap';
 import Sidebar from '~/components/admin/Sidebar.vue';
 const supabase = useSupabaseClient()
 
@@ -160,7 +154,7 @@ const toggleDelete = (jacket) => {
 }
 
 const { data: jacketMen, refresh } = useLazyAsyncData('jacketMen', async () => {
-    let query = supabase.from('jaketMen').select(`*, kategoriJaket(*), warna(*), ukuranJaket(*)`).order('id')
+    let query = supabase.from('jaketMen').select(`*, kategoriJaket(*), warna(*), ukuranJaket(*)`).order('created', {ascending: false})
     if (searchJacket.value) query = query.ilike('nama', `%${searchJacket.value}%`)
     if (category.value) query = query.eq('kategori', category.value)
     if (size.value) query = query.eq('ukuran', size.value)
@@ -200,6 +194,14 @@ const deleteProduct = async (id) => {
         submittedDelete.value = false
     }, 4000)
 }
+
+onMounted(() => {
+    gsap.from('.jacket', {
+        opacity: 0,
+        stagger: 0.15,
+        ease: 'power4.inOut',
+    })
+})
 </script>
 
 <style scoped>

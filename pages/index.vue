@@ -34,226 +34,130 @@
                             class="women absolute bottom-0 scale-0 translate-y-[200%]" />
                     </div>
                 </div>
-                <!-- BestSellers -->
+                <!-- New Product -->
                 <div class="BestSeller_container">
                     <div class="BestSeller_text flex">
                         <img src="@/assets/icon/BestSellerVector.svg" alt="BestSellerVector"
                             class="Arrow_bestseller lg:w-16 w-10" />
-                        <p class="Titl_bestseller font-bodoni lg:text-[3rem] text-[2rem] font-medium ">Most Liked</p>
+                        <p class="Titl_bestseller font-bodoni lg:text-[3rem] text-[2rem] font-medium ">New Products</p>
                     </div>
-                    <div class="BestSeller_product">
-                        <div class="BestSeller_jacket flex lg:justify-between justify-center lg:gap-0 gap-2 flex-wrap">
-                            <figure class="jacketbs lg:w-80 w-48 relative group cursor-pointer">
-                                <img src="@/assets/img/ExProduct.jpg" class="rounded-md" />
-                                <figcaption
-                                    class="opacity-0 hover:opacity-100 transition-all duration-300 rounded-md shadow-lg absolute h-full flex flex-col justify-between pb-5 w-full bottom-0 text-xl text-gray-700/70">
-                                    <div class="flex justify-between px-3 items-start">
-                                        <div class="ProductInfo flex flex-col leading-5">
-                                            <p class="lg:text-[1.2rem] text-[1rem] font-lora">
-                                                Black Texture Leather
-                                            </p>
-                                            <p class="font-lora lg:text-[1rem] text-[0.8rem]">1.000.000 IDR</p>
-                                        </div>
-                                        <div class="GenderProduct">
-                                            <p class="font-lora lg:text-[1rem] text-[0.8rem]">Men</p>
-                                        </div>
+                    <div class="New_product">
+                        <div class="New_jacket flex lg:justify-between justify-center lg:gap-0 gap-2 flex-wrap">
+                            <!-- New Men -->
+                            <figure v-for="men in getNewMen" :key="men.id"
+                                class="jacketbs rounded-md lg:w-64 w-36 relative group cursor-pointer">
+                                <NuxtLink :to="`/orderMen/${men.id}`">
+                                    <div class="h-full w-full flex justify-center items-center">
+                                        <img :src="men.foto" class="bg-contain rounded-md" />
                                     </div>
-                                    <div class="Order_btn flex justify-end me-5">
-                                        <NuxtLink>
-                                            <button
-                                                class="flex items-center gap-1 bg-white shadow-lg rounded-full px-1 lg:h-full h-5 hover:scale-75 duration-150">
-                                                <p class="font-lora lg:text-[1rem] text-[0.5rem] text-black">Order now
+                                    <figcaption
+                                        class="opacity-0 hover:opacity-100 transition-all duration-300 rounded-md absolute h-full flex flex-col justify-between pb-5 w-full bottom-0 text-xl text-gray-700">
+                                        <div class="flex justify-between px-3 items-start">
+                                            <div class="ProductInfo flex flex-col leading-5 lg:w-8/12"
+                                                style="-webkit-text-stroke: 0.4px black; color: white;">
+                                                <p class="lg:text-[1.2rem] text-[1rem] font-lora">
+                                                    {{ men.warna?.nama }} {{ men.kategoriJaket?.nama }}
                                                 </p>
-                                                <img src="@/assets/icon/Plus.svg" alt="" class="lg:w-fit w-2" />
-                                            </button>
-                                        </NuxtLink>
-                                    </div>
-                                </figcaption>
+                                                <p class="font-lora lg:text-[1rem] text-[0.8rem]">{{ rupiah(men.harga)
+                                                    }}
+                                                </p>
+                                            </div>
+                                            <div class="GenderProduct"
+                                                style="-webkit-text-stroke: 0.4px black; color: white;">
+                                                <p class="font-lora lg:text-[1rem] text-[0.8rem]">Men</p>
+                                            </div>
+                                        </div>
+                                        <div class="Order_btn flex justify-end me-5">
+                                            <NuxtLink :to="`/orderMen/${men.id}`">
+                                                <button
+                                                    class="flex items-center gap-1 bg-white shadow-lg rounded-full px-1 lg:h-full h-5 hover:scale-75 duration-150">
+                                                    <p class="font-lora lg:text-[1rem] text-[0.5rem] text-black">Order
+                                                        now
+                                                    </p>
+                                                    <img src="@/assets/icon/Plus.svg" alt="" class="lg:w-fit w-2" />
+                                                </button>
+                                            </NuxtLink>
+                                        </div>
+                                    </figcaption>
+                                </NuxtLink>
                             </figure>
-                            <figure class="jacketbs lg:w-80 w-48 relative group cursor-pointer">
-                                <img src="@/assets/img/ExProduct.jpg" class="rounded-md" />
-                                <figcaption
-                                    class="opacity-0 hover:opacity-100 transition-all duration-300 rounded-md shadow-lg absolute h-full flex flex-col justify-between pb-5 w-full bottom-0 text-xl text-gray-700/70">
-                                    <div class="flex justify-between px-3 items-start">
-                                        <div class="ProductInfo flex flex-col leading-5">
-                                            <p class="lg:text-[1.2rem] text-[1rem] font-lora">
-                                                Black Texture Leather
-                                            </p>
-                                            <p class="font-lora lg:text-[1rem] text-[0.8rem]">1.000.000 IDR</p>
-                                        </div>
-                                        <div class="GenderProduct">
-                                            <p class="font-lora lg:text-[1rem] text-[0.8rem]">Men</p>
-                                        </div>
+                            <!-- New Women -->
+                            <figure v-for="women in getNewWomen" :key="women.id"
+                                class="jacketbs rounded-md lg:w-64 w-36 relative group cursor-pointer">
+                                <NuxtLink :to="`/orderWomen/${women.id}`">
+                                    <div class="h-full w-full flex justify-center items-center">
+                                        <img :src="women.foto" class="bg-contain" />
                                     </div>
-                                    <div class="Order_btn flex justify-end me-5">
-                                        <NuxtLink>
-                                            <button
-                                                class="flex items-center gap-1 bg-white shadow-lg rounded-full px-1 lg:h-full h-5 hover:scale-75 duration-150">
-                                                <p class="font-lora lg:text-[1rem] text-[0.5rem] text-black">Order now
+                                    <figcaption
+                                        class="opacity-0 hover:opacity-100 transition-all duration-300 rounded-md absolute h-full flex flex-col justify-between pb-5 w-full bottom-0 text-xl text-gray-700">
+                                        <div class="flex justify-between px-3 items-start">
+                                            <div class="ProductInfo flex flex-col leading-5 lg:w-8/12"
+                                                style="-webkit-text-stroke: 0.4px black; color: white;">
+                                                <p class="lg:text-[1.2rem] text-[1rem] font-lora">
+                                                    {{ women.warna?.nama }} {{ women.kategoriJaket?.nama }}
                                                 </p>
-                                                <img src="@/assets/icon/Plus.svg" alt="" class="lg:w-fit w-2" />
-                                            </button>
-                                        </NuxtLink>
-                                    </div>
-                                </figcaption>
-                            </figure>
-                            <figure class="jacketbs lg:w-80 w-48 relative group cursor-pointer">
-                                <img src="@/assets/img/ExProduct.jpg" class="rounded-md" />
-                                <figcaption
-                                    class="opacity-0 hover:opacity-100 transition-all duration-300 rounded-md shadow-lg absolute h-full flex flex-col justify-between pb-5 w-full bottom-0 text-xl text-gray-700/70">
-                                    <div class="flex justify-between px-3 items-start">
-                                        <div class="ProductInfo flex flex-col leading-5">
-                                            <p class="lg:text-[1.2rem] text-[1rem] font-lora">
-                                                Black Texture Leather
-                                            </p>
-                                            <p class="font-lora lg:text-[1rem] text-[0.8rem]">1.000.000 IDR</p>
-                                        </div>
-                                        <div class="GenderProduct">
-                                            <p class="font-lora lg:text-[1rem] text-[0.8rem]">Men</p>
-                                        </div>
-                                    </div>
-                                    <div class="Order_btn flex justify-end me-5">
-                                        <NuxtLink>
-                                            <button
-                                                class="flex items-center gap-1 bg-white shadow-lg rounded-full px-1 lg:h-full h-5 hover:scale-75 duration-150">
-                                                <p class="font-lora lg:text-[1rem] text-[0.5rem] text-black">Order now
+                                                <p class="font-lora lg:text-[1rem] text-[0.8rem]">{{ rupiah(women.harga)
+                                                    }}
                                                 </p>
-                                                <img src="@/assets/icon/Plus.svg" alt="" class="lg:w-fit w-2" />
-                                            </button>
-                                        </NuxtLink>
-                                    </div>
-                                </figcaption>
+                                            </div>
+                                            <div class="GenderProduct"
+                                                style="-webkit-text-stroke: 0.4px black; color: white;">
+                                                <p class="font-lora lg:text-[1rem] text-[0.8rem]">Women</p>
+                                            </div>
+                                        </div>
+                                        <div class="Order_btn flex justify-end me-5">
+                                            <NuxtLink :to="`/orderWomen/${women.id}`">
+                                                <button
+                                                    class="flex items-center gap-1 bg-white shadow-lg rounded-full px-1 lg:h-full h-5 hover:scale-75 duration-150">
+                                                    <p class="font-lora lg:text-[1rem] text-[0.5rem] text-black">Order
+                                                        now
+                                                    </p>
+                                                    <img src="@/assets/icon/Plus.svg" alt="" class="lg:w-fit w-2" />
+                                                </button>
+                                            </NuxtLink>
+                                        </div>
+                                    </figcaption>
+                                </NuxtLink>
                             </figure>
                         </div>
-                        <div class="BestSeller_accessories flex lg:justify-between justify-center gap-1 pt-5 flex-wrap">
-                            <div class="lg:w-72 w-44">
-                                <figure class="accbs relative cursor-pointer max-w-sm">
-                                    <a href="#">
-                                        <img class="rounded-lg" src="@/assets/img/ExAccsProduct.jpg"
-                                            alt="imageAccessoriesProduct" />
-                                    </a>
+                        <div class="New_accessories flex lg:justify-between justify-center gap-1 pt-5 flex-wrap">
+                            <figure v-for="accessory in getNewAccessories" :key="accessory.id"
+                                class="accbs relative cursor-pointer lg:w-64 w-36 rounded-md">
+                                <NuxtLink :to="`/orderAccessory/${accessory.id}`">
+                                    <div class="h-full w-full flex justify-center items-center">
+                                        <img :src="accessory.foto" class="bg-contain aspect-square" />
+                                    </div>
                                     <figcaption
-                                        class="absolute px-4 text-lg text-white/60 top-0 flex flex-col opacity-0 hover:opacity-100 transition-all duration-300 justify-between pb-5 w-full h-full">
-                                        <div class="flex justify-between items-start">
-                                            <div class="ProductInfo flex flex-col leading-5">
+                                        class="opacity-0 hover:opacity-100 transition-all duration-300 rounded-md absolute h-full flex flex-col justify-between pb-5 w-full bottom-0 text-xl text-gray-700">
+                                        <div class="flex justify-between px-3 items-start">
+                                            <div class="ProductInfo flex flex-col leading-5 lg:w-8/12"
+                                                style="-webkit-text-stroke: 0.4px black; color: white;">
                                                 <p class="lg:text-[1.2rem] text-[1rem] font-lora">
-                                                    Green Forest Wallet
+                                                    {{ accessory.warna?.nama }} {{ accessory.itemAksesoris?.nama }}
                                                 </p>
-                                                <p class="font-lora text-[1rem]">400.000 IDR</p>
+                                                <p class="font-lora lg:text-[1rem] text-[0.8rem]">{{ rupiah(accessory.harga)
+                                                    }}
+                                                </p>
                                             </div>
-                                            <div class="GenderProduct">
-                                                <p class="font-lora text-[1rem]">Men</p>
+                                            <div class="GenderProduct"
+                                                style="-webkit-text-stroke: 0.4px black; color: white;">
+                                                <p class="font-lora lg:text-[1rem] text-[0.8rem]">{{ accessory.gender?.nama }}</p>
                                             </div>
                                         </div>
-                                        <div class="Order_btn flex justify-end">
-                                            <NuxtLink>
+                                        <div class="Order_btn flex justify-end me-5">
+                                            <NuxtLink :to="`/orderAccessory/${accessory.id}`">
                                                 <button
                                                     class="flex items-center gap-1 bg-white shadow-lg rounded-full px-1 lg:h-full h-5 hover:scale-75 duration-150">
                                                     <p class="font-lora lg:text-[1rem] text-[0.5rem] text-black">Order
-                                                        now</p>
+                                                        now
+                                                    </p>
                                                     <img src="@/assets/icon/Plus.svg" alt="" class="lg:w-fit w-2" />
                                                 </button>
                                             </NuxtLink>
                                         </div>
                                     </figcaption>
-                                </figure>
-                            </div>
-                            <div class="lg:w-72 w-44">
-                                <figure class="accbs relative cursor-pointer max-w-sm">
-                                    <a href="#">
-                                        <img class="rounded-lg" src="@/assets/img/ExAccsProduct.jpg"
-                                            alt="imageAccessoriesProduct" />
-                                    </a>
-                                    <figcaption
-                                        class="absolute px-4 text-lg text-white/60 top-0 flex flex-col opacity-0 hover:opacity-100 transition-all duration-300 justify-between pb-5 w-full h-full">
-                                        <div class="flex justify-between items-start">
-                                            <div class="ProductInfo flex flex-col leading-5">
-                                                <p class="lg:text-[1.2rem] text-[1rem] font-lora">
-                                                    Green Forest Wallet
-                                                </p>
-                                                <p class="font-lora text-[1rem]">400.000 IDR</p>
-                                            </div>
-                                            <div class="GenderProduct">
-                                                <p class="font-lora text-[1rem]">Men</p>
-                                            </div>
-                                        </div>
-                                        <div class="Order_btn flex justify-end">
-                                            <NuxtLink>
-                                                <button
-                                                    class="flex items-center gap-1 bg-white shadow-lg rounded-full px-1 lg:h-full h-5 hover:scale-75 duration-150">
-                                                    <p class="font-lora lg:text-[1rem] text-[0.5rem] text-black">Order
-                                                        now</p>
-                                                    <img src="@/assets/icon/Plus.svg" alt="" class="lg:w-fit w-2" />
-                                                </button>
-                                            </NuxtLink>
-                                        </div>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            <div class="lg:w-72 w-44">
-                                <figure class="accbs relative cursor-pointer max-w-sm">
-                                    <a href="#">
-                                        <img class="rounded-lg" src="@/assets/img/ExAccsProduct.jpg"
-                                            alt="imageAccessoriesProduct" />
-                                    </a>
-                                    <figcaption
-                                        class="absolute px-4 text-lg text-white/60 top-0 flex flex-col opacity-0 hover:opacity-100 transition-all duration-300 justify-between pb-5 w-full h-full">
-                                        <div class="flex justify-between items-start">
-                                            <div class="ProductInfo flex flex-col leading-5">
-                                                <p class="lg:text-[1.2rem] text-[1rem] font-lora">
-                                                    Green Forest Wallet
-                                                </p>
-                                                <p class="font-lora text-[1rem]">400.000 IDR</p>
-                                            </div>
-                                            <div class="GenderProduct">
-                                                <p class="font-lora text-[1rem]">Men</p>
-                                            </div>
-                                        </div>
-                                        <div class="Order_btn flex justify-end">
-                                            <NuxtLink>
-                                                <button
-                                                    class="flex items-center gap-1 bg-white shadow-lg rounded-full px-1 lg:h-full h-5 hover:scale-75 duration-150">
-                                                    <p class="font-lora lg:text-[1rem] text-[0.5rem] text-black">Order
-                                                        now</p>
-                                                    <img src="@/assets/icon/Plus.svg" alt="" class="lg:w-fit w-2" />
-                                                </button>
-                                            </NuxtLink>
-                                        </div>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            <div class="lg:w-72 w-44">
-                                <figure class="accbs relative cursor-pointer max-w-sm">
-                                    <a href="#">
-                                        <img class="rounded-lg" src="@/assets/img/ExAccsProduct.jpg"
-                                            alt="imageAccessoriesProduct" />
-                                    </a>
-                                    <figcaption
-                                        class="absolute px-4 text-lg text-white/60 top-0 flex flex-col opacity-0 hover:opacity-100 transition-all duration-300 justify-between pb-5 w-full h-full">
-                                        <div class="flex justify-between items-start">
-                                            <div class="ProductInfo flex flex-col leading-5">
-                                                <p class="lg:text-[1.2rem] text-[1rem] font-lora">
-                                                    Green Forest Wallet
-                                                </p>
-                                                <p class="font-lora text-[1rem]">400.000 IDR</p>
-                                            </div>
-                                            <div class="GenderProduct">
-                                                <p class="font-lora text-[1rem]">Men</p>
-                                            </div>
-                                        </div>
-                                        <div class="Order_btn flex justify-end">
-                                            <NuxtLink>
-                                                <button
-                                                    class="flex items-center gap-1 bg-white shadow-lg rounded-full px-1 lg:h-full h-5 hover:scale-75 duration-150">
-                                                    <p class="font-lora lg:text-[1rem] text-[0.5rem] text-black">Order
-                                                        now</p>
-                                                    <img src="@/assets/icon/Plus.svg" alt="" class="lg:w-fit w-2" />
-                                                </button>
-                                            </NuxtLink>
-                                        </div>
-                                    </figcaption>
-                                </figure>
-                            </div>
+                                </NuxtLink>
+                            </figure>
                         </div>
                     </div>
                 </div>
@@ -266,9 +170,9 @@
                     <img src="@/assets/img/BGDiscover.jpg" class="w-full BG_disc brightness-50" />
                     <figcaption
                         class="absolute px-4 text-lg text-white top-0 flex flex-col justify-center lg:gap-20 gap-10 items-center pb-5 w-full h-full">
-                        <div class="flex flex-col items-center gap-3">
+                        <div class="flex flex-col items-center lg:gap-3">
                             <p
-                                class="Titl_disc font-lora font-bold lg:text-[3rem] text-[1.5rem] text-center drop-shadow-2xl">
+                                class="Titl_disc font-lora font-bold lg:text-[3rem] text-[1.5rem] pt-5 text-center drop-shadow-2xl">
                                 Explore the Beauty of Genuine Leather
                             </p>
                             <p class="Sub_disc font-lora lg:text-[1rem] text-[0.8rem] text-center">
@@ -297,8 +201,8 @@
                     <img src="@/assets/img/AccessBG.jpg" class="w-full BG_acc brightness-50" />
                     <figcaption
                         class="absolute px-4 text-lg text-white top-0 flex flex-col justify-center gap-20 items-center pb-5 w-full h-full">
-                        <div class="flex flex-col items-center gap-3">
-                            <p class="Titl_acc font-lora font-bold lg:text-[3rem] text-[1.5rem] drop-shadow-2xl">
+                        <div class="flex flex-col items-center lg:gap-3">
+                            <p class="Titl_acc font-lora font-bold lg:text-[3rem] text-[1.5rem] pt-3 drop-shadow-2xl">
                                 Accessories
                             </p>
                             <p class="Sub_acc font-lora lg:text-[1rem] text-[0.8rem]">
@@ -358,18 +262,25 @@ import Lenis from 'lenis'
 import SplitType from 'split-type';
 gsap.registerPlugin(ScrollTrigger)
 
-// const isHidden = ref(true);
-// const isShow = ref(true)
-// const isUnshow = ref(true)c
+const supabase = useSupabaseClient()
 
-// function menu() {
-//     isHidden.value = !isHidden.value;
-//     gsap.from('.stagg', {
-//         opacity: 0,
-//         stagger: 0.3,
-//         duration: 0.5
-//     })
-// }
+const { data: getNewMen } = useLazyAsyncData('getNewMen', async () => {
+    const { data, error } = await supabase.from('jaketMen').select(`*, kategoriJaket(*), warna(*)`).order('created', { ascending: false }).range(0, 1)
+    if (error) throw error
+    return data
+})
+
+const { data: getNewWomen } = useLazyAsyncData('getNewWomen', async () => {
+    const { data, error } = await supabase.from('jaketWomen').select(`*, kategoriJaket(*), warna(*)`).order('created', { ascending: false }).range(0, 1)
+    if (error) throw error
+    return data
+})
+
+const { data: getNewAccessories } = useLazyAsyncData('getNewAccessories', async () => {
+    const { data, error } = await supabase.from('aksesoris').select(`*, itemAksesoris(*), warna(*), gender(*)`).order('created', { ascending: false }).range(0, 3)
+    if (error) throw error
+    return data
+})
 
 function womenShow() {
     gsap.to(".women", {
@@ -574,4 +485,9 @@ onMounted(() => {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.jacketbs:hover,
+.accbs:hover {
+    box-shadow: 0.1px 0.1px 10px 0.001px #1c3d32;
+}
+</style>

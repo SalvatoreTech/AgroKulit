@@ -1,12 +1,12 @@
 <template>
     <div class="bg-white text-white">
         <div class="white"></div>
-        <!-- Navbar -->
+        <!-- Sidebar -->
         <Sidebar />
 
-        <div class="Women bg-white text-black paddingXY">
+        <div class="Accessories bg-white text-black paddingXY">
             <div class="flex justify-between items-center">
-                <div class="Titl_women flex gap-2 items-center">
+                <div class="Titl_accessories flex gap-2 items-center">
                     <NuxtLink to="/admin">
                         <img src="@/assets/icon/Arrows.svg" alt="" class="w-3">
                     </NuxtLink>
@@ -52,22 +52,13 @@
                             class="text-black hover:bg-slate-600 hover:text-white">{{ colour.nama }}</option>
                     </select>
                     <NuxtLink to="/admin/accessories/addAccessories"
-                        class="addtype font-lora flex gap-1 border border-black rounded-md px-1 cursor-pointer"
-                        @click="toggleAdd">
+                        class="addtype font-lora flex gap-1 border border-black rounded-md px-1 cursor-pointer">
                         <img src="@/assets/icon/PlusRounded.svg" alt="" class="w-4">
                         <p>Accessory</p>
                     </NuxtLink>
                 </div>
             </div>
-            <div role="alert" class="alert alert-success text-white" v-if="submittedAdd">
-                <svg xmlns="http://www.w3.org/4000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="white"
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>The type {{ selectedAccessory.nama }} was successfully added.</span>
-            </div>
-            <div role="alert" class="alert alert-success text-white" v-if="submittedDelete">
+            <div v-if="submittedDelete" role="alert" class="alert alert-success text-white">
                 <svg xmlns="http://www.w3.org/4000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none"
                     viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="white"
@@ -78,12 +69,11 @@
             <div class="Listtype font-lora">
                 <div class="HeadList flex p-1 font-medium border-b border-gray-800">
                     <p class="lg:w-5/12">Product</p>
-                    <p class="w-2/12">Price</p>
+                    <p class="w-3/12">Price</p>
                     <p class="w-2/12">Stock</p>
                     <p class="w-2/12">Colour</p>
                     <p class="w-2/12">Gender</p>
                     <p class="w-2/12">Type</p>
-                    <p class="w-2/12">Created</p>
                     <span class="w-24"></span>
                 </div>
                 <div v-if="isFetching" class="flex justify-center items-center h-64">
@@ -96,25 +86,23 @@
                             <img :src="accessory.foto" alt="" class="w-10 mx-1">
                             <p class=""> {{ accessory.itemAksesoris?.nama }} {{ accessory.nama }}</p>
                         </div>
-                        <p class="w-2/12">{{ rupiah(accessory.harga) }}</p>
+                        <p class="w-3/12">{{ rupiah(accessory.harga) }}</p>
                         <p class="w-2/12">{{ accessory.stok }}</p>
                         <p class="w-2/12">{{ accessory.warna?.nama }}</p>
                         <p class="w-2/12">{{ accessory.gender?.nama }}</p>
                         <p class="w-2/12">{{ accessory.itemAksesoris?.nama }}</p>
-                        <p class="w-2/12">{{ accessory.created_at.split('.')[0].split('T')[0] }}, {{
-                            accessory.created_at.split('.')[0].split('T')[1] }}</p>
                         <div class="flex gap-2 w-20">
                             <NuxtLink :to="`/admin/accessories/${accessory.id}`"
                                 class="btn w-5 cursor-pointer bg-[#E9E9E9] hover:bg-[#2bb371] rounded-md">
                                 <img src="@/assets/icon/edit.svg" alt="Rubbish bin" class="max-w-5">
                             </NuxtLink>
                             <div class="DeletedProduct">
-                                <input type="checkbox" id="deletetype" class="modal-toggle"
-                                    v-model="showDeleteModal" />
+                                <input type="checkbox" id="deletetype" class="modal-toggle" v-model="showDeleteModal" />
                                 <label for="deletetype" class="modal" @click="showDeleteModal = false">
                                     <label class="modal-box relative font-lora bg-[#ebedec]" @click.stop>
                                         <p class="font-lora text-red-500">Delete!</p>
-                                        <p class="font-lora">Are you sure to delete this {{ selectedAccessory.warna?.nama }}
+                                        <p class="font-lora">Are you sure to delete this {{
+                                            selectedAccessory.warna?.nama }}
                                             {{
                                                 selectedAccessory.kategoriJaket?.nama }} {{ selectedAccessory.nama }}</p>
                                         <div class="modal-action">
@@ -146,8 +134,6 @@ definePageMeta({
 import Sidebar from '~/components/admin/Sidebar.vue';
 const supabase = useSupabaseClient()
 
-const nama = ref('')
-const keterangan = ref('')
 const searchAccessory = ref('')
 const type = ref(null)
 const colour = ref(null)
@@ -155,13 +141,8 @@ const gender = ref(null)
 
 const showDeleteModal = ref(false)
 const selectedAccessory = ref({})
-const submittedAdd = ref(false)
 const submittedDelete = ref(false)
 
-
-function toggleAdd() {
-    showAddModal.value = true
-}
 
 const toggleDelete = (accessory) => {
     selectedAccessory.value = accessory;
@@ -169,19 +150,13 @@ const toggleDelete = (accessory) => {
 }
 
 const { data: accessories, isFetching, refresh } = useLazyAsyncData('accessories', async () => {
-    let query = supabase.from('aksesoris').select(`*, itemAksesoris(*), warna(*), gender(*)`).order('id')
+    let query = supabase.from('aksesoris').select(`*, itemAksesoris(*), warna(*), gender(*)`).order('created', { ascending: false })
     if (searchAccessory.value) query = query.ilike('nama', `%${searchAccessory.value}%`)
-    if (type.value) query = query.eq('kategori', type.value)
-    if (gender.value) query = query.eq('ukuran', gender.value)
+    if (type.value) query = query.eq('item', type.value)
+    if (gender.value) query = query.eq('gender', gender.value)
     if (colour.value) query = query.eq('warna', colour.value)
     const { data, error } = await query
     if (error) throw error
-    // if (data) {
-    //     accessories.value = data;
-    //     data.forEach(accessory => {
-    //         const { data } = supabase.storage.from('fotoProduk').getPublicUrl(accessory.foto)
-    //     })
-    // }
     return data
 })
 
@@ -204,18 +179,15 @@ const { data: types } = useAsyncData('types', async () => {
 })
 
 const deleteProduct = async (id) => {
-    console.log(id)
     const { error } = await supabase.from('aksesoris').delete().eq('id', id)
     if (error) throw error
     else
         showDeleteModal.value = false
     refresh()
     submittedDelete.value = true
-    nama.value = ''
-    keterangan.value = ''
     setTimeout(() => {
         submittedDelete.value = false
-    }, 4000)
+    }, 3000)
 }
 </script>
 

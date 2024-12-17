@@ -29,7 +29,7 @@
                             </svg>
                         </div>
                         <input v-model="searchJacket" @input="refresh" type="search"
-                            class="block search lg:w-[300px] w-[42px] p-1 ps-8 text-xs text-gray-950 border outline-none border-gray-300 rounded-lg bg-transparent dark:border-gray-600 dark:placeholder-gray-700"
+                            class="block search lg:w-[300px] w-[245px] p-1 ps-8 text-xs text-gray-950 border outline-none border-gray-300 rounded-lg bg-transparent dark:border-gray-600 dark:placeholder-gray-700"
                             placeholder="Search by name or number (ex. Agro 25)" :class="{ 'w-[300px]' : isShow }" required />
                     </div>
                 </div>
@@ -65,7 +65,7 @@
             <div class="Product flex flex-wrap gap-5 justify-between paddingX mb-5">
                 <div v-if="menJackets == 0" class="No_product text-medium font-lora">Sorry, Product {{ searchJacket }} is not found.</div>
                 <div v-else v-for="menJacket in menJackets" :key="menJacket.id"
-                    class="card card-compact rounded-none bg-[#E9ECEB] lg:w-60 w-40 drop-shadow-md">
+                    class="card card-compact rounded-none bg-[#E9ECEB] lg:w-60 w-44 drop-shadow-md cursor-pointer">
                     <NuxtLink :to="`/men/${menJacket.id}`">
                         <figure ref="photo" class=" mx-2 mt-1">
                             <img :src="menJacket.foto" alt="Product"
@@ -74,7 +74,7 @@
                         <div class="card-body flex flex-row items-center justify-between">
                             <div class="text">
                                 <div class="flex justify-between w-full">
-                                    <p class="card-title font-lora text-[16px] w-40">
+                                    <p class="card-title font-lora text-[16px] lg:w-40">
                                         {{ menJacket.warna?.nama }} {{ menJacket.kategoriJaket?.nama }} for Man
                                     </p>
                                     <p class="font-lora text-[11px]">{{ menJacket.nama }}</p>

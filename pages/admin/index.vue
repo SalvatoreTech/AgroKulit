@@ -9,17 +9,15 @@
           <p class="font-lora text-3xl">Latest Data</p>
         </div>
         <div class="flex w-full justify-center gap-20">
-          <div class="MostLikedJacket w-3/12 p-4 shadow-xl flex-col rounded-xl flex">
+          <!-- <div class="MostLikedJacket w-3/12 p-4 shadow-xl flex-col rounded-xl flex">
             <p class="font-lora">Jacket</p>
-            <Line :data="mostLikedJacketChartData" :options="mostLikedJacketChartOptions" />
-          </div>
+          </div> -->
           <div class="AmountofProducts w-5/12 p-4 shadow-xl rounded-xl">
             <Bar :data="productChartData" :options="productChartOptions" />
           </div>
-          <div class="MostLikedAccessories w-3/12 p-4 shadow-xl rounded-xl flex flex-col">
+          <!-- <div class="MostLikedAccessories w-3/12 p-4 shadow-xl rounded-xl flex flex-col">
             <p class="font-lora">Accessories</p>
-            <Line :data="mostLikedAccessoriesChartData" :options="mostLikedAccessoriesChartOptions" />
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="Hyper_link">
@@ -47,41 +45,45 @@
               </div>
             </figcaption>
           </figure>
-          <p class="text-3xl mt-1 font-lora">Manage Other</p>
-          <div class="flex gap-10">
-            <figure class="w-full h-10 mt-1 relative max-w-full overflow-hidden bg-[#EBEDEC] hover:bg-[#D6D6D6] rounded">
-              <figcaption
-                class="absolute text-lg font-lora top-0 flex flex-col justify-center gap-5 items-center content-center w-full h-ful">
-                <div class="flex justify-evenly w-full ">
-                  <NuxtLink to="/admin/categories"
-                    class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
-                    Categories of Jackets
-                  </NuxtLink>
-                </div>
-              </figcaption>
-            </figure>
-            <figure class="w-full h-10 relative max-w-full mt-3 overflow-hidden bg-[#EBEDEC] hover:bg-[#D6D6D6] rounded">
-              <figcaption
-                class="text-lg font-lora top-0 flex flex-col justify-center gap-5 items-center content-center w-full h-ful">
-                <div class="flex justify-evenly w-full">
-                  <NuxtLink to="/admin/colours"
-                    class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
-                    Colour
-                  </NuxtLink>
-                </div>
-              </figcaption>
-            </figure>
-            <figure class="w-full h-10 relative max-w-full mt-3 overflow-hidden bg-[#EBEDEC] hover:bg-[#D6D6D6] rounded">
-              <figcaption
-                class="absolute text-lg font-lora top-0 flex flex-col justify-center gap-5 items-center content-center w-full h-ful">
-                <div class="flex justify-evenly w-full">
-                  <NuxtLink to="/admin/types"
-                    class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
-                    Type of Accessories
-                  </NuxtLink>
-                </div>
-              </figcaption>
-            </figure>
+          <div class="bg-[#6d6d6] mt-10 rounded">
+            <div class="flex gap-10 items-center">
+              <figure
+                class="w-full h-10 relative max-w-full overflow-hidden  text-white hover:text-black bg-[#254e3f] hover:bg-[#D6D6D6] hover:border hover:border-slate-950 rounded">
+                <figcaption
+                  class="absolute text-lg font-lora top-0 flex flex-col justify-center gap-5 items-center content-center w-full h-ful">
+                  <div class="flex justify-evenly w-full ">
+                    <NuxtLink to="/admin/categories"
+                      class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
+                      Categories of Jackets
+                    </NuxtLink>
+                  </div>
+                </figcaption>
+              </figure>
+              <figure
+                class="w-full h-10 relative max-w-full text-white hover:text-black overflow-hidden bg-[#254e3f] hover:bg-[#D6D6D6] hover:border hover:border-slate-950 rounded">
+                <figcaption
+                  class="text-lg font-lora top-0 flex flex-col justify-center gap-5 items-center content-center w-full h-ful">
+                  <div class="flex justify-evenly w-full">
+                    <NuxtLink to="/admin/colours"
+                      class="relative  after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
+                      Colour
+                    </NuxtLink>
+                  </div>
+                </figcaption>
+              </figure>
+              <figure
+                class="w-full h-10 relative max-w-full text-white hover:text-black overflow-hidden bg-[#254e3f] hover:bg-[#D6D6D6] hover:border hover:border-slate-950 rounded">
+                <figcaption
+                  class="absolute text-lg font-lora top-0 flex flex-col justify-center gap-5 items-center content-center w-full h-ful">
+                  <div class="flex justify-evenly w-full">
+                    <NuxtLink to="/admin/types"
+                      class="relative after:bg-black after:absolute after:h-[0.10rem] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
+                      Type of Accessories
+                    </NuxtLink>
+                  </div>
+                </figcaption>
+              </figure>
+            </div>
           </div>
         </div>
       </div>

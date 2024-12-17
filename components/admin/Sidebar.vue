@@ -81,7 +81,7 @@ const navLinks = ref([
     path: '/admin'
   },
   {
-    title: 'Categories of Jackets',
+    title: 'Categories',
     path: '/admin/categories'
   },
   {
@@ -89,7 +89,7 @@ const navLinks = ref([
     path: '/admin/colours'
   },
   {
-    title: 'Types of Accessories',
+    title: 'Types',
     path: '/admin/types'
   },
 ])

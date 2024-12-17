@@ -40,14 +40,14 @@
                             <div class="relative flex flex-col">
                                 <label for="name">Product Name</label>
                                 <input v-model="product.nama" name="name" type="text"
-                                    class="bg-white placeholder:text-black rounded-md p-1 outline-none"
-                                    placeholder="Product Name">
+                                    class="bg-white placeholder:text-[#4e4e4e] rounded-md p-1 outline-none"
+                                    placeholder="'Agro-25'">
                             </div>
                             <div class="relative flex flex-col">
                                 <label for="description">Product Description</label>
                                 <textarea v-model="product.keterangan" name="description"
-                                    class="bg-white placeholder:text-black rounded-md p-1 outline-none"
-                                    placeholder="Product Description"></textarea>
+                                    class="bg-white placeholder:text-[#4e4e4e] rounded-md p-1 outline-none"
+                                    placeholder="'Type here to describe the product'"></textarea>
                             </div>
                             <div class="flex flex-wrap items-center gap-10">
                                 <div class="relative w-2/5">
@@ -85,26 +85,27 @@
                                     </select>
                                 </div>
                                 <div class="relative flex flex-col w-2/5">
-                                    <label for="price">Price</label>
+                                    <label for="price">Price {{ rupiah(product.harga) }}</label>
                                     <input v-model.trim="product.harga" name="price" type="number" step="0.001"
-                                        class="bg-white placeholder:text-black rounded-md p-1 outline-none"
-                                        placeholder="Price">
+                                        class="bg-white placeholder:text-[#4e4e4e] rounded-md p-1 outline-none"
+                                        placeholder="0">
                                 </div>
                                 <div class="relative flex flex-col w-2/5">
                                     <label for="stock">Stock</label>
                                     <input v-model.trim="product.stok" name="stock" type="number"
-                                        class="bg-white placeholder:text-black rounded-md p-1 outline-none"
-                                        placeholder="Stock">
+                                        class="bg-white placeholder:text-[#4e4e4e] rounded-md p-1 outline-none"
+                                        placeholder="0">
                                 </div>
                             </div>
                         </div>
                         <div class="Photos bg-[#ebedec] w-[50%] rounded-md p-3">
-                            <p class="labelImage font-medium text-xl font-lora">Photo</p>
+                            <p class="labelImage font-medium text-xl font-lora">Photo*</p>
+                            <p class="text-gray-500 text-[12px]">.png /only</p>
                             <div class="flex flex-col items-center justify-center">
                                 <div class="h-[250px] w-[250px] border-2">
                                     <img :src="newImage || product.foto" alt="imageProduct" class="object-fit">
                                 </div>
-                                <input type="file" accept="image/*" class="form-control" id="uploadImage"
+                                <input type="file" accept="image/png" class="form-control" id="uploadImage"
                                     @change="imagePicked" name="photo">
                             </div>
                         </div>
@@ -120,7 +121,7 @@ definePageMeta({
     middleware: "auth"
 })
 const supabase = useSupabaseClient()
-const url_img = 'https://hzidiiekhnkimhrxbokx.supabase.co/storage/v1/object/public/fotoProduk/'
+const url_img = 'https://hzidiiekhnkimhrxbokx.supabase.co/storage/v1/object/public/fotoProduk/jaketMen'
 const route = useRoute()
 const productId = route.params.id
 const isLoading = ref(false);
@@ -141,7 +142,8 @@ async function getProduct() {
     const { data, error } = await supabase.from('jaketMen').select().eq('id', productId).maybeSingle()
     if (error) throw error
     if (data) {
-        data.newFoto = data.foto
+        const { data: url } = supabase.storage.from('fotoProduk').getPublicUrl(`jaketMen/${data.foto}`)
+        data.fotoUrl = url
         product.value = data
     }
 }
@@ -169,27 +171,24 @@ const newImage = ref()
 function imagePicked(e) {
     const file = e.target.files[0]
     imageProduct.value = file
-    product.value.newFoto = `jaketMen/${file.name}`
+    product.value.foto = `${url_img}/${file.name}`
     let fr = new FileReader()
     fr.readAsDataURL(file)
     fr.onload = () => newImage.value = fr.result
 }
 
-
 const { status, error, execute: editProduct } = useAsyncData('editProduct', async () => {
     if (imageProduct.value) {
-        let oldFoto = product.value.foto.substr(product.value.foto.indexOf('jaketMen'))
-        if (product.value.newFoto == oldFoto) {
-            console.log("updating")
-            const { error } = await supabase.storage.from('fotoProduk').update(oldFoto, imageProduct.value)
+        let url = product.value.fotoUrl.publicUrl
+        if (product.value.foto == url.substr(url.indexOf('jaketMen'))) {
+            const { error } = await supabase.storage.from('fotoProduk').update(`${product.value.foto}`, imageProduct.value)
             if (error) throw error
         }
         else {
-            console.log("uploading")
-            const { error } = await supabase.storage.from('fotoProduk').upload(oldFoto, imageProduct.value)
+            const { error } = await supabase.storage.from('fotoProduk').upload(`${product.value.foto}`, imageProduct.value)
             if (error) throw error
             else {
-                const { error } = await supabase.storage.from('fotoProduk').remove(oldFoto)
+                const { error } = await supabase.storage.from('fotoProduk').remove(`jaketMen/${url.substr(url.indexOf('jakeMen'))}`)
                 if (error) throw error
             }
         }
@@ -202,7 +201,7 @@ const { status, error, execute: editProduct } = useAsyncData('editProduct', asyn
         stok: product.value.stok,
         kategori: product.value.kategoriJaket?.nama,
         keterangan: product.value.keterangan,
-        foto: url_img + product.value.newFoto
+        foto: product.value.foto
     }).eq('id   ', productId)
     if (error) throw error
     else navigateTo('/admin/men')
