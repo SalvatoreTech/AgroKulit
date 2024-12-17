@@ -5,12 +5,12 @@
         <Sidebar />
 
         <div class="colours bg-white text-black paddingXY">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center lg:flex-row flex-col lg:gap-0 gap-3">
                 <div class="Titl_colour flex gap-2 items-center">
                     <NuxtLink to='/admin/'>
                         <img src="@/assets/icon/Arrows.svg" alt="" class="w-3">
                     </NuxtLink>
-                    <p class="font-lora text-[2rem]">
+                    <p class="font-lora lg:text-[2rem] text-[1.5rem]">
                         List of Colours ({{ colours?.length }})
                     </p>
                 </div>
@@ -82,9 +82,9 @@
                 </svg>
                 <span>The colour {{ selectedColour.nama }} was successfully deleted.</span>
             </div>
-            <div class="Listcolours font-lora">
+            <div class="Listcolours font-lora lg:mt-2 mt-10">
                 <div class="HeadList flex  font-medium border-b border-gray-800">
-                    <p class="lg:w-5/12 ps-2">Name</p>
+                    <p class="w-5/12 ps-2">Name</p>
                     <p class="w-7/12">
                         Description
                     </p>
@@ -96,7 +96,7 @@
                 <div v-else class="mt-2">
                     <div v-for="colour in colours" :key="colour.id"
                         class="colour flex w-full py-2 mt-1 bg-[#EBEDEC] hover:bg-[#D6D6D6] rounded-md px-2 items-center">
-                        <p class="lg:w-5/12">{{ colour.nama }}</p>
+                        <p class="w-5/12">{{ colour.nama }}</p>
                         <p class="w-7/12">{{ colour.keterangan }}</p>
                         <button @click="toggleDelete(colour)"
                             class="btn w-5 cursor-pointer bg-[#E9E9E9] hover:bg-red-500 rounded-md">

@@ -4,16 +4,16 @@
         <Sidebar />
 
         <div class="Men bg-white text-black paddingXY">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center lg:flex-row flex-col lg:gap-0 gap-2">
                 <div class="Titl_men flex gap-2 items-center">
                     <NuxtLink to="/admin">
                         <img src="@/assets/icon/Arrows.svg" alt="" class="w-3">
                     </NuxtLink>
-                    <p class="font-lora text-[2rem]">
+                    <p class="font-lora lg:text-[2rem] text-[1.5rem]">
                         List of Jackets Men ({{ jacketMen?.length }})
                     </p>
                 </div>
-                <div class="Filter flex gap-2 w-fit">
+                <div class="Filter flex flex-wrap gap-2 w-fit">
                     <div class="relative">
                         <div class="absolute pt-1 start-0 flex items-center ps-3 pointer-none">
                             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -23,7 +23,7 @@
                             </svg>
                         </div>
                         <input v-model="searchJacket" @input="refresh" type="search"
-                            class="block w-xl w-[230px] p-1 ps-8 text-xs text-gray-950 border outline-none border-gray-300 rounded-lg bg-transparent dark:border-gray-600 dark:placeholder-gray-700"
+                            class="block w-xl lg:w-[230px] p-1 ps-8 text-xs text-gray-950 border outline-none border-gray-300 rounded-lg bg-transparent dark:border-gray-600 dark:placeholder-gray-700"
                             placeholder="Search (e.g Agro 25)" required />
                     </div>
                     <select v-model="category" @change="refresh"
@@ -73,27 +73,25 @@
                 </svg>
                 <span>The category {{ selectedMen.nama }} was successfully deleted.</span>
             </div>
-            <div class="Listcategory font-lora">
+            <div class="Listcategory font-lora pt-5">
                 <div class="HeadList flex p-1 font-medium border-b border-gray-800">
-                    <p class="lg:w-5/12">Product</p>
+                    <p class="w-5/12">Product</p>
                     <p class="w-3/12">Price</p>
-                    <p class="w-2/12">Stock</p>
+                    <p class="w-3/12">Stock</p>
                     <p class="w-2/12">Size</p>
                     <p class="w-2/12">Category</p>
-                    <p class="w-2/12">Created</p>
                     <span class="w-24"></span>
                 </div>
                 <div v-for="jacket in jacketMen" :key="jacket.id"
-                    class="jacket flex p-1 w-full items-center content-center mt-1 bg-[#EBEDEC] hover:bg-[#D6D6D6] rounded-md">
-                    <div class="lg:w-5/12 flex">
-                        <img :src="jacket.foto" alt="" class="w-10 mx-1">
+                    class="jacket flex p-1 w-full items-center content-center mt-1 bg-[#EBEDEC] hover:bg-[#D6D6D6] rounded-md lg:text-[16px] text-[12px]">
+                    <div class="w-5/12 flex lg:flex-row flex-col">
+                        <img :src="jacket.foto" alt="" class="lg:w-10 lg:h-10 w-8 h-8 mx-1">
                         <p class=""> {{ jacket.kategoriJaket?.nama }} {{ jacket.nama }}</p>
                     </div>
                     <p class="w-3/12">{{ rupiah(jacket.harga) }}</p>
-                    <p class="w-2/12">{{ jacket.stok }}</p>
+                    <p class="w-3/12">{{ jacket.stok }}</p>
                     <p class="w-2/12">{{ jacket.ukuranJaket?.nama }}</p>
                     <p class="w-2/12">{{ jacket.kategoriJaket?.nama }}</p>
-                    <p class="w-2/12">{{ jacket.created.split('.')[0].split('T')[0] }}, {{ jacket.created.split('.')[0].split('T').pop() }}  </p>
                     <div class="flex gap-2 w-20">
                         <NuxtLink :to="`/admin/men/${jacket.id}`"
                             class="btn w-5 cursor-pointer bg-[#E9E9E9] hover:bg-[#2bb371] rounded-md">

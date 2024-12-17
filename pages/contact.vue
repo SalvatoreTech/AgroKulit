@@ -14,7 +14,7 @@
                             <p v-if="isError" class="px-2 bg-red-600 rounded-md">Your Feeling failed to send the email. Please try again.</p>
                         </div>
                         <form @submit.prevent="sendEmail"
-                            class="lg:w-[500px] md:w-[400px] sm:w-[400px] w-[250px] font-lora" autocomplete="off">
+                            class="lg:w-[500px] md:w-[400px] font-lora" autocomplete="off">
                             <div class="relative z-0 mb-5 group">
                                 <input v-model="formData.name" type="text" name="floating_name"
                                     class="block py-2.5 ps-2 w-full text-sm bg-transparent border rounded-md border-white text-white appearance-none outline-none dark:border-white peer"

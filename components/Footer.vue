@@ -10,15 +10,15 @@
             Free shipping in Indonesia, Malaysia and World Wide.
           </p>
           <div class="flex gap-2 justify-center">
-            <NuxtLink>
+            <a href="https://www.facebook.com/profile.php?id=61569865808297">
               <img src="@/assets/icon/FB.svg" alt="Facebook" class="HyperLink_medsos">
-            </NuxtLink>
-            <NuxtLink>
+            </a>
+            <a href="https://www.instagram.com/agroleather/">
               <img src="@/assets/icon/IG.svg" alt="Instagram" class="HyperLink_medsos">
-            </NuxtLink>
-            <NuxtLink>
-              <img src="@/assets/icon/TW.svg" alt="Twitter" class="HyperLink_medsos">
-            </NuxtLink>
+            </a>
+              <a href="">
+                <img src="@/assets/icon/TW.svg" alt="Twitter" class="HyperLink_medsos">
+              </a>
           </div>
         </div>
         <div class="flex justify-between lg:w-6/12 w-full gap-2 text-sm">

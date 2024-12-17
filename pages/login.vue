@@ -2,7 +2,7 @@
     <div class="bg-white text-white ">
         <div class="bg-login flex justify-between">
             <div
-                class="paddingX flex flex-col justify-evenly bg-[#767676]/90 rounded-e-xl layer backdrop-blur-[8px] shadow-xl">
+                class="paddingX flex flex-col lg:justify-evenly justify-center lg:gap-0 gap-5 bg-[#767676]/90 rounded-e-xl layer backdrop-blur-[7px] shadow-xl">
                 <NuxtLink to="/" class="LeftArrow">
                     <svg width="40" height="40" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -18,7 +18,7 @@
                         <p class="font-bodoni text-[38px]">Log in</p>
                         <p class="font-lora text-[16px]">Only admin can access this login.</p>
                     </div>
-                    <form @submit.prevent="login" class="max-w-full mx-auto" autocomplete="off">
+                    <form @submit.prevent="login" class="max-w-full lg:mx-auto" autocomplete="off">
                         <div v-if="status == 'error'" class="error font-lora flex gap-2 bg-red-600 rounded-md my-2 p-1">
                             <img src="../assets/icon/error.svg" alt="" class="w-5">
                             {{ error.message }}
@@ -27,7 +27,7 @@
                             <!-- <img src="../assets/icon/error.svg" alt="" class="w-5"> -->
                             Loading...
                         </div>
-                        <div class="stagg relative z-0 mb-5 group w-[400px]">
+                        <div class="stagg relative z-0 mb-5 group w-full">
                             <input v-model="email" type="email" name="floating_email"
                                 class="block py-2.5 ps-2 px-0 w-full text-sm text-white bg-transparent border rounded-md border-white appearance-none dark:border-white dark:focus:border-white focus:outline-none focus:ring-0 focus:border-white peer"
                                 placeholder=" " required />

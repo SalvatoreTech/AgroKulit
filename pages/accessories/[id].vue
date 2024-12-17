@@ -11,34 +11,33 @@
                         <img src="../../assets/icon/LeftArrow.svg" alt="LeftArrow">
                     </NuxtLink>
                 </div>
-                <div class="flex justify-evenly">
-                    <div class="rounded-box lg:w-96 border-4 border-[#ebedec] shadow-md bg-[#ebedec]" data-carousel="slide">
-                        <div class="">
-                            <img :src="getAccessory?.foto" class="xzoom w-full" alt="Tailwind CSS Carousel component"/>
-                        </div>
+                <div class="flex justify-evenly lg:flex-row flex-col">
+                    <div class="rounded-box lg:w-96 w-full border-4 flex justify-center border-[#ebedec] shadow-md bg-[#ebedec]"
+                        data-carousel="slide">
+                        <img :src="getAccessory?.foto" class="xzoom lg:w-full w-60"
+                            alt="Tailwind CSS Carousel component" />
                     </div>
                     <div class="ProfuctInfo font-lora max-w-lg flex flex-col justify-center gap-7">
-                        <div class="Tilt leading-[15px] ps-3">
+                        <div class="Tilt lg:leading-[15px] leading-6 lg:pt-0 pt-5 ps-3">
                             <p class="text-[24px] font-bold">{{ getAccessory?.warna?.nama }} {{
-                                getAccessory?.itemAksesoris?.nama }} for Man</p>
+                                getAccessory?.itemAksesoris?.nama }} for {{ getAccessory?.gender?.nama }}</p>
                             <p class="text-[11px]">{{ getAccessory?.nama }}</p>
                         </div>
-                        <div class="Price w-fit px-5">
-                            <p>{{ rupiah(getAccessory?.harga) }}</p>
+                        <div class="Price w-full px-5">
+                            <p class="font-semibold">{{ rupiah(getAccessory?.harga) }}</p>
                         </div>
                         <div class="General">
                             <p>Colour : {{ getAccessory?.warna?.nama }}</p>
-                            <p>Gender : {{ getAccessory?.gender?.nama }}</p>
                             <p>Stock : {{ getAccessory?.stok }}</p>
                             <p>{{ getAccessory?.deskription }}</p>
                         </div>
-                        <div class="OrderLink w-fit font-lora ps-3">
-                            <p class="text-[11px] ">Shipping, Exchanges, and Returns</p>
-                            <a :href="whatsappLink"
-                                class="flex py-1 px-3 gap-1 border border-black rounded-md hover:bg-[#1C3D32] hover:border-[#1C3D32] hover:text-white">
-                                <p>Order now via WhatsApp</p>
-                            </a>
-                        </div>
+                        <div class="OrderLink w-fit font-lora">
+                                <p class="text-[11px] ">Shipping, Exchanges, and Returns</p>
+                                <a :href="whatsappLink"
+                                    class="flex py-1 px-3 gap-1 border border-black rounded-md hover:bg-[#1C3D32] hover:border-[#1C3D32] hover:text-white">
+                                    <p>Order via WhatsApp</p>
+                                </a>
+                            </div>
                     </div>
                 </div>
             </div>

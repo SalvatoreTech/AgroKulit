@@ -6,9 +6,11 @@
         <!-- Content -->
         <div class="bg-white text-black">
             <figure class="relative pt-12 flex justify-center items-start overflow-hidden">
-                <img src="../../assets/img/BGMen.jpg" alt="bgMenProduct" class="w-full bgMen" style="clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"/>
+                <img src="../../assets/img/BGMen.jpg" alt="bgMenProduct" class="w-full bgMen"
+                    style="clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)" />
                 <figcaption class="absolute text-center max-w-xs lg:mt-28 mt-5">
-                    <p class="font-bodoni lg:text-[38px] text-[1.2rem] font-bold Tilt_men" style="clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)">Men Leather Jackets</p>
+                    <p class="font-bodoni lg:text-[38px] text-[1.2rem] font-bold Tilt_men"
+                        style="clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)">Men Leather Jackets</p>
                     <div class="font-lora text-[11px] Sub_men">Find your style.</div>
                 </figcaption>
             </figure>
@@ -23,14 +25,14 @@
                     <div class="relative">
                         <div class="absolute pt-1 start-0 flex items-center ps-3 pointer-none">
                             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400 cursor-pointer" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" @click="showInput" >
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                 <path stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                             </svg>
                         </div>
                         <input v-model="searchJacket" @input="refresh" type="search"
                             class="block search lg:w-[300px] w-[245px] p-1 ps-8 text-xs text-gray-950 border outline-none border-gray-300 rounded-lg bg-transparent dark:border-gray-600 dark:placeholder-gray-700"
-                            placeholder="Search by name or number (ex. Agro 25)" :class="{ 'w-[300px]' : isShow }" required />
+                            placeholder="Search by name or number (ex. Agro 25)" required />
                     </div>
                 </div>
                 <div class="flex gap-3 font-lora lg:flex-nowrap mb-3 flex-wrap">
@@ -63,9 +65,10 @@
                 </div>
             </div>
             <div class="Product flex flex-wrap gap-5 justify-between paddingX mb-5">
-                <div v-if="menJackets == 0" class="No_product text-medium font-lora">Sorry, Product {{ searchJacket }} is not found.</div>
+                <div v-if="menJackets == 0" class="No_product text-medium font-lora h-[50vh]">Sorry, Product {{
+                    searchJacket }} is not found.</div>
                 <div v-else v-for="menJacket in menJackets" :key="menJacket.id"
-                    class="card card-compact rounded-none bg-[#E9ECEB] lg:w-60 w-44 drop-shadow-md cursor-pointer">
+                    class="card card-compact rounded-none bg-[#E9ECEB] lg:w-60 w-40 drop-shadow-md cursor-pointer">
                     <NuxtLink :to="`/men/${menJacket.id}`">
                         <figure ref="photo" class=" mx-2 mt-1">
                             <img :src="menJacket.foto" alt="Product"
@@ -102,7 +105,6 @@ const searchJacket = ref('')
 const category = ref(null)
 const size = ref(null)
 const colour = ref(null)
-const isShow = ref(false)
 
 const { data: menJackets, status, error, refresh } = useLazyAsyncData('menJackets', async () => {
     let query = supabase.from('jaketMen').select(`*, kategoriJaket(*), warna(*)`).order('id')
@@ -134,13 +136,6 @@ const { data: colours } = useAsyncData('colours', async () => {
     return data
 })
 
-function showInput() {
-    isShow.value = !isShow.value
-    gsap.to('.search', {
-        ease: 'power4.inOut',
-        duration: 1,
-    })
-}
 
 onMounted(() => {
     const tl = gsap.timeline()
@@ -186,5 +181,4 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

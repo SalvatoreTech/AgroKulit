@@ -19,20 +19,20 @@
                     <div class="hyper_link">
                         <p class="font-lora">
                             <NuxtLink to="/"> Home </NuxtLink>
-                            / Men
+                            / Women
                         </p>
                     </div>
                     <div class="relative">
                         <div class="absolute pt-1 start-0 flex items-center ps-3 pointer-none">
                             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400 cursor-pointer" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" @click="showInput" >
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                 <path stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                             </svg>
                         </div>
                         <input v-model="searchJacket" @input="refresh" type="search"
-                            class="block search lg:w-[300px] w-[42px] p-1 ps-8 text-xs text-gray-950 border outline-none border-gray-300 rounded-lg bg-transparent dark:border-gray-600 dark:placeholder-gray-700"
-                            placeholder="Search by name or number (ex. Agro 25)" :class="{ 'w-[300px]' : isShow }" required />
+                            class="block search lg:w-[300px] w-[245px] p-1 ps-8 text-xs text-gray-950 border outline-none border-gray-300 rounded-lg bg-transparent dark:border-gray-600 dark:placeholder-gray-700"
+                            placeholder="Search by name or number (ex. Agro 25)" required />
                     </div>
                 </div>
                 <div class="flex gap-3 font-lora lg:flex-nowrap mb-3 flex-wrap">
@@ -65,18 +65,19 @@
                 </div>
             </div>
             <div class="Product flex flex-wrap gap-5 justify-between paddingX mb-5">
-                <div v-if="womenJackets == 0" class="No_product text-medium font-lora">Sorry, Product is not found.</div>
+                <div v-if="womenJackets == 0" class="No_product text-medium font-lora h-[50vh]">Sorry, Product {{
+                    searchJacket }} is not found.</div>
                 <div v-else v-for="womenJacket in womenJackets" :key="womenJacket.id"
-                    class="card card-compact rounded-none bg-[#E9ECEB] lg:w-60 w-40 drop-shadow-md">
+                    class="card card-compact rounded-none bg-[#E9ECEB] lg:w-60 w-40 drop-shadow-md cursor-pointer">
                     <NuxtLink :to="`/women/${womenJacket.id}`">
-                        <figure ref="photo" class="mx-2 mt-1">
+                        <figure ref="photo" class=" mx-2 mt-1">
                             <img :src="womenJacket.foto" alt="Product"
                                 class="lg:h-[300px] h-[150px] object-contain hover:scale-110 transition-all duration-200" />
                         </figure>
                         <div class="card-body flex flex-row items-center justify-between">
                             <div class="text">
                                 <div class="flex justify-between w-full">
-                                    <p class="card-title font-lora text-[16px] w-40">
+                                    <p class="card-title font-lora text-[16px] lg:w-40">
                                         {{ womenJacket.warna?.nama }} {{ womenJacket.kategoriJaket?.nama }} for Man
                                     </p>
                                     <p class="font-lora text-[11px]">{{ womenJacket.nama }}</p>
@@ -105,7 +106,6 @@ const searchJacket = ref('')
 const category = ref(null)
 const size = ref(null)
 const colour = ref(null)
-const isShow = ref(false)
 
 const { data: womenJackets, status, error, refresh } = useLazyAsyncData('womenJackets', async () => {
     let query = supabase.from('jaketWomen').select(`*, kategoriJaket(*), warna(*)`).order('id')
@@ -143,13 +143,6 @@ const { data: colours } = useAsyncData('colours', async () => {
     return data
 })
 
-function showInput() {
-    isShow.value = !isShow.value
-    gsap.to('.search', {
-        ease: 'power4.inOut',
-        duration: 1,
-    })
-}
 
 onMounted(() => {
     const tl = gsap.timeline()

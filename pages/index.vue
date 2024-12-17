@@ -2,19 +2,19 @@
     <div>
         <Header />
         <!-- Contect -->
-        <div class="bg-white text-black pt-8">
+        <div class="bg-white text-black lg:pt-8">
             <div class="paddingX">
                 <!-- Hero -->
                 <div class="Hero_container flex justify-between items-center lg:flex-row flex-col-reverse">
-                    <div class="Hero_text lg:w-2xl w-full">
-                        <p class="Tilt_hero w-full font-bodoni lg:text-[4.5rem] text-[3rem]">
-                            Express Yourself with Leather
+                    <div class="Hero_text lg:w-11/12 w-full">
+                        <p class="Tilt_hero w-full font-bodoni lg:text-[4.5rem] text-[2rem]">
+                            Express Yourself with Prestige Leather
                         </p>
                         <p class="Sub_hero lg:max-w-sm  w-full font-lora">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu
                             turpis molestie, dictum est a, mattis tellus. Sed dignissim,.
                         </p>
-                        <div class="collection_btn flex gap-5 mt-12 font-lora">
+                        <div class="collection_btn flex gap-5 lg:mt-12 mt-5 font-lora">
                             <NuxtLink to="/men/"
                                 class="Btn_hero bg-[#1C3D32] rounded-md text-white py-2 px-3 border-2 border-[#1C3D32] hover:bg-transparent hover:text-black hover:border-2 hover:border-[#1C3D32]">
                                 <p>Men's Collection</p>
@@ -26,16 +26,16 @@
                             </NuxtLink>
                         </div>
                     </div>
-                    <div class="Hero_photo pt-14 relative group mt-4 lg:w-[930px] overflow-hidden w-[400px]"
+                    <div class="Hero_photo pt-14 relative group mt-4 lg:w-[930px] overflow-hidden w-[465px] "
                         style="clip-path: circle(50% at 50% 50%);">
-                        <img src="@/assets/icon/Ellipse.svg" alt="ellipse" class="ellipse" />
-                        <img src="@/assets/img/Man.svg" alt="man" class="man absolute bottom-0" />
+                        <img src="@/assets/icon/Ellipse.svg" alt="ellipse" class="ellipse px-7" />
+                        <img src="@/assets/img/Man.svg" alt="man" class="man absolute bottom-0 px-10" />
                         <img src="@/assets/img/Women.svg" alt="man"
-                            class="women absolute bottom-0 scale-0 translate-y-[200%]" />
+                            class="women absolute bottom-0 scale-0 translate-y-[200%] px-10" />
                     </div>
                 </div>
                 <!-- New Product -->
-                <div class="BestSeller_container">
+                <div class="BestSeller_container pt-5">
                     <div class="BestSeller_text flex">
                         <img src="@/assets/icon/BestSellerVector.svg" alt="BestSellerVector"
                             class="Arrow_bestseller lg:w-16 w-10" />

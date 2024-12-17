@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white text-black h-[100vh]">
+  <div class="bg-white text-black h-screen">
     <!-- Sidebar -->
     <Sidebar />
     <div class="paddingXY">
@@ -12,7 +12,7 @@
           <!-- <div class="MostLikedJacket w-3/12 p-4 shadow-xl flex-col rounded-xl flex">
             <p class="font-lora">Jacket</p>
           </div> -->
-          <div class="AmountofProducts w-5/12 p-4 shadow-xl rounded-xl">
+          <div class="AmountofProducts lg:w-5/12 w-full p-4 shadow-xl rounded-xl">
             <Bar :data="productChartData" :options="productChartOptions" />
           </div>
           <!-- <div class="MostLikedAccessories w-3/12 p-4 shadow-xl rounded-xl flex flex-col">
@@ -46,7 +46,7 @@
             </figcaption>
           </figure>
           <div class="bg-[#6d6d6] mt-10 rounded">
-            <div class="flex gap-10 items-center">
+            <div class="flex lg:gap-10 gap-3 items-center lg:flex-row flex-col">
               <figure
                 class="w-full h-10 relative max-w-full overflow-hidden  text-white hover:text-black bg-[#254e3f] hover:bg-[#D6D6D6] hover:border hover:border-slate-950 rounded">
                 <figcaption

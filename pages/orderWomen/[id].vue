@@ -6,40 +6,39 @@
         <!-- Content -->
         <div class="bg-white text-black pt-20 pb-3">
             <div class="paddingX">
-                <NuxtLink to="/" class="w-20">
-                    <img src="@/assets/icon/LeftArrow.svg" alt="LeftArrow">
-                </NuxtLink>
-                <div class="flex justify-evenly">
-                    <div class="rounded-box lg:w-96 border-4 border-[#ebedec] shadow-md bg-[#ebedec]"
+                <div class="w-fit">
+                    <NuxtLink to="/" class="w-20">
+                        <img src="../../assets/icon/LeftArrow.svg" alt="LeftArrow">
+                    </NuxtLink>
+                </div>
+                <div class="flex justify-evenly lg:flex-row flex-col">
+                    <div class="rounded-box lg:w-96 w-full border-4 flex justify-center border-[#ebedec] shadow-md bg-[#ebedec]"
                         data-carousel="slide">
-                        <div class="">
-                            <img :src="getJacketWomen?.foto" class="xzoom w-full" alt="Tailwind CSS Carousel component"
-                                @mouseover="mouseEnterPhoto" @mouseout="mouseLeavePhoto" />
-                        </div>
+                        <img :src="getJacket?.foto" class="xzoom lg:w-full w-60"
+                            alt="Tailwind CSS Carousel component" />
                     </div>
-                    <div class="ProfuctInfo font-lora max-w-lg flex flex-col justify-evenly">
-                        <div class="Tilt leading-[15px] ps-3">
-                            <p class="text-[24px] font-bold">{{ getJacketWomen?.warna?.nama
-                                }} {{
-                                    getJacketWomen?.kategoriJaket?.nama }} for Women</p>
-                            <p class="text-[11px]">{{ getJacketWomen?.nama }}</p>
+                    <div class="ProfuctInfo font-lora max-w-lg flex flex-col justify-center gap-7">
+                        <div class="Tilt lg:leading-[15px] leading-6 lg:pt-0 pt-5 ps-3">
+                            <p class="text-[24px] font-bold">{{ getJacket?.warna?.nama }} {{
+                                getJacket?.kategoriJaket?.nama }} for Women</p>
+                            <p class="text-[11px]">{{ getJacket?.nama }}</p>
                         </div>
-                        <div class="Price w-fit px-5">
-                            <p>{{ rupiah(getJacketWomen?.harga) }}</p>
+                        <div class="Price w-full px-5">
+                            <p class="font-semibold">{{ rupiah(getJacket?.harga) }}</p>
                         </div>
                         <div class="General">
-                            <p>Colour : {{ getJacketWomen?.warna?.nama }}</p>
-                            <p>Size : {{ getJacketWomen?.ukuranJaket?.nama }}</p>
-                            <p>Stock : {{ getJacketWomen?.stok }}</p>
-                            <p>{{ getJacketWomen?.deskription }}</p>
+                            <p>Colour : {{ getJacket?.warna?.nama }}</p>
+                            <p>Size : {{ getJacket?.ukuranJaket?.nama }}</p>
+                            <p>Stock : {{ getJacket?.stok }}</p>
+                            <p>{{ getJacket?.deskription }}</p>
                         </div>
-                        <div class="OrderLink w-fit font-lora ps-3">
-                            <p class="text-[11px] ">Shipping, Exchanges, and Returns</p>
-                            <a :href="whatsappLink" target="_blank" rel="noopener noreferrer"
-                                class="flex py-1 px-3 gap-1 border border-black rounded-md hover:bg-[#1C3D32] hover:text-white">
-                                <p>Order now via WhatsApp</p>
-                            </a>
-                        </div>
+                        <div class="OrderLink w-fit font-lora">
+                                <p class="text-[11px] ">Shipping, Exchanges, and Returns</p>
+                                <a :href="whatsappLink"
+                                    class="flex py-1 px-3 gap-1 border border-black rounded-md hover:bg-[#1C3D32] hover:border-[#1C3D32] hover:text-white">
+                                    <p>Order via WhatsApp</p>
+                                </a>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -54,7 +53,7 @@ import { gsap } from 'gsap'
 const supabase = useSupabaseClient()
 
 const { id } = useRoute().params
-const { data: getJacketWomen } = useAsyncData('getJacketWomen', async () => {
+const { data: getJacket } = useAsyncData('getJacket', async () => {
     const { error, data } = await supabase.from('jaketWomen').select(`*, kategoriJaket(*), ukuranJaket(*), warna(*)`).eq('id', id).maybeSingle()
     if (error) throw error
     if (data) {
@@ -67,20 +66,6 @@ const phone = '6285294148997'
 const message = `Saya ingin memesan produk jaket`
 const whatsappLink = `https://wa.me/${phone}?text=${message}`
 
-        function mouseEnterPhoto() {
-            gsap.to(".xzoom", {
-                scale: 1.15,
-                duration: 0.3,
-                ease: 'power2.inOut',
-            })
-        }
-function mouseLeavePhoto() {
-    gsap.to(".xzoom", {
-        scale: 1,
-        duration: 0.3,
-        ease: 'power2.inOut',
-    })
-}
 </script>
 
 <style scoped></style>

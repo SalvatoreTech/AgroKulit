@@ -14,7 +14,8 @@
                 <div class="flex justify-evenly lg:flex-row flex-col">
                     <div class="rounded-box lg:w-96 w-full border-4 flex justify-center border-[#ebedec] shadow-md bg-[#ebedec]"
                         data-carousel="slide">
-                        <img :src="getJacket?.foto" class="xzoom lg:w-full w-60" alt="Tailwind CSS Carousel component" />
+                        <img :src="getJacket?.foto" class="xzoom lg:w-full w-60"
+                            alt="Tailwind CSS Carousel component" />
                     </div>
                     <div class="ProfuctInfo font-lora max-w-lg flex flex-col justify-center gap-7">
                         <div class="Tilt lg:leading-[15px] leading-6 lg:pt-0 pt-5 ps-3">
@@ -22,8 +23,8 @@
                                 getJacket?.kategoriJaket?.nama }} for Man</p>
                             <p class="text-[11px]">{{ getJacket?.nama }}</p>
                         </div>
-                        <div class="Price w-fit px-5">
-                            <p>{{ rupiah(getJacket?.harga) }}</p>
+                        <div class="Price w-full px-5">
+                            <p class="font-semibold">{{ rupiah(getJacket?.harga) }}</p>
                         </div>
                         <div class="General">
                             <p>Colour : {{ getJacket?.warna?.nama }}</p>
@@ -31,13 +32,13 @@
                             <p>Stock : {{ getJacket?.stok }}</p>
                             <p>{{ getJacket?.deskription }}</p>
                         </div>
-                        <div class="OrderLink w-fit font-lora ps-3">
-                            <p class="text-[11px] ">Shipping, Exchanges, and Returns</p>
-                            <a :href="whatsappLink"
-                                class="flex py-1 px-3 gap-1 border border-black rounded-md hover:bg-[#1C3D32] hover:border-[#1C3D32] hover:text-white">
-                                <p>Order now via WhatsApp</p>
-                            </a>
-                        </div>
+                        <div class="OrderLink w-fit font-lora">
+                                <p class="text-[11px] ">Shipping, Exchanges, and Returns</p>
+                                <a :href="whatsappLink"
+                                    class="flex py-1 px-3 gap-1 border border-black rounded-md hover:bg-[#1C3D32] hover:border-[#1C3D32] hover:text-white">
+                                    <p>Order via WhatsApp</p>
+                                </a>
+                            </div>
                     </div>
                 </div>
             </div>

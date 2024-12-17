@@ -8,7 +8,6 @@ export default defineNuxtConfig({
   postcss: {
     plugins: {
       tailwindcss: {},
-      autoprefixer: {},
     },
   },
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase'],

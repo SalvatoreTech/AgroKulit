@@ -39,13 +39,15 @@
                 </NuxtLink>
               </li>
             </ul>
-            <NuxtLink to="/login" class="flex items-end">
-              <button
-                class="stagg bg-[#1C3D32] text-white flex rounded-md p-1 mb-5 focus:outline-none focus:ring focus:ring-green-900">
-                <img src="@/assets/icon/AdminLogin.svg" alt="iconAdmin" class="hover:" />
-                <p class="font-bodoni">Admin</p>
-              </button>
-            </NuxtLink>
+            <div  class="flex items-end">
+              <NuxtLink to="/login">
+                <button
+                  class="stagg bg-[#1C3D32] text-white flex rounded-md p-1 mb-5 focus:outline-none focus:ring focus:ring-green-900">
+                  <img src="@/assets/icon/AdminLogin.svg" alt="iconAdmin" class="hover:" />
+                  <p class="font-bodoni">Admin</p>
+                </button>
+              </NuxtLink>
+            </div>
           </div>
         </div>
       </div>

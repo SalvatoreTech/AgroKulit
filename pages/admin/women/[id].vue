@@ -1,6 +1,6 @@
 <template>
     <div class="bg-white text-black">
-        <div class="EditProduct paddingXY h-screen">
+        <div class="EditProduct paddingXY lg:h-screen">
             <p class="font-lora text-3xl font-medium">Edit Jacket</p>
             <div v-if="isLoading" class="flex">
                 <p>Loading</p><svg class="w-5 pt-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
@@ -34,8 +34,8 @@
                             class="save text-white flex items-center py-1 px-3 bg-[#1C3D32] hover:bg-green-800 rounded-md outline-none">✓
                             Add</button>
                     </div>
-                    <div class="flex justify-between gap-10">
-                        <div class="General_info font-lora bg-[#ebedec] rounded-md outline-none p-3 w-[50%]">
+                    <div class="flex justify-between lg:gap-10 gap-3 lg:flex-row flex-col">
+                        <div class="General_info font-lora bg-[#ebedec] rounded-md outline-none p-3 lg:w-[50%]">
                             <p class="font-medium text-xl">General Information</p>
                             <div class="relative flex flex-col">
                                 <label for="name">Product Name</label>
@@ -98,7 +98,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="Photos bg-[#ebedec] w-[50%] rounded-md p-3">
+                        <div class="Photos bg-[#ebedec] lg:w-[50%] rounded-md p-3">
                             <p class="labelImage font-medium text-xl font-lora">Photo</p>
                             <p class="text-gray-500 text-[12px]">.png /only</p>
                             <div class="flex flex-col items-center justify-center">
